@@ -1,0 +1,141 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:300,400);
+header {
+    position: relative;
+}
+
+header nav {
+    font-size: 120%;
+    position: absolute;
+    right: 0;
+    top: 20px;
+}
+
+header nav ul {
+    padding: 0;
+    margin: 0;
+}
+
+header nav li {
+    display: inline-block;
+    margin: 0 0.5em;
+    vertical-align: middle;
+}
+
+header a {
+    color: inherit;
+}
+
+body {
+    font: normal 100% Roboto, sans-serif;
+    margin: 0;
+    color: #555;
+}
+
+body > * {
+    width: 790px;
+    padding: 20px;
+    margin: 20px auto;
+    background: white;
+}
+
+.social a {
+    color: #28D;
+    text-decoration: none;
+    padding-left: 5px;
+    padding-right: 20px;
+}
+
+a {
+    color: #28D;
+    text-decoration: none;
+}
+
+h1 a {
+    color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: 300;
+}
+
+ul {
+    list-style-type: disc;
+    padding: 0 1em;
+    font-weight: 300;
+}
+
+.circular {
+  border-radius: 50%;
+}
+
+.glyphicon {
+    font-size: 2em;
+}
+
+#cd-timeline {
+  position: relative;
+  padding: 2em 0;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+#cd-timeline::before {
+  /* this is the vertical line */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 18px;
+  height: 100%;
+  width: 4px;
+  background: #d7e4ed;
+}
+
+.cssanimations .cd-timeline-img.is-hidden {
+  visibility: hidden;
+}
+.cssanimations .cd-timeline-img.bounce-in {
+  visibility: visible;
+  animation: cd-bounce-1 0.6s;
+}
+ 
+@keyframes cd-bounce-1 {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+ 
+  60% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+ 
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media only screen and (min-device-width: 200px) and (max-device-width: 800px) and (-webkit-min-device-pixel-ratio: 2){
+    .social {
+    	padding-left: 13em;
+    }
+
+    .email {
+    	padding-left: 4em;
+    }
+
+    nav li {
+    	font-size: 1.5em;
+    }
+
+    i {
+    	padding-right: 1em;
+    }
+    
+    .timeline-wrapper {
+  	  clear: left;
+  	  float: left;
+  	  margin: 0 0 12px;
+  	  width: 900px;
+  	  font-size: 2em;
+  	}
+}
