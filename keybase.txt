@@ -1,0 +1,68 @@
+==================================================================
+https://keybase.io/kfrankc
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://kfrankc.me
+  * I am kfrankc (https://keybase.io/kfrankc) on keybase.
+  * I have a public key with fingerprint CC8F D213 330C F229 339E  EA04 5893 B411 168F 2FF3
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01018ef70a8f9220feec837e7c55f7e672317f26594ffbe8fa49ebd03518530451f10a",
+            "fingerprint": "cc8fd213330cf229339eea045893b411168f2ff3",
+            "host": "keybase.io",
+            "key_id": "5893b411168f2ff3",
+            "kid": "01018ef70a8f9220feec837e7c55f7e672317f26594ffbe8fa49ebd03518530451f10a",
+            "uid": "26eee2292312b2a6edd3b1f3c3106f19",
+            "username": "kfrankc"
+        },
+        "service": {
+            "hostname": "kfrankc.me",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1467128056,
+    "expire_in": 157680000,
+    "prev": "d85eaf1cbfba84d3cff651ad239e8f135db0ae7a22ad71b0a1eb7416d91f04f5",
+    "seqno": 11,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.53
+Comment: https://keybase.io/crypto
+
+yMIiAnicrVJrSFRBFF7LJBfFKMykILlSmm56Z+5zpZIy6AFZEaa92ObemdHL6r3r
+3eu2m2gEJfqjgtAeRIVBEfRQAxF7kWFBRURCRLAgUZiFFGiIqWRzpX4E/Wz+zJzD
+933nO2dOf+pcjzdh33TNrRTPQHLCi77WOk+5fW6intMsHOOK6rkgmb1INSZhJxA0
+MFfE8YAHKqEKj1Tqh5CnhOiqoBBFlySqEFmBAlAolCW/SKlGVIpEP9EwL0hAlQRe
+lAAFPOJ8HDXMSmKHbMN0mKyuqxRDIAgCr1MI/YLgJwQxuOoXNBEAIKsUUiowYpUV
+dhnMnIbCpMCwWI4FgVl7/8D/Z991s3JQJoQwn4wFNYhkgrGgASroAuBlCvwuMExs
+E9UQ1yu1kRnUuQYfx5IRQyfuXN1G/gYUsMDHhWzLsXSrmuWrHCdU5NKcWMjFHSJa
+4LdCQDNMzGbICBFihw3L5IoAQ+qO4UoCUVYAVHlJ9nEkGjJsEjBchKTIKs+OW4ZE
+mCRWJYIo0DWqIVXEgk6pLAGEIfsBlQJBwhqPiIIgRFgB7A2IpohAxn5AeZFKnNtT
+rWkxbcB8okqmGTYqTeTU2YRrePxof6InwetJmjfHXS6PN3nBn5UDwfmetgNzL7wc
+2HFbbgyenlw9tXxRZnNFX8eGTyWtaxdOaBPflg705pW+Gzr2sritOdfZuj/j4Y14
+eqP4uTQ7WAHzTob34BPpOYlrWtLML4NHkkpX3v2+fmfJ06kDm3J2rXoz2VhQ0jS+
+eeWas8ejT/G9nqwP3Q8O8ePX9Uht1Sow1r54JL7gCr/zcnzZptHoxtiWt8Urctrf
+aRl7e2aWzFzqL7tWWNvS8WO0DZd/6b44ti7QvLy8M3pxpCc1dn9ouGl47P1ifjqr
+K7n3Z+mp7EWDtbtaU7zN29sPv/mMpq72Pc97cnT3q+k06czrK/lldw7eLOy1MvOX
+dZHc213bPiafL0v8+qwz/gsVUD9W
+=wyGU
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/kfrankc
+
+==================================================================
