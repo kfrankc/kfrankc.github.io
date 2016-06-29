@@ -46,11 +46,6 @@
   </head>
   <body>
   <script> new WOW().init(); </script>
-  <script>
-    $(document).ready(function() {
-            $.timeliner({});
-    });
-  </script>
     <header>
       	<nav>
       		<ul>
@@ -84,35 +79,40 @@
             <div class="timeline-wrapper">
               <h3 class="timeline-time">July 2016</h3>
               <dl class="timeline-series">
+                <dt class="timeline-event" id="event01"><a></a></dt>
                 <dd class="timeline-event-content" id="event01EX">
-                  <p>I am currently working on a JPL SPIE paper for a conference in San Diego in August.</p>
+                  <p>I am currently working on a JPL SPIE paper on image segmentation for a conference in San Diego during August.</p><br class="clear">
                 </dd>
               </dl>
             </div>
             <div class="timeline-wrapper">
               <h3 class="timeline-time">June 2016</h3>
               <dl class="timeline-series">
+                <dt class="timeline-event" id="event01"><a></a></dt>
                 <dd class="timeline-event-content" id="event01EX">
-                  <p>I started working at <a href="http://www.workday.com/" target="_blank">Workday</a> as a Software Engineering Intern</p>
+                  <p>I started working at <a href="http://www.workday.com/" target="_blank">Workday</a> as a Software Engineering Intern</p><br class="clear">
                 </dd>
+                <dt class="timeline-event" id="event02"><a></a></dt>
                 <dd class="timeline-event-content" id="event02EX">
-                  <p>I began a summer project with Ruthie called <a href="https://medium.com/@fruthie_codes" target="_blank">Fruthie Codes</a>, where we write a comprehensive tutorial on a programming subject, ranging from Git to Python, for 10 weeks.</p>
+                  <p>I began a summer project with Ruthie called <a href="https://medium.com/@fruthie_codes" target="_blank">Fruthie Codes</a>, where we write a comprehensive tutorial on a programming subject, ranging from Git to Python, for 10 weeks.</p><br class="clear">
                 </dd>
               </dl>
             </div>
             <div class="timeline-wrapper">
               <h3 class="timeline-time">May 2016</h3>
               <dl class="timeline-series">
+                <dt class="timeline-event" id="event01"><a></a></dt>
                 <dd class="timeline-event-content" id="event01EX">
-                  <p>The research paper on causal learning that I was a part of at VCLA was submitted to NIPS 2016 conference.</p>
+                  <p>The research paper on causal learning of fluents that I was a part of at VCLA was submitted to the Neural Information Processing Systems (NIPS) 2016 conference.</p><br class="clear">
                 </dd>
               </dl>
             </div>
             <div class="timeline-wrapper">
               <h3 class="timeline-time">April 2016</h3>
               <dl class="timeline-series">
+                <dt class="timeline-event" id="event01"><a></a></dt>
                 <dd class="timeline-event-content" id="event01EX">
-                  <p>My research paper, <a href="files/SPIE_spring2016.pdf">Cross Correlation and Image Alignment for multi-band IR sensors</a>, is now published after the SPIE Conference in Baltimore, MA.</p>
+                  <p>My research paper, <a href="files/SPIE_spring2016.pdf">Cross Correlation and Image Alignment for multi-band IR sensors</a>, is now published after the SPIE Optical Pattern Recognition XXVII Conference in Baltimore, MA.</p><br class="clear">
                 </dd>
               </dl>
             </div>
@@ -123,8 +123,8 @@
       <div class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.6s">
         <section>
           <h2>About Me</h2><br>
-          <h4>I am pursuing a B.S. in <b>Computer Science</b>. My research interests began with computer vision during my internship at the <b><a href="http://www.jpl.nasa.gov/" target="_blank">Jet Propulsion Laboratory</a></b> in Summer 2015, and have since evolved to incorporate artificial intelligence and machine learning.</h4><br>
-          <h4>Currently, I work as an undergraduate researcher at the <b><a href="http://vcla.stat.ucla.edu/" target="_blank">Center for Vision, Cognition, Learning and Autonomy (VCLA)</a></b> with Ph.D. student <a href="http://shukla.io/" target="_blank">Nishant Shukla</a> and <a href="http://www.stat.ucla.edu/~sczhu/index.html" target="_blank">Professor Song-Chung Zhu</a>. I will also be a <b><a href="https://reslife.ucla.edu/employment/ra" target="_blank">Resident Assistant (RA)</a></b> for <a href="https://reslife.ucla.edu" target="_blank">UCLA Residential Life</a> during the 2016-17 school year, providing a welcoming and safe space for both incoming and returning UCLA students in the dorms, guiding them to become not only <a href="http://www.truebruin.ucla.edu/" target="_blank">True Bruins</a>, but also better individuals. </h4>
+          <h4>I am pursuing a B.S. in <b>Computer Science</b> at the University of California, Los Angeles. My research interests began with computer vision during my internship at the <b><a href="http://www.jpl.nasa.gov/" target="_blank">Jet Propulsion Laboratory</a></b> in Summer 2015, and have since evolved to incorporate artificial intelligence and machine learning.</h4><br>
+          <h4>Currently, I work as an undergraduate researcher at the <b><a href="http://vcla.stat.ucla.edu/" target="_blank">Center for Vision, Cognition, Learning and Autonomy (VCLA)</a></b> with Ph.D. student <a href="http://shukla.io/" target="_blank">Nishant Shukla</a> and <a href="http://www.stat.ucla.edu/~sczhu/index.html" target="_blank">Professor Song-Chung Zhu</a>. I will also be a <b><a href="https://reslife.ucla.edu/employment/ra" target="_blank">Resident Assistant (RA)</a></b> for <a href="https://reslife.ucla.edu" target="_blank">UCLA Residential Life</a> during the 2016-17 school year.</h4>
         </section>
       </div>
       <div class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.9s">
@@ -138,6 +138,13 @@
         </section>
       </div>
       <script src="js/imageloader.js"></script>
+      <script>
+        $(document).ready(function() {
+          $.timeliner({
+            timelineContainer:'#timeline',
+          });
+        });
+      </script>
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
