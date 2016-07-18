@@ -15,6 +15,7 @@
     <meta name="description" content="Hi! I'm Frank Chen, and I am an undergraduate student at UCLA">
     <meta name="author" content="Frank Chen">
     <!-- css -->
+    <link rel="stylesheet" href="css/card.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
@@ -54,83 +55,137 @@
     </header>
     <section>
       <h2>Hackathon Projects</h2><br>
-      <div class="wow fadeInUp" data-wow-delay="1.0s">
-        <h3><a href="https://vimeo.com/117117898" target="_blank"><i class="fa fa-plane"></i> Myodrone</a></h3>
-        <ul>
-          <li>Use Myo armband to control AR Parrot drone with 8 degrees of movement. Photos/videos taken by the drone are accessed by the Intel Edison &amp; forwarded to a web app, where they can be easily viewed across multiple platforms. </li>
-          <li><b>Top 30 out of 300+</b> teams at PennApps Spring 2015.</li>
-          <li><a href="https://github.com/nelson-liu/myodrone" target="_blank">MyoDrone on Github</a></li>
-        </ul>
+      <div class="row">
+        <div class="col s12 cards-container">
+          <div class="wow fadeInRight" data-wow-delay="1.0s">
+           <div class="card">
+             <div class="card-content">
+               <h3 class="card-title"><a href="https://vimeo.com/117117898" target="_blank"><i class="fa fa-plane"></i> Myodrone</a></h3>
+               <!-- <img data-src="img/myodrone.png" alt="myodrone" style="width:100%"> -->
+               <p>Use Myo armband to control AR Parrot drone with 8 degrees of movement. Photos/videos taken by the drone are accessed by the Intel Edison &amp; forwarded to a web app, where they can be easily viewed across multiple platforms.</p>
+               <p><b>Top 30 out of 300+</b> teams at PennApps Spring 2015.</p>
+             </div>
+             <div class="card-action">
+               <i><a href="https://github.com/nelson-liu/myodrone" target="_blank">MyoDrone on Github</a></i>
+             </div>
+            </div>
+          </div>
+          <div class="wow fadeInRight" data-wow-delay="1.3s">
+           <div class="card">
+             <div class="card-content">
+               <h3 class="card-title"><a href="https://vimeo.com/152070027" target="_blank"><i class="fa fa-home"></i> RoboHome</a></h3>
+               <!-- <img data-src="img/robohome.png" alt="robohome" style="width:100%"> -->
+               <p>Internet of Things (IoT) themed hardware project: model home with components such as lighting, door, TV, and shower. Each of these components were connected to a microcontroller + bluetooth module; they were controlled using a variety of mobile devices: smartphone, pebble watch, myo armband, and laptop.</p>
+               <p><b>First Place out of 200+</b> competitors at IDEA Hacks 2016</p>
+             </div>
+             <div class="card-action">
+               <i><a href="https://github.com/kfrankc/robohome" target="_blank">RoboHome on Github</a></i>
+             </div>
+            </div>
+          </div>
+          <div class="wow fadeInRight" data-wow-delay="1.6s">
+           <div class="card">
+             <div class="card-content">
+               <h3 class="card-title"><a href="http://devpost.com/software/alexa-m-d-ya4w5u" target="_blank"><i class="fa fa-user-md"></i> Alexa MD</a></h3>
+               <!-- <img data-src="img/alexamd.png" alt="Alexa MD" style="width:100%"> -->
+               <p>Hardware IoT project with three components: Amazon Echo prompt the user with various versions of exposure therapy. The user will then engage in VR treatment via Oculus Rift by re-enacting situations that may usually cause them anxiety/distress.</p>
+               <p><b>Won Best Use of Amazon Echo and Best Health Wearable Prize</b> at TreeHacks 2016</p>
+             </div>
+             <div class="card-action">
+               <i><a href="https://github.com/AkhilNadendla/Tree-Hacks-Jarvis-MD" target="_blank">Alexa MD on Github</a></i>
+             </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="wow fadeInUp" data-wow-delay="1.3s">
-        <h3><a href="https://vimeo.com/152070027" target="_blank"><i class="fa fa-home"></i> RoboHome</a></h3>
-        <ul>
-          <li>Internet of Things (IoT) themed hardware project: model home with components such as lighting, door, TV, and shower. Each of these components were connected to a microcontroller + bluetooth module; they were controlled using a variety of mobile devices: smartphone, pebble watch, myo armband, and laptop.</li>
-          <li>Used Parse backend to persistently store data and communicate with our Android mobile app for displaying statuses of the household components (e.g. house lights are 'on'), and controlling these components. Used 3D printing to create our shower handle &amp; our model resident, Pikachu. </li>
-          <li><b>First Place out of 200+</b> competitors at IDEA Hacks 2016</li>
-          <li><a href="https://github.com/kfrankc/robohome" target="_blank">RoboHome on Github</a></li>
-        </ul>
-      </div>
-      <div class="wow fadeInUp" data-wow-delay="1.6s">
-        <h3><a href="http://devpost.com/software/alexa-m-d-ya4w5u" target="_blank"><i class="fa fa-user-md"></i> Alexa MD</a></h3>
-        <ul>
-          <li>Hardware IoT project with three components: Amazon Echo prompt the user with various versions of exposure therapy. The user will then engage in VR treatment via Oculus Rift by re-enacting situations that may usually cause them anxiety/distress. The Leap Motion help users engage in another dimension of treatment when they are ready to move to the next step.</li>
-          <li>When the treatment session has concluded, Alexa M.D. will dispense the user’s prescribed medication through a 3D-printed and laser-cut automated medicine dispenser, powered by the Intel Edison. </li>
-          <li><b>Won Best Use of Amazon Echo and Best Health Wearable Prize</b> at TreeHacks 2016</li>
-          <li><a href="https://github.com/AkhilNadendla/Tree-Hacks-Jarvis-MD" target="_blank">Alexa MD on Github</a></li>
-        </ul>
-      </div>
-      <div class="wow fadeInUp" data-wow-delay="1.0s">
-        <h3><a href="http://devpost.com/software/myomessenger-uc5go0" target="_blank"><i class="fa fa-mobile"></i> MyoMessenger</a></h3>
-        <ul>
-          <li>Hardware driving safety project with two components: Myo armband allows you to send common text messages to any person on a predetermined emergency list (e.g. text 'I will call you back later') using hand gestures. The second safety feature uses the Muse headband’s accelerometer to detect when a driver’s head starts bobbing in exhaustion or fatigue. When the driver is detected to be falling asleep, it will send an audiovisual signal for the driver to wake up.</li>
-          <li><b>Top 4 out of 1000+ competitors</b> at CalHacks 2015.</li>
-          <li><a href="https://github.com/kfrankc/MyoMessenger" target="_blank">MyoMessenger on Github</a></li>
-        </ul>
-      </div>
-      <div class="wow fadeInUp" data-wow-delay="1.3s">
-        <h3><a href="http://devpost.com/software/happyhour" target="_blank"><i class="fa fa-clock-o"></i> HappyHour</a></h3>
-        <ul>
-          <li>Pebble Time application for safety that allows users to keep track of how many drinks they’ve had, calculate their BAC in real time, and give them the option to call an Uber to their location at the click of a button. <b>Won best use of Uber API prize</b>; featured on Devpost‘s top projects.</li>
-          <li><a href="https://github.com/ruthjohnson95/HappyHour" target="_blank">HappyHour on Github</a></li>
-        </ul>
-      </div>
-      <div class="wow fadeInUp" data-wow-delay="1.6s">
-        <h3><a href="http://www.safesteps.space/" target="_blank"><i class="fa fa-exclamation-triangle"></i> SafeSteps</a></h3>
-        <ul>
-          <li>Pebble application for safety that allows users to send a call + SMS message to as many friends as they would like simultaneously at a click of a button. The call includes a voice message saying that the user is in trouble, and the SMS message also includes the address of where the user is located.</li>
-          <li><a href="https://github.com/ruthjohnson95/SafeSteps" target="_blank">SafeSteps on Github</a></li>
-        </ul>
-      </div>
-      <div class="wow fadeInUp" data-wow-delay="1.9s">
-        <h3><a href="http://devpost.com/software/scenicjogger" target="_blank"><i class="fa fa-map-marker"></i> ScenicJogger</a></h3>
-        <ul>
-          <li>Web Application that empowers citizens to explore historical landmarks in their cities by intelligently recommending jogging routes that satisfies the user’s desired running distance while routing around historical landmarks. In addition, the app allows users to see a hyperlapse of their route by using Google Maps Street View API and stitching the street view images together. Finally, a Twilio node-js server allows users to send their desired route to their phone for future access when they are on their jog.</li>
-          <li><a href="https://github.com/kfrankc/ScenicJogger" target="_blank">ScenicJogger on Github</a></li>
-        </ul>
+      <div class="row">
+        <div class="col s12 cards-container">
+          <div class="wow fadeInRight" data-wow-delay="1.9s">
+            <div class="card">
+             <div class="card-content">
+               <h3 class="card-title"><a href="http://devpost.com/software/myomessenger-uc5go0" target="_blank"><i class="fa fa-mobile"></i> MyoMessenger</a></h3>
+               <p>Hardware driving safety project using Myo armband to send common text messages to any person on a predetermined emergency list using using hand gestures. The Muse headband’s accelerometer detect when a driver’s head starts bobbing in exhaustion or fatigue.</p>
+               <p><b>Top 4 out of 1000+ competitors</b> at CalHacks 2015.</p>
+             </div>
+             <div class="card-action">
+               <i><a href="https://github.com/kfrankc/MyoMessenger" target="_blank">MyoMessenger on Github</a></i>
+             </div>
+            </div>
+          </div>
+          <div class="wow fadeInRight" data-wow-delay="2.2s">
+            <div class="card">
+             <div class="card-content">
+               <h3 class="card-title"><a href="http://devpost.com/software/happyhour" target="_blank"><i class="fa fa-clock-o"></i> HappyHour</a></h3>
+               <p>Pebble Time application for safety that allows users to keep track of how many drinks they’ve had, calculate their BAC in real time, and give them the option to call an Uber to their location at the click of a button.</p>
+               <p><b>Won best use of Uber API prize at Hack the North 2015</b>; featured on Devpost‘s top projects.</p>
+             </div>
+             <div class="card-action">
+               <i><a href="https://github.com/ruthjohnson95/HappyHour" target="_blank">HappyHour on Github</a></i>
+             </div>
+            </div>
+          </div>
+          <div class="wow fadeInRight" data-wow-delay="2.5s">
+            <div class="card">
+             <div class="card-content">
+               <h3 class="card-title"><a href="http://www.safesteps.space/" target="_blank"><i class="fa fa-exclamation-triangle"></i> SafeSteps</a></h3>
+               <p>Pebble application for safety that allows users to send a call + SMS message to as many friends as they would like simultaneously at a click of a button. The call includes a voice message saying that the user is in trouble, and the SMS message also includes the address of where the user is located.</p>
+             </div>
+             <div class="card-action">
+               <i><a href="https://github.com/ruthjohnson95/SafeSteps" target="_blank">SafeSteps on Github</a></i>
+             </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col s12 cards-container">
+          <div class="wow fadeInRight" data-wow-delay="1.0s">
+            <div class="card">
+             <div class="card-content">
+               <h3 class="card-title"><a href="http://devpost.com/software/scenicjogger" target="_blank"><i class="fa fa-map-marker"></i> ScenicJogger</a></h3>
+               <p>Web Application that empowers citizens to explore historical landmarks in their cities by intelligently recommending jogging routes that satisfies the user’s desired running distance while routing around historical landmarks.</p>
+             </div>
+             <div class="card-action">
+               <i><a href="https://github.com/kfrankc/ScenicJogger" target="_blank">ScenicJogger on Github</a></i>
+             </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        </div>
       </div>
     </section>
     <section>
       <h2>UCLA Projects</h2><br>
-      <div class="wow fadeInUp" data-wow-delay="1.0s">
-        <h3><a href="https://www.youtube.com/watch?v=Zx1SNIKpR9Y" target="_blank"><i class="fa fa-car"></i> NATCAR</a></h3>
-        <ul>
-          <li>Design, build, and race an autonomous car on a track marked by 1''-wide white tape.</li>
-          <li><b>First Place at UC Davis NATCAR Competition 2015</b></li>
-          <li><b>Third Place at UCSD Grand PrIEEE NATCAR Competition 2015</b></li>
-        </ul>
-      </div>
-      <div class="wow fadeInUp" data-wow-delay="1.3s">
-        <h3><a href="https://github.com/kfrankc/CS131_S16/tree/master/hw3" target="_blank"><i class="fa fa-code"></i> MOCAML</a></h3>
-        <ul>
-          <li>Subset of the OCAML Interpreter built using OCAML for UCLA CS 131: Programming Languages</li>
-        </ul>
-      </div>
-      <div class="wow fadeInUp" data-wow-delay="1.6s">
-        <h3><a href="files/CS170A_project.pdf" target="_blank"><i class="fa fa-bar-chart"></i> LA Crime Data Analysis &amp; Visualization</a></h3>
-        <ul>
-          <li>Visualize trends, patterns, and locality of crimes in Los Angeles, using data collected from 2003-2014; UCLA CS 170A: Mathematical Modeling.</li>
-        </ul>
+      <div class="row">
+        <div class="col s12 cards-container">
+          <div class="wow fadeInRight" data-wow-delay="1.0s">
+            <div class="card">
+             <div class="card-content">
+               <h3 class="card-title"><a href="https://www.youtube.com/watch?v=Zx1SNIKpR9Y" target="_blank"><i class="fa fa-car"></i> NATCAR</a></h3>
+               <p>Design, build, and race an autonomous car on a track marked by 1''-wide white tape.<br></p>
+               <p><b>First Place at UC Davis NATCAR Competition 2015</b><br>
+               <b>Third Place at UCSD Grand PrIEEE NATCAR Competition 2015</b></p>
+             </div>
+            </div>
+          </div>
+          <div class="wow fadeInRight" data-wow-delay="1.3s">
+            <div class="card">
+             <div class="card-content">
+               <h3 class="card-title"><a href="https://github.com/kfrankc/CS131_S16/tree/master/hw3" target="_blank"><i class="fa fa-code"></i> MOCAML</a></h3>
+               <p>Subset of the OCAML Interpreter built using OCAML for UCLA CS 131: Programming Languages<br></p>
+             </div>
+            </div>
+          </div>
+          <div class="wow fadeInRight" data-wow-delay="1.6s">
+            <div class="card">
+             <div class="card-content">
+               <h3 class="card-title"><a href="files/CS170A_project.pdf" target="_blank"><i class="fa fa-bar-chart"></i> LA Crime Data Analysis &amp; Visualization</a></h3>
+               <p>Visualize trends, patterns, and locality of crimes in Los Angeles, using data collected from 2003-2014; UCLA CS 170A: Mathematical Modeling.<br></p>
+             </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <section>
@@ -170,6 +225,7 @@
         <h5><a href="files/SPIE_spring2016.pdf" target="_blank">[Download PDF]</a></h5>
       </div>
     </section>
+    <script src="js/imageloader.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
