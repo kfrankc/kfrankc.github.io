@@ -50,6 +50,11 @@ a {
     text-decoration: none;
 }
 
+a:hover {
+  color: #89C4FF;
+  background-color: transparent;
+}
+
 h1 a {
     color: inherit;
 }
