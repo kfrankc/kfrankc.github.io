@@ -39,19 +39,19 @@ body > * {
 }
 
 .social a {
-    color: #3490DE;
+    color: #3F72AF;
     text-decoration: none;
     padding-left: 5px;
     padding-right: 20px;
 }
 
 a {
-    color: #3490DE;
+    color: #3F72AF;
     text-decoration: none;
 }
 
 a:hover {
-  color: #89C4FF;
+  color: #4AA0D5;
   background-color: transparent;
 }
 
