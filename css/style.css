@@ -38,6 +38,11 @@ body > * {
     background: white;
 }
 
+.footer {
+    font-size: 80%; 
+    text-align: right;
+}
+
 .social a {
     color: #3F72AF;
     text-decoration: none;
@@ -144,12 +149,19 @@ img[data-src] {
     i {
     	padding-right: 1em;
     }
-    
-    .timeline-wrapper {
-  	  clear: left;
-  	  float: left;
-  	  margin: 0 0 12px;
-  	  width: 900px;
-  	  font-size: 2em;
-  	}
+}
+
+@media (min-width:768px) {
+    .col-sm-4 {
+        word-spacing: normal;
+        vertical-align: top;
+        letter-spacing: normal;
+        display: inline-block;
+        float:none;
+    }
+}
+@media (min-width:992px) {
+    .col-md-3 {
+        float:none;
+    }
 }
