@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
     <!-- js -->
     <script src="js/wow.min.js"></script>
+    <script src="js/medium-zoom.min.js"></script>
     <!-- responsive icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
@@ -31,6 +32,22 @@
     <style>
       p {
         font-weight: 300;
+      }
+      img {
+        padding-top: 10px;
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 25px;
+        -webkit-filter: opacity(.6);
+        filter: opacity(.6);
+      }
+      img:hover{
+        padding-top: 10px;
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 25px;
+        -webkit-filter: opacity(1);
+        filter: opacity(1);
       }
     </style>
   </head>
@@ -56,26 +73,32 @@
           <div>
             <div class="card">
              <div class="card-content">
-               <h3 class="card-title"><a href="https://www.youtube.com/watch?v=Zx1SNIKpR9Y"><i class="fa fa-car"></i> NATCAR</a></h3>
-               <p>Design, build, and race an autonomous car on a track marked by 1''-wide white tape.<br></p>
-               <p><b>First Place at UC Davis NATCAR Competition 2015</b><br>
-               <b>Third Place at UCSD Grand PrIEEE NATCAR Competition 2015</b></p>
+                <a href="https://www.youtube.com/watch?v=Zx1SNIKpR9Y">
+                <h3 class="card-title"><i class="fa fa-car"></i> NATCAR</h3>
+                <img src="img/natcar.png"></a>
+                <p>Design, build, and race an autonomous car on a track marked by 1''-wide white tape.<br></p>
+                <p><b>First Place at UC Davis NATCAR Competition 2015</b><br>
+                <b>Third Place at UCSD Grand PrIEEE NATCAR Competition 2015</b></p>
              </div>
             </div>
           </div>
           <div>
             <div class="card">
              <div class="card-content">
-               <h3 class="card-title"><a href="https://github.com/kfrankc/CS131_S16/tree/master/hw3"><i class="fa fa-code"></i> MOCAML</a></h3>
-               <p>Subset of the OCAML Interpreter built using OCAML for UCLA CS 131: Programming Languages<br></p>
+                <a href="https://github.com/kfrankc/CS131_S16/tree/master/hw3">
+                <h3 class="card-title"><i class="fa fa-code"></i> MOCAML</h3>
+                <img src="img/mocaml.gif"></a>
+                <p>Subset of the OCAML Interpreter built using OCAML for UCLA CS 131: Programming Languages<br></p>
              </div>
             </div>
           </div>
           <div>
             <div class="card">
              <div class="card-content">
-               <h3 class="card-title"><a href="http://kfrankc.me/img2color"><i class="fa fa-paint-brush "></i> img2color</a></h3>
-               <p>Create a color palette from input image using Vibrant.js<br></p>
+                <a href="http://kfrankc.me/img2color">
+                <h3 class="card-title"><i class="fa fa-paint-brush "></i> img2color</h3>
+                <img src="img/img2color.png"></a>
+                <p>Create a color palette from input image using Vibrant.js<br></p>
              </div>
             </div>
           </div>
@@ -84,24 +107,30 @@
           <div>
             <div class="card">
              <div class="card-content">
-               <h3 class="card-title"><a href="https://github.com/kfrankc/LightBoard"><i class="fa fa-lightbulb-o"></i> LightBoard</a></h3>
-               <p>Added LED stripes on my longboard. Built an Android app that can control the LED colors via bluetooth connection between the phone and the Arduino.<br></p>
+              <a href="https://github.com/kfrankc/LightBoard">
+                <h3 class="card-title"><i class="fa fa-lightbulb-o"></i> LightBoard</h3>
+                <img src="img/lightboard.png"></a>
+                <p>Added LED stripes on my longboard. Built an Android app that can control the LED colors via bluetooth connection between the phone and the Arduino.<br></p>
              </div>
             </div>
           </div>
           <div>
             <div class="card">
              <div class="card-content">
-               <h3 class="card-title"><a href="http://kfrankc.me/datasets"><i class="fa fa-table"></i> ML/Vision Datasets</a></h3>
-               <p>A growing list of datasets for training/research in ML/Vision.<br></p>
+                <a href="http://kfrankc.me/datasets">
+                <h3 class="card-title"><i class="fa fa-table"></i> ML/Vision Datasets</h3>
+                <img src="img/dataset.png"></a>
+                <p>A growing list of datasets for training/research in ML/Vision.<br></p>
              </div>
             </div>
           </div>
           <div>
             <div class="card">
              <div class="card-content">
-               <h3 class="card-title"><a href="http://kfrankc.me/csgiants"><i class="fa fa-user"></i> CS Giants</a></h3>
-               <p>A growing list of top researchers/professors in the Computer Science field (specifically Vision and AI)<br></p>
+                <a href="http://kfrankc.me/csgiants">
+                <h3 class="card-title"><i class="fa fa-user"></i> CS Giants</h3>
+                <img src="img/csgiants.png"></a>
+                <p>A growing list of top researchers/professors in the Computer Science field (specifically Vision and AI)<br></p>
              </div>
             </div>
           </div>
@@ -116,10 +145,11 @@
         <div class="col s12 cards-container">
            <div class="card">
              <div class="card-content">
-               <h3 class="card-title"><a href="https://vimeo.com/117117898"><i class="fa fa-plane"></i> Myodrone</a></h3>
-               <!-- <img data-src="img/myodrone.png" alt="myodrone" style="width:100%"> -->
-               <p>Use Myo gesture control armband to control AR Parrot drone with 8 degrees of movement.</p>
-               <p><b>Top 30 out of 300+</b> teams at PennApps Spring 2015.</p>
+                <a href="https://vimeo.com/117117898">
+                <h3 class="card-title"><i class="fa fa-plane"></i> Myodrone</h3>
+                <img src="img/myodrone.png"></a>
+                <p>Use Myo gesture control armband to control AR Parrot drone with 8 degrees of movement.</p>
+                <p><b>Top 30 out of 300+</b> teams at PennApps Spring 2015.</p>
              </div>
              <div class="card-action">
                <i><a href="https://github.com/nelson-liu/myodrone">MyoDrone on Github</a></i>
@@ -128,9 +158,10 @@
           <div>
            <div class="card">
              <div class="card-content">
-               <h3 class="card-title"><a href="https://vimeo.com/152070027"><i class="fa fa-home"></i> RoboHome</a></h3>
-               <!-- <img data-src="img/robohome.png" alt="robohome" style="width:100%"> -->
-               <p>Internet of Things (IoT) themed hardware model home with components such as lighting, door, TV, all controlled using a smartphone, pebble watch, myo armband, and laptop.</p>
+                <a href="https://vimeo.com/152070027">
+                <h3 class="card-title"><i class="fa fa-home"></i> RoboHome</h3>
+                <img src="img/robohome.png"></a>
+                <p>Internet of Things (IoT) themed hardware model home with components such as lighting, door, TV, all controlled using a smartphone, pebble watch, myo armband, and laptop.</p>
                <p><b>First Place out of 200+</b> competitors at IDEA Hacks 2016</p>
              </div>
              <div class="card-action">
@@ -140,10 +171,11 @@
           <div>
            <div class="card">
              <div class="card-content">
-               <h3 class="card-title"><a href="http://devpost.com/software/alexa-m-d-ya4w5u"><i class="fa fa-user-md"></i> Alexa MD</a></h3>
-               <!-- <img data-src="img/alexamd.png" alt="Alexa MD" style="width:100%"> -->
-               <p>Hardware IoT project that prompts the user with exposure therapy via Oculus Rift by re-enacting situations that may usually cause them anxiety/distress.</p>
-               <p><b>Won Best Use of Amazon Echo and Best Health Wearable Prize</b> at TreeHacks 2016</p>
+                <a href="http://devpost.com/software/alexa-m-d-ya4w5u">
+                <h3 class="card-title"><i class="fa fa-user-md"></i> Alexa MD</h3>
+                <img src="img/alexamd.png"></a>
+                <p>Hardware IoT project that prompts the user with exposure therapy via Oculus Rift by re-enacting situations that may usually cause them anxiety/distress.</p>
+                <p><b>Won Best Use of Amazon Echo and Best Health Wearable Prize</b> at TreeHacks 2016</p>
              </div>
              <div class="card-action">
                <i><a href="https://github.com/AkhilNadendla/Tree-Hacks-Jarvis-MD">Alexa MD on Github</a></i>
@@ -157,9 +189,11 @@
           <div>
             <div class="card">
              <div class="card-content">
-               <h3 class="card-title"><a href="http://devpost.com/software/myomessenger-uc5go0"><i class="fa fa-mobile"></i> MyoMessenger</a></h3>
-               <p>Use Myo armband to send common text messages to any person on a predetermined emergency list using using hand gestures.</p>
-               <p><b>Top 4 out of 1000+ competitors</b> at CalHacks 2015.</p>
+                <a href="http://devpost.com/software/myomessenger-uc5go0">
+                <h3 class="card-title"><i class="fa fa-mobile"></i> MyoMessenger</h3>
+                <img src="img/myomessenger.png"></a>
+                <p>Use Myo armband to send common text messages to any person on a predetermined emergency list using using hand gestures.</p>
+                <p><b>Top 4 out of 1000+ competitors</b> at CalHacks 2015.</p>
              </div>
              <div class="card-action">
                <i><a href="https://github.com/kfrankc/MyoMessenger">MyoMessenger on Github</a></i>
@@ -169,9 +203,11 @@
           <div>
             <div class="card">
              <div class="card-content">
-               <h3 class="card-title"><a href="http://devpost.com/software/happyhour"><i class="fa fa-clock-o"></i> HappyHour</a></h3>
-               <p>Pebble app that allows users to keep track of their BAC in real time, and give them the option to call an Uber to their location</p>
-               <p><b>Won best use of Uber API prize at Hack the North 2015</b>; featured on Devpost‘s top projects.</p>
+                <a href="http://devpost.com/software/happyhour">
+                <h3 class="card-title"><i class="fa fa-clock-o"></i> HappyHour</h3>
+                <img src="img/happyhour.png"></a>
+                <p>Pebble app that allows users to keep track of their BAC in real time, and give them the option to call an Uber to their location</p>
+                <p><b>Won best use of Uber API prize at Hack the North 2015</b>; featured on Devpost‘s top projects.</p>
              </div>
              <div class="card-action">
                <i><a href="https://github.com/ruthjohnson95/HappyHour">HappyHour on Github</a></i>
@@ -181,8 +217,10 @@
           <div>
             <div class="card">
              <div class="card-content">
-               <h3 class="card-title"><a href="http://devpost.com/software/scenicjogger"><i class="fa fa-map-marker"></i> ScenicJogger</a></h3>
-               <p>Web Application that empowers citizens to explore historical landmarks in their cities by intelligently recommending jogging routes around historical landmarks.</p>
+                <a href="http://devpost.com/software/scenicjogger">
+                <h3 class="card-title"><i class="fa fa-map-marker"></i> ScenicJogger</h3>
+                <img src="img/scenicjogger.png"></a>
+                <p>Web Application that empowers citizens to explore historical landmarks in their cities by intelligently recommending jogging routes around historical landmarks.</p>
              </div>
              <div class="card-action">
                <i><a href="https://github.com/kfrankc/ScenicJogger">ScenicJogger on Github</a></i>
@@ -202,7 +240,9 @@
           <div>
             <div class="card">
               <div class="card-content">
-                <h3 class="card-title"><a href="http://dailybruin.com/category/spectrum/"><i class="fa fa-newspaper-o"></i> Spectrum</a></h3>
+                <a href="http://dailybruin.com/category/spectrum/">
+                <h3 class="card-title"><i class="fa fa-newspaper-o"></i> Spectrum</h3>
+                <img src="img/spectrum.png"></a>
                 <p>Redesign for Daily Bruin's photo blog website.</p>
               </div>
             </div>
@@ -210,7 +250,9 @@
           <div>
             <div class="card">
               <div class="card-content">
-                <h3 class="card-title"><a href="http://graphics.dailybruin.com/define-your-dorm/"><i class="fa fa-newspaper-o"></i> Define Your Dorm</a></h3>
+                <a href="http://graphics.dailybruin.com/define-your-dorm/">
+                <h3 class="card-title"><i class="fa fa-newspaper-o"></i> Define Your Dorm</h3>
+                <img src="img/defineyourdorm.png"></a>
                 <p>Interactive Community Building Page for Daily Bruin's graduation issue; Similar to LA Times' project, <br><a href="http://ilivehere.latimes.com/">I Live Here</a></p>
               </div>
             </div>
@@ -218,15 +260,9 @@
           <div>
             <div class="card">
               <div class="card-content">
-              <h3 class="card-title"><a href="http://graphics.dailybruin.com/gradissue-2015/summer-la/"><i class="fa fa-newspaper-o"></i> LA Summer Events</a></h3>
-              <p>Flatpage for Daily Bruin‘s graduation issue: Interactive video card + pins on Google Map display for Summer 2015 events in Los Angeles</p>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="card">
-              <div class="card-content">
-                <h3 class="card-title"><a href="http://graphics.dailybruin.com/ucla-unseen/"><i class="fa fa-newspaper-o"></i> UCLA Unseen</a></h3>
+                <a href="http://graphics.dailybruin.com/ucla-unseen/">
+                <h3 class="card-title"><i class="fa fa-newspaper-o"></i> UCLA Unseen</h3>
+                <img src="img/uclaunseen.png"></a>
                 <p>Interactive video card + pins on Google Map display to display the hidden treasures of UCLA</p>
               </div>
             </div>
