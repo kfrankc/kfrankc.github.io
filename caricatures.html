@@ -18,13 +18,15 @@
     <link rel="stylesheet" href="css/card.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animate.css">
+    <link href="css/zoom.css" rel="stylesheet">
     <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
     <!-- js -->
-    <script src="js/medium-zoom.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/handlebars.min-latest.js"></script>
     <script src="js/dataloader.js"></script>
+    <script src="js/zoom.js"></script>
+    <script src="js/transition.js"></script>
     <!-- responsive icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -83,7 +85,8 @@
               <div class="col-sm-4 col-md-3">
                   <div class="card" id="card-{{@index}}">
                     <div class="card-content figure">
-                      <img id="zoom-margin" src="caricatures/{{url}}.jpg">
+                      <img src="caricatures/{{url}}.jpg" data-action="zoom">
+                      <!-- <img id="zoom-margin" src="caricatures/{{url}}.jpg"> -->
                     </div>
                   </div>
               </div>
