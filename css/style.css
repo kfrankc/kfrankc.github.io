@@ -3,30 +3,32 @@ header {
     position: relative;
 }
 
-#navbar {
-    overflow: hidden;
-    background-color: white;
-}
-
-header nav {
+nav {
     font-size: 120%;
-    position: absolute;
+    /*position: absolute;*/
     right: 0;
     top: 20px;
+    overflow: hidden;
 }
 
-header nav ul {
+nav ul {
     padding: 0;
     margin: 0;
+    display: flex;
 }
 
-header nav li {
+nav ul li:first-child {
+  margin-right: auto;
+}
+
+nav li {
     display: inline-block;
     margin: 0 0.5em;
     vertical-align: middle;
+    list-style-type: none;
 }
 
-header a {
+a {
     color: inherit;
 }
 
@@ -147,9 +149,6 @@ img[data-src] {
 }
 
 @media (min-width:992px) {
-    #title {
-        font-size: 1.9em;
-    }
     .col-md-3 {
         float:none;
     }
