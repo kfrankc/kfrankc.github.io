@@ -51,7 +51,7 @@ body > * {
 }
 
 .social a {
-    color: black;
+    color: #26230b;
     font-weight: bold;
     text-decoration: none;
     padding-left: 5px;
@@ -70,13 +70,13 @@ body > * {
 }
 
 a {
-    color: black;
+    color: #26230b;
     font-weight: bold;
     text-decoration: none;
 }
 
 a:hover {
-  color: #616161;
+  color: #344a7b;
   background-color: transparent;
 }
 
