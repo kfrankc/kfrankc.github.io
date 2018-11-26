@@ -5,7 +5,7 @@ permalink: /posts/2018/10/19/normal-dist-derivation
 tags:
   - statistics
   - math
-exerpt: ""
+excerpt: ""
 ---
 
 ![Normal Distribution](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Normal_Distribution_PDF.svg/525px-Normal_Distribution_PDF.svg.png)

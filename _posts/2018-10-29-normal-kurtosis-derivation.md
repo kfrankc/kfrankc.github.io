@@ -5,7 +5,7 @@ permalink: /posts/2018/10/29/normal-kurtosis-derivation
 tags:
   - statistics
   - math
-exerpt: ""
+excerpt: ""
 ---
 
 The Kurtosis of a random variable $X$ is the fourth moment of $X$. For a normal distribution, we often see it in the textbook as:
