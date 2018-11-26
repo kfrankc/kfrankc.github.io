@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="https://kfrankc.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kfrankc.com/" rel="alternate" type="text/html" /><updated>2018-11-25T17:52:40-08:00</updated><id>https://kfrankc.com/</id><title type="html">Frank Chen</title><subtitle>Program Manager</subtitle><author><name>Frank Chen</name><email>kfrankc@uw.edu</email></author><entry><title type="html">Why is Kurtosis of Standard Normal Distribution 3?</title><link href="https://kfrankc.com/posts/2018/10/29/normal-kurtosis-derivation" rel="alternate" type="text/html" title="Why is Kurtosis of Standard Normal Distribution 3?" /><published>2018-10-29T00:00:00-07:00</published><updated>2018-10-29T00:00:00-07:00</updated><id>https://kfrankc.com/posts/2018/10/29/normal-kurtosis-derivation</id><content type="html" xml:base="https://kfrankc.com/posts/2018/10/29/normal-kurtosis-derivation">&lt;p&gt;The Kurtosis of a random variable $X$ is the fourth moment of $X$. For a normal distribution, we often see it in the textbook as:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{align}\label{kurt}
+	Kurt(X) = E\left[\left(\frac{X-\mu}{\sigma}\right)^4\right] - 3
+\end{align}&lt;/script&gt;
+
+&lt;p&gt;Here is my textbook’s explanation of why we subtract by 3:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We subtract $3$ to make any Normal distribution have kurtosis $0$.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I’ve always wondered how $E\left[\left(\frac{X-\mu}{\sigma}\right)^4\right]$ is calculated to be 3. I will attempt to derive this solution.&lt;/p&gt;
+
+&lt;h2 id=&quot;assumptions&quot;&gt;Assumptions&lt;/h2&gt;
+
+&lt;p&gt;The Normal Distribution has Probability Density Function (PDF):&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{align}\label{eq1}
+    f(x | \mu, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{align}&lt;/script&gt;
+
+&lt;p&gt;We are dealing with standard normal, so mean $\mu = 0$, and variance $\sigma^2 = 1$. We can now write Eq $\ref{eq1}$ as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{align}\label{eq2}
+    f(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{(x)^2}{2}}
+\end{align}&lt;/script&gt;
+
+&lt;p&gt;We need to find $E\left[\left(\frac{X-\mu}{\sigma}\right)^4\right]$, which can now be written as $E[X^4]$.&lt;/p&gt;
+
+&lt;h2 id=&quot;derivation&quot;&gt;Derivation&lt;/h2&gt;
+
+&lt;div&gt;
+$$
+\begin{align*}
+    E[X^4] &amp;amp;= \int^{\infty}_{-\infty}x^4 f(x)dx \\
+    &amp;amp;= \frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}x^4 e^{-\frac{x^2}{2}}dx \\
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;We will evaluate this integral via &lt;a href=&quot;https://www.wikiwand.com/en/Integration_by_parts&quot;&gt;integration by parts&lt;/a&gt;. Recall that&lt;/p&gt;
+
+&lt;div&gt;
+$$
+\begin{align*}
+    \int udv = uv - \int vdu
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;Let $u = x^3$, $du = 3x^2dx$, $dv = xe^{-\frac{x^2}{2}}dx$, $v = -e^{-\frac{x^2}{2}}$:&lt;/p&gt;
+
+&lt;div&gt;
+$$
+\begin{align*}
+    E[X^4] &amp;amp;= \frac{1}{\sqrt{2\pi}}\left(x^3 \left(-e^{-\frac{x^2}{2}}\right) - \int^{\infty}_{-\infty}\left(-e^{-\frac{x^2}{2}}\right)3x^2dx\right) \\
+    &amp;amp;= \frac{1}{\sqrt{2\pi}}\left(-x^3e^{-\frac{x^2}{2}} + 3\int_{-\infty}^{\infty}x^2e^{-\frac{x^2}{2}}dx\right)
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;We can begin some evaluations of the terms here. We’ll use &lt;a href=&quot;https://www.wikiwand.com/en/L%27H%C3%B4pital%27s_rule&quot;&gt;L’Hôpital’s rule&lt;/a&gt; to evaluate the first term in the parentheses, $-x^3e^{-\frac{x^2}{2}}$. We know that $e^{-\frac{x^2}{2}}$ goes to zero faster than $x^3$ goes to infinity.&lt;/p&gt;
+
+&lt;div&gt;
+$$
+\begin{align*}
+    \lim_{x\to\infty} \frac{-x^3}{e^{\frac{x^2}{2}}} &amp;amp;= \lim_{x\to\infty} \frac{-3x^2}{xe^{\frac{x^2}{2}}} \\
+    &amp;amp;= \lim_{x\to\infty} \frac{-6x}{x^2e^{\frac{x^2}{2}}} \\
+    &amp;amp;= \lim_{x\to\infty} \frac{-6}{x^3e^{\frac{x^2}{2}}} \\
+    &amp;amp;= 0
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;Therefore, this term is $0$. We are now left with:&lt;/p&gt;
+
+&lt;div&gt;
+$$
+\begin{align*}
+    E[X^4] &amp;amp;= \frac{1}{\sqrt{2\pi}}\left(3\int_{-\infty}^{\infty}x^2e^{-\frac{x^2}{2}}dx\right) \\
+    &amp;amp;= 3\left(\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}x^2e^{-\frac{x^2}{2}}dx\right)
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;Notice that $\left(\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}x^2e^{-\frac{x^2}{2}}dx\right)$ is actually the second moment $E[X^2]$, or as we know it, the &lt;em&gt;variance&lt;/em&gt; of the standard normal distribution. You may recognize $Var(X) = E[X^2] - [EX]^2$, with the second term being the mean ($\mu$) squared. For a standard normal distribution, with $\mu = 0$, $Var(x) = E[X^2]$. Additionally, we know that for a standard normal, the variance $\sigma^2 = 1$. Therefore:&lt;/p&gt;
+
+&lt;div&gt;
+$$
+\begin{align*}
+    E[X^4] &amp;amp;= 3\left(\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}x^2e^{-\frac{x^2}{2}}dx\right) \\
+    &amp;amp;= 3 \cdot E[X^2] \\
+    &amp;amp;= 3 \cdot Var(X) \\
+    &amp;amp;= 3 \cdot (1) \\
+    &amp;amp;= 3
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;$E[X^4]$ is shown to be 3, and we are now done. As a sanity check, we can use R to do a Monte Carlo simulation of a standard normal distribution and calculate the kurtosis:&lt;/p&gt;
+
+&lt;div class=&quot;language-R highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Standard Normal Distribution&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set.seed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;123&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n.sample&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rnorm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;100000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sd&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Kurtosis&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;moments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kurtosis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n.sample&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# we get 2.990068&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Close enough! $\blacksquare$&lt;/p&gt;</content><author><name>Frank Chen</name><email>kfrankc@uw.edu</email></author><category term="statistics" /><category term="math" /><summary type="html">The Kurtosis of a random variable $X$ is the fourth moment of $X$. For a normal distribution, we often see it in the textbook as:</summary></entry><entry><title type="html">Deriving the Normal Distribution</title><link href="https://kfrankc.com/posts/2018/10/19/normal-dist-derivation" rel="alternate" type="text/html" title="Deriving the Normal Distribution" /><published>2018-10-19T00:00:00-07:00</published><updated>2018-10-19T00:00:00-07:00</updated><id>https://kfrankc.com/posts/2018/10/19/normal-dist-derivation</id><content type="html" xml:base="https://kfrankc.com/posts/2018/10/19/normal-dist-derivation">&lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Normal_Distribution_PDF.svg/525px-Normal_Distribution_PDF.svg.png&quot; alt=&quot;Normal Distribution&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In every introductory statistics class, we learned about the normal distribution, which has Probability Density Function (PDF):&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{align}\label{eq1}
+    f(x | \mu, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{align}&lt;/script&gt;
+
+&lt;p&gt;This looks like a fairly complicated equation, but the resulting graph (shown above) has some very cool properties (integrates to 1, represents real-valued random variables whose distributions are not known etc…). I’ve always wondered how this is derived, and I finally found some answers via great &lt;a href=&quot;https://www.youtube.com/watch?v=cTyPuZ9-JZ0&quot;&gt;YouTube videos&lt;/a&gt; and &lt;a href=&quot;https://math.stackexchange.com/questions/384893/how-was-the-normal-distribution-derived&quot;&gt;online forums&lt;/a&gt;. I will give an overview of the derivation here, based on YouTuber Mathoma’s amazing video (linked above).&lt;/p&gt;
+
+&lt;h2 id=&quot;part-1-the-theory&quot;&gt;Part 1: The Theory&lt;/h2&gt;
+
+&lt;p&gt;Mathoma gave a great analogy about how to understand this distribution: imagine you are throwing darts on a polar coordinate system, with the goal of hitting the center \((0,0)\). Now, given an arbitrary dart landing on coordinate \((r, \theta)\), we can also say that the coordinate is \((x, y)\) if we convert from polar to cartesian.&lt;/p&gt;
+
+&lt;p&gt;We have to make a couple assumptions here before moving forward. First, we assume that \(x\) and \(y\) are statistically independent. Second, we assume that the PDF is rotationally invariant, which means the distribution of where my dart lands only depends on the distance \(r\), of the dart to the center.&lt;/p&gt;
+
+&lt;p&gt;With those assumptions, I can define PDF \(\varphi(r) = f(x)f(y)\). This can be rewritten as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{align}\label{eq2}
+    \varphi(\sqrt{x^2 + y^2}) = f(x)f(y)
+\end{align}&lt;/script&gt;
+
+&lt;p&gt;Next, suppose \(y=0\). We will then have&lt;/p&gt;
+
+&lt;div&gt;
+$$
+\begin{align*}
+    \varphi(\sqrt{x^2 + 0^2}) &amp;amp;= f(x)f(0)\\
+    \varphi(x) &amp;amp;= f(x)\lambda, \text{ where $\lambda$ is a constant}
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;Plugging this back into Eq \ref{eq2}, we have&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{align}\label{eq3}
+    \lambda f(\sqrt{x^2 + y^2}) = f(x)f(y)
+\end{align}&lt;/script&gt;
+
+&lt;p&gt;Next, we will determine the expression for $f(x)$. First, we rewrite Eq \ref{eq3} as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{align*}
+    \frac{\lambda f(\sqrt{x^2 + y^2})}{\lambda^2} = \frac{f(x)}{\lambda} \frac{f(y)}{\lambda}
+\end{align*}&lt;/script&gt;
+
+&lt;p&gt;For simplicity in analyzing the equation, define $g(x) = \frac{f(x)}{\lambda}$. We now have&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{align}\label{eq4}
+    g(x)g(y) = g(\sqrt{x^2 + y^2})
+\end{align}&lt;/script&gt;
+
+&lt;p&gt;What kind of function should $g$ be so that Eq \ref{eq4} is valid? Upon some inspection, we can see that $g$ should be an &lt;strong&gt;exponential function&lt;/strong&gt;. Example: suppose we have $h(x) = e^x$, then $h(x)h(y) = e^xe^y = e^{x+y} = h(x+y)$. Similarly, let $g(x) = e^{Ax^2}$, where $A$ is a constant.&lt;/p&gt;
+
+&lt;div&gt;
+$$
+\begin{align*}
+    g(x)g(y) &amp;amp;= e^{Ax^2}e^{Ay^2}\\
+    &amp;amp;= e^{A(x^2 + y^2)}\\
+    &amp;amp;= e^{A(\sqrt{x^2 + y^2})^2}\\
+    &amp;amp;= g(\sqrt{x^2 + y^2})
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;In turn, our PDF $f$ should be&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{align}\label{eq5}
+    f(x) = \lambda e^{Ax^2}
+\end{align}&lt;/script&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.desmos.com/calculator/hhsa3qpffi&quot;&gt;Plotting this equation out&lt;/a&gt; with $A=-1$ (more on why $A$ is negative later) and $\lambda=1$, we see that it takes a gaussian form!&lt;/p&gt;
+
+&lt;h2 id=&quot;part-2-massaging-the-equation&quot;&gt;Part 2: Massaging the Equation&lt;/h2&gt;
+
+&lt;p&gt;The remainder of this derivation serves to massage Eq \ref{eq5} into the class of gaussians we are interested in, the normal gaussian.&lt;/p&gt;
+
+&lt;p&gt;First, we introduce a constraint on the function: since we are modeling probability, it makes sense for $f(x)$ to integrate to $1$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{align*}
+    \int_{-\infty}^{\infty}f(x)dx = 1
+\end{align*}&lt;/script&gt;
+
+&lt;p&gt;Instead of using constant $A$, we will set $A = -h^2$, where $h$ is a constant variable. There are several reasons for this: First, it makes sense for $A$ to be negative, because we want this function (which models the probability) to decrease as we move to $+\infty$. Second, the $-h^2$ form will help when we do the integration.&lt;/p&gt;
+
+&lt;p&gt;We determine the value of $h^2$:&lt;/p&gt;
+
+&lt;div&gt;
+$$
+\begin{align*}
+    \int_{-\infty}^{\infty}\lambda e^{-h^2x^2}dx &amp;amp;= 1\\
+    \lambda\int_{-\infty}^{\infty}e^{-h^2x^2}dx &amp;amp;= 1\\
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;Perform &lt;a href=&quot;https://www.wikiwand.com/en/Integration_by_substitution&quot;&gt;u-substitution&lt;/a&gt;, with $u = hx$, $du = hdx$, and $dx = \frac{1}{h}du$. We now get&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{align}\label{eq6}
+    \frac{\lambda}{h}\int_{-\infty}^{\infty}e^{-u^2}du = 1
+\end{align}&lt;/script&gt;
+
+&lt;p&gt;Interestingly, the integral in Eq \ref{eq6} is actually famous (it has a name!). The &lt;a href=&quot;https://en.wikipedia.org/wiki/Gaussian_integral&quot;&gt;Gaussian integral&lt;/a&gt;, also known as the Euler-Poisson integral, is equal to $\sqrt{\pi}$ (refer to link for the integral computation).&lt;/p&gt;
+
+&lt;p&gt;We can now compute $h^2$:&lt;/p&gt;
+
+&lt;div&gt;
+$$
+\begin{align*}
+    \frac{\lambda}{h}\sqrt{\pi} &amp;amp;= 1\\
+    h &amp;amp;= \lambda \sqrt{\pi}\\
+    h^2 &amp;amp;= \lambda^2\pi
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;Eq \ref{eq5} becomes&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{align}\label{eq7}
+    f(x) = \lambda e^{-\pi \lambda^2x^2}
+\end{align}&lt;/script&gt;
+
+&lt;p&gt;If we plot $f(x)$ using different $\lambda$ values, we see that as $\lambda$ increases, the variance $\sigma^2$ decreases, since more of the area is accumulated at $x=0$. See plots for &lt;a href=&quot;https://www.desmos.com/calculator/lszecvqlgt&quot;&gt;$\lambda=1$&lt;/a&gt;, &lt;a href=&quot;https://www.desmos.com/calculator/jpwcwodqef&quot;&gt;$\lambda=2$&lt;/a&gt;, &lt;a href=&quot;https://www.desmos.com/calculator/uzdhdukutz&quot;&gt;$\lambda=3$&lt;/a&gt; as examples.&lt;/p&gt;
+
+&lt;p&gt;Next, we need to find the relationship between $\lambda$ and variance $\sigma^2$. From definition of &lt;a href=&quot;https://www.wikiwand.com/en/Variance&quot;&gt;variance&lt;/a&gt;, we see that $Var(X) = E[(X - \mu)^2]$. In our case, $\mu$ is 0, so we have:&lt;/p&gt;
+
+&lt;div&gt;
+$$
+\begin{align*}
+    Var(x) = \sigma^2 &amp;amp;= \int_{-\infty}^{\infty}x^2 \lambda e^{-\pi \lambda^2x^2}dx \\
+    &amp;amp;= \lambda \int_{-\infty}^{\infty} x \cdot x \cdot e^{-\pi \lambda^2x^2}dx
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;We will evaluate this integral via &lt;a href=&quot;https://www.wikiwand.com/en/Integration_by_parts&quot;&gt;integration by parts&lt;/a&gt;. Recall that&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{align*}
+    \int udv = uv - \int vdu
+\end{align*}&lt;/script&gt;
+
+&lt;p&gt;Let $u = x$, $du = dx$, $dv = xe^{-\pi \lambda^2x^2}dx$, $v = -\frac{1}{2\pi\lambda^2}e^{-\pi \lambda^2x^2}$:&lt;/p&gt;
+
+&lt;div&gt;
+$$
+\begin{align*}
+    Var(x) = \sigma^2 &amp;amp;= \lambda \left(x\left(-\frac{1}{2\pi\lambda^2}e^{-\pi \lambda^2x^2}\Biggr|_{-\infty}^{\infty}\right) - \int_{-\infty}^{\infty}\left(-\frac{1}{2\pi\lambda^2}e^{-\pi \lambda^2x^2}\right)dx\right)\\
+    &amp;amp;= \lambda \left((0) + \int_{-\infty}^{\infty}\frac{1}{2\pi\lambda^2}e^{-\pi \lambda^2x^2}dx\right)\\
+    &amp;amp;= \frac{1}{2\pi\lambda^2}\int_{-\infty}^{\infty}\lambda e^{-\pi \lambda^2x^2}dx
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;The reason we switched the position of $\lambda$ and $\frac{1}{2\pi\lambda^2}$ is so we can massage the integral to be the form of the gaussian PDF, which we know integrates to 1. Now, with the equation simplified, we can solve for $\lambda$ in terms of $\sigma^2$.&lt;/p&gt;
+
+&lt;div&gt;
+$$
+\begin{align*}
+    \sigma^2 &amp;amp;= \frac{1}{2\pi\lambda^2}\\
+    \lambda^2 &amp;amp;= \frac{1}{\sigma^2 2\pi}\\
+    \lambda &amp;amp;= \frac{1}{\sqrt{2\pi\sigma^2}}
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;$\lambda$ and $\sigma$ are inversely proportional, as expected. We can plug in our result here back into Eq \ref{eq7}:&lt;/p&gt;
+
+&lt;div&gt;
+$$
+\begin{align}\label{eq8}
+    f(x) &amp;amp;= \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\pi \left(\frac{1}{(\sqrt{2\pi\sigma^2})^2}\right)x^2}\nonumber\\
+    &amp;amp;= \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{x^2}{2\sigma^2}}
+\end{align}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;We are almost done. The above equation has mean $\mu = 0$, but if we want to represent $f(x|\mu, \sigma^2)$, we need to add in $f(x-\mu)$. Therefore, our general PDF equation for the normal distribution is:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{align}\label{eq9}
+    f(x | \mu, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{align}&lt;/script&gt;
+
+&lt;p&gt;Eq \ref{eq9} matches Eq \ref{eq1}, and we are now done. $\blacksquare$&lt;/p&gt;</content><author><name>Frank Chen</name><email>kfrankc@uw.edu</email></author><category term="statistics" /><category term="math" /><summary type="html">In every introductory statistics class, we learned about the normal distribution, which has Probability Density Function (PDF): This looks like a fairly complicated equation, but the resulting graph (shown above) has some very cool properties (integrates to 1, represents real-valued random variables whose distributions are not known etc…). I’ve always wondered how this is derived, and I finally found some answers via great YouTube videos and online forums. I will give an overview of the derivation here, based on YouTuber Mathoma’s amazing video (linked above). Part 1: The Theory Mathoma gave a great analogy about how to understand this distribution: imagine you are throwing darts on a polar coordinate system, with the goal of hitting the center \((0,0)\). Now, given an arbitrary dart landing on coordinate \((r, \theta)\), we can also say that the coordinate is \((x, y)\) if we convert from polar to cartesian. We have to make a couple assumptions here before moving forward. First, we assume that \(x\) and \(y\) are statistically independent. Second, we assume that the PDF is rotationally invariant, which means the distribution of where my dart lands only depends on the distance \(r\), of the dart to the center. With those assumptions, I can define PDF \(\varphi(r) = f(x)f(y)\). This can be rewritten as Next, suppose \(y=0\). We will then have $$ \begin{align*} \varphi(\sqrt{x^2 + 0^2}) &amp;amp;= f(x)f(0)\\ \varphi(x) &amp;amp;= f(x)\lambda, \text{ where $\lambda$ is a constant} \end{align*} $$ Plugging this back into Eq \ref{eq2}, we have Next, we will determine the expression for $f(x)$. First, we rewrite Eq \ref{eq3} as For simplicity in analyzing the equation, define $g(x) = \frac{f(x)}{\lambda}$. We now have What kind of function should $g$ be so that Eq \ref{eq4} is valid? Upon some inspection, we can see that $g$ should be an exponential function. Example: suppose we have $h(x) = e^x$, then $h(x)h(y) = e^xe^y = e^{x+y} = h(x+y)$. Similarly, let $g(x) = e^{Ax^2}$, where $A$ is a constant. $$ \begin{align*} g(x)g(y) &amp;amp;= e^{Ax^2}e^{Ay^2}\\ &amp;amp;= e^{A(x^2 + y^2)}\\ &amp;amp;= e^{A(\sqrt{x^2 + y^2})^2}\\ &amp;amp;= g(\sqrt{x^2 + y^2}) \end{align*} $$ In turn, our PDF $f$ should be Plotting this equation out with $A=-1$ (more on why $A$ is negative later) and $\lambda=1$, we see that it takes a gaussian form! Part 2: Massaging the Equation The remainder of this derivation serves to massage Eq \ref{eq5} into the class of gaussians we are interested in, the normal gaussian. First, we introduce a constraint on the function: since we are modeling probability, it makes sense for $f(x)$ to integrate to $1$. Instead of using constant $A$, we will set $A = -h^2$, where $h$ is a constant variable. There are several reasons for this: First, it makes sense for $A$ to be negative, because we want this function (which models the probability) to decrease as we move to $+\infty$. Second, the $-h^2$ form will help when we do the integration. We determine the value of $h^2$: $$ \begin{align*} \int_{-\infty}^{\infty}\lambda e^{-h^2x^2}dx &amp;amp;= 1\\ \lambda\int_{-\infty}^{\infty}e^{-h^2x^2}dx &amp;amp;= 1\\ \end{align*} $$ Perform u-substitution, with $u = hx$, $du = hdx$, and $dx = \frac{1}{h}du$. We now get Interestingly, the integral in Eq \ref{eq6} is actually famous (it has a name!). The Gaussian integral, also known as the Euler-Poisson integral, is equal to $\sqrt{\pi}$ (refer to link for the integral computation). We can now compute $h^2$: $$ \begin{align*} \frac{\lambda}{h}\sqrt{\pi} &amp;amp;= 1\\ h &amp;amp;= \lambda \sqrt{\pi}\\ h^2 &amp;amp;= \lambda^2\pi \end{align*} $$ Eq \ref{eq5} becomes If we plot $f(x)$ using different $\lambda$ values, we see that as $\lambda$ increases, the variance $\sigma^2$ decreases, since more of the area is accumulated at $x=0$. See plots for $\lambda=1$, $\lambda=2$, $\lambda=3$ as examples. Next, we need to find the relationship between $\lambda$ and variance $\sigma^2$. From definition of variance, we see that $Var(X) = E[(X - \mu)^2]$. In our case, $\mu$ is 0, so we have: $$ \begin{align*} Var(x) = \sigma^2 &amp;amp;= \int_{-\infty}^{\infty}x^2 \lambda e^{-\pi \lambda^2x^2}dx \\ &amp;amp;= \lambda \int_{-\infty}^{\infty} x \cdot x \cdot e^{-\pi \lambda^2x^2}dx \end{align*} $$ We will evaluate this integral via integration by parts. Recall that Let $u = x$, $du = dx$, $dv = xe^{-\pi \lambda^2x^2}dx$, $v = -\frac{1}{2\pi\lambda^2}e^{-\pi \lambda^2x^2}$: $$ \begin{align*} Var(x) = \sigma^2 &amp;amp;= \lambda \left(x\left(-\frac{1}{2\pi\lambda^2}e^{-\pi \lambda^2x^2}\Biggr|_{-\infty}^{\infty}\right) - \int_{-\infty}^{\infty}\left(-\frac{1}{2\pi\lambda^2}e^{-\pi \lambda^2x^2}\right)dx\right)\\ &amp;amp;= \lambda \left((0) + \int_{-\infty}^{\infty}\frac{1}{2\pi\lambda^2}e^{-\pi \lambda^2x^2}dx\right)\\ &amp;amp;= \frac{1}{2\pi\lambda^2}\int_{-\infty}^{\infty}\lambda e^{-\pi \lambda^2x^2}dx \end{align*} $$ The reason we switched the position of $\lambda$ and $\frac{1}{2\pi\lambda^2}$ is so we can massage the integral to be the form of the gaussian PDF, which we know integrates to 1. Now, with the equation simplified, we can solve for $\lambda$ in terms of $\sigma^2$. $$ \begin{align*} \sigma^2 &amp;amp;= \frac{1}{2\pi\lambda^2}\\ \lambda^2 &amp;amp;= \frac{1}{\sigma^2 2\pi}\\ \lambda &amp;amp;= \frac{1}{\sqrt{2\pi\sigma^2}} \end{align*} $$ $\lambda$ and $\sigma$ are inversely proportional, as expected. We can plug in our result here back into Eq \ref{eq7}: $$ \begin{align}\label{eq8} f(x) &amp;amp;= \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\pi \left(\frac{1}{(\sqrt{2\pi\sigma^2})^2}\right)x^2}\nonumber\\ &amp;amp;= \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{x^2}{2\sigma^2}} \end{align} $$ We are almost done. The above equation has mean $\mu = 0$, but if we want to represent $f(x|\mu, \sigma^2)$, we need to add in $f(x-\mu)$. Therefore, our general PDF equation for the normal distribution is: Eq \ref{eq9} matches Eq \ref{eq1}, and we are now done. $\blacksquare$</summary></entry><entry><title type="html">Enabling MathJax</title><link href="https://kfrankc.com/posts/2018/10/09/mathjax" rel="alternate" type="text/html" title="Enabling MathJax" /><published>2018-10-09T00:00:00-07:00</published><updated>2018-10-09T00:00:00-07:00</updated><id>https://kfrankc.com/posts/2018/10/09/mathjax</id><content type="html" xml:base="https://kfrankc.com/posts/2018/10/09/mathjax">&lt;p&gt;It’s cool to enable LaTeX rendering on blog posts. I found this script and added to &lt;code class=&quot;highlighter-rouge&quot;&gt;_includes/head/custom.html&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/x-mathjax-config&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;MathJax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Hub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  	&lt;span class=&quot;na&quot;&gt;TeX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;equationNumbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;autoNumber&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;AMS&quot;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;tex2jax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;inlineMath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'$'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'$'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;(&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;displayMath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'$$'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'$$'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;processEscapes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML'&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;async&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now I can write LaTeX!&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x = {-b \pm \sqrt{b^2-4ac} \over 2a}&lt;/script&gt;</content><author><name>Frank Chen</name><email>kfrankc@uw.edu</email></author><category term="mathjax" /><summary type="html">It’s cool to enable LaTeX rendering on blog posts. I found this script and added to _includes/head/custom.html: &amp;lt;script type=&quot;text/x-mathjax-config&quot;&amp;gt; MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; } }, tex2jax: { inlineMath: [ ['$','$'], [&quot;\\(&quot;,&quot;\\)&quot;] ], displayMath: [ ['$$','$$'] ], processEscapes: true } }); &amp;lt;/script&amp;gt; &amp;lt;script type= &quot;text/javascript&quot; src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async&amp;gt;&amp;lt;/script&amp;gt; Now I can write LaTeX!</summary></entry></feed>
