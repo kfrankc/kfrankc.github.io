@@ -79,9 +79,9 @@ analytics:
 
 # Site Author
 author:
-  name             : "Frank Chen"
+  name             : ""
   avatar           : "kfrankc_profile.png"
-  bio              : "Program Manager at Microsoft pursuing a Masters in Data Science"
+  bio              : 
   location         : 
   employer         : "Microsoft, Redmond"
   googlescholar    : "https://scholar.google.com/citations?user=v2iJEd8AAAAJ&hl=en"
@@ -96,7 +96,7 @@ author:
   github           : "kfrankc"
   google_plus      :
   keybase          : "kfrankc"
-  instagram        : "bykfrankc"
+  instagram        :
   lastfm           :
   linkedin         : "kfrankc"
   orcid            :
