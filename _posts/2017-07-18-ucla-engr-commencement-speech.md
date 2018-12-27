@@ -7,10 +7,6 @@ tags:
 excerpt: ""
 ---
 
-{% include base_path %}
-
-![Frank the Coder on the Jumbotron!]({{ base_path }}/images/ucla-engr-commencement-speech.jpg)
-
 _This was originally published on [Medium](https://medium.com/@kfrankc/2017-ucla-engineering-commencement-speech-eac302bca942)._
 
 On June 17, 2017, I had the honor to speak about what being an Engineer means to me in front of 10,000+ people in [Pauley Pavilion](https://www.wikiwand.com/en/Pauley_Pavilion), at the 2017 UCLA Engineering Commencement for PhDs, Masters, and Bachelors degree recipients. As the Commencement Student Speaker, I wanted to find a voice that resonates with all Engineers, and so I focused on the qualities that applies to all of us moving forward: Mentorship. Learning. Community.
