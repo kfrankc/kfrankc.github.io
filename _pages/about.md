@@ -14,7 +14,7 @@ I'm a Program Manager in the Telemetry & Analytics team at Microsoft, and a part
 **Previously**:
 - B.S. in _Computer Science_ from [UCLA](http://www.ucla.edu/).
 - Researcher at [JPL](https://www.jpl.nasa.gov/) with [Dr. Thomas Lu](https://www.linkedin.com/in/tom-lu-a0572329/).
-- Researcher at the [VCLA](http://vcla.stat.ucla.edu/) with [Nishant Shukla](http://shukla.io/) and [Professor Song-Chun Zhu](http://www.stat.ucla.edu/~sczhu/index.html).
+- Researcher at [VCLA](http://vcla.stat.ucla.edu/) with [Nishant Shukla](http://shukla.io/) and [Professor Song-Chun Zhu](http://www.stat.ucla.edu/~sczhu/index.html).
 - Organizer of [LA Hacks](https://lahacks.com/). [Resident Assistant](https://reslife.ucla.edu/employment/ra) for [UCLA ResLife](https://reslife.ucla.edu/).
 - I also lectured a course on [Cybersecurity](https://kfrankc.me/cs88s/).
 
