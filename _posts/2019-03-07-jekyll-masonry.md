@@ -20,7 +20,7 @@ header:
 
 My first experience using Jekyll for building a personal website was with [academicpages](https://github.com/academicpages/academicpages.github.io), which is an excellent theme that is mostly catered to, as you guessed, people in academia: it included many built-in [front matter](https://jekyllrb.com/docs/front-matter/) to list papers, publications, and talks. 
 
-I later switched to the theme academicpages forked from, which is [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/), since it offered more opportunities for customizations. It was around this time when I started to think about creating a custom home page to show some of my artwork and other engineering projects. I used to have this portfolio page done in pure HTML and CSS in my [personal website v1](https://github.com/kfrankc/kfrankc.github.io/releases), but with Jekyll, I figured the effort to refactor will be worth it. 
+I later switched to [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/), which is theme academicpages forked from. MM offered more opportunities for customizations. It was around this time when I started to think about creating a custom home page to show some of my artwork and other engineering projects. I used to have this portfolio page done in pure HTML and CSS in my [personal website v1](https://github.com/kfrankc/kfrankc.github.io/releases), but with Jekyll, I figured the effort to refactor will be worth it. 
 
 The features I wanted to implement included:
 
@@ -32,13 +32,13 @@ I ultimately ended up using a combination of [Masonry](https://masonry.desandro.
 
 ## Set up Minimal Mistakes
 
-In Jekyll lingo, a portfolio page is simply a form of [collections](https://jekyllrb.com/docs/collections/), which serves to group related contents together. In the Minimal Mistakes theme, `.md` file entries in a folder with the syntax `_<folder_name>` can be aggregated into a single view. 
+In Jekyll lingo, a portfolio page is simply a form of [collections](https://jekyllrb.com/docs/collections/), which serves to group related contents together. In the MM theme, `.md` file entries in a folder with the syntax `_<folder_name>` can be aggregated into a single view. 
 
 In my case, I have a `_portfolio` folder with all my project/artwork entries, and I have a `portfolio-archive.md` file where these entries are aggreated. 
 
 ### Configure `portfolio-archive.md`
 
-[Front Matter](https://jekyllrb.com/docs/front-matter/) is a useful configuration within a file that Jekyll will process first. Minimal Mistakes has several features instrumented in the front matter that makes building collection pages extremely easy. 
+[Front Matter](https://jekyllrb.com/docs/front-matter/) is a useful configuration within a file that Jekyll will process first. MM has several features instrumented in the front matter that makes building collection pages extremely easy. 
 
 For example, this is the front matter in my `portfolio-archive.md`:
 
@@ -64,7 +64,7 @@ We can go through each one:
 * `collection`: This specifies which folder I pull content from. As mentioned before, I have a `_portfolio/` folder where I store my `.md` project/artwork files
 * `entries_layout`: I use `grid` to lay out the entries in a portfolio-like format. More information on other layouts (here](https://mmistakes.github.io/minimal-mistakes/docs/layouts/).
 * `classes`: I use `wide` to give myself more width for the grid
-* `author_profile`: Minimal Mistakes has a nice [customized author profile](https://mmistakes.github.io/minimal-mistakes/docs/authors/) that you can optionally include on each page.
+* `author_profile`: MM has a nice [customized author profile](https://mmistakes.github.io/minimal-mistakes/docs/authors/) that you can optionally include on each page.
 * `sort_by`: I specify `date` values in the front matter of each entry so I can sort the grid by the most recent entry.
 * `home`: I will cover this in [Load Javascript](#load-javascript) section.
 
@@ -81,7 +81,7 @@ Next, I used Masonry and imagesLoaded to finish my second feature.
 
 ## Configure Masonry and imagesLoaded
 
-One fallback of using purely Minimal Mistakes' `grid` layout is that the resulting tiles are not responsive to changes in orientation/screen size. I needed an external library, and Masonry was the clear choice. 
+One fallback of using purely MM `grid` layout is that the resulting tiles are not responsive to changes in orientation/screen size. I needed an external library, and Masonry was the clear choice. 
 
 [Masonry](https://masonry.desandro.com/) is a Javascript library that enables cascading grid layout. It places `<div>` elements in _optimal_ positions based on the available vertical space on the screen. This allows tiles with unequal lengths and widths to stack optimally on the page, creating a layout very similar to that found in Pinterest.
 
@@ -89,7 +89,7 @@ Since my tiles will be images for each of my project/artwork, I wanted them to b
 
 ### Load Javascript
 
-First, we need to load the scripts. In Minimal Mistakes, we do this in the `custom.html` file under `head` folder in `_includes/`.
+First, we need to load the scripts. In MM, we do this in the `custom.html` file under `head` folder in `_includes/`.
 
 ```html
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -139,7 +139,7 @@ Lastly, I will make my Masonry layout responsive to various screen sizes and ori
 
 ### Using Breakpoint
 
-Minimal Mistakes utilizes a tool called [Breakpoint](http://breakpoint-sass.com/) for organized media queries. At a high level, Breakpoint allows you to quickly define variables to hold the media query. This enables you to generate variables that account for different devices and orientations.
+MM utilizes a tool called [Breakpoint](http://breakpoint-sass.com/) for organized media queries. At a high level, Breakpoint allows you to quickly define variables to hold the media query. This enables you to generate variables that account for different devices and orientations.
 
 I made several Breakpoint variables to adjust the width of my `grid__items` class, which wraps each of my portfolio items. 
 
