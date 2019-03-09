@@ -6,12 +6,12 @@ date: 2018-05-03
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/franos.png
+  teaser: assets/images/portfolio/franos.PNG
 ---
 
 # Franos
 
-{% include figure image_path="/assets/images/portfolio/franos.png" alt="Franos" caption="My new profile pic on Facebook" %}
+{% include figure image_path="/assets/images/portfolio/franos.PNG" alt="Franos" caption="My new profile pic on Facebook" %}
 
 After watching 'Avengers: Infinity War', I decided that I need a new profile picture.
 
