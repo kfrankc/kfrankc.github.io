@@ -10,6 +10,8 @@ tags:
 excerpt: ""
 layout: single
 toc: true
+header:
+  og_image: /assets/images/blog/responsive_website.png
 ---
 
 {% include figure image_path="/assets/images/blog/responsive_website.png" alt="Responsive Website" caption="Jekyll + Masonry + imagesloaded = Responsive Portfolio." %}
