@@ -1,5 +1,5 @@
 ---
-title: 'Building a Portfolio using Jekyll and Masonry'
+title: 'Building a Responsive Portfolio using Jekyll and Masonry'
 date: 2019-03-07
 permalink: /posts/2019/03/07/jekyll-masonry
 tags:
