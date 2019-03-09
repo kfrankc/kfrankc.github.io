@@ -6,6 +6,8 @@ tags:
   - statistics
   - math
 excerpt: ""
+layout: single
+toc: true
 ---
 
 The Kurtosis of a random variable $X$ is the fourth moment of $X$. For a normal distribution, we often see it in the textbook as:

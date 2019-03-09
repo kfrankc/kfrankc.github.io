@@ -5,6 +5,7 @@ permalink: /posts/2017/07/18/ucla-engr-commencement-speech
 tags:
   - speech
 excerpt: ""
+layout: single
 ---
 
 _This was originally published on [Medium](https://medium.com/@kfrankc/2017-ucla-engineering-commencement-speech-eac302bca942)._

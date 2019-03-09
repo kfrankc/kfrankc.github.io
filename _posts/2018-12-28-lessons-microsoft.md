@@ -6,6 +6,7 @@ tags:
   - program management
   - microsoft
 excerpt: ""
+layout: single
 ---
 
 _This was originally published on [LinkedIn ](https://www.linkedin.com/pulse/lessons-from-1-year-microsoft-frank-chen/)._

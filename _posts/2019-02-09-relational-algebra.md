@@ -7,6 +7,8 @@ tags:
   - math
   - SQL
 excerpt: ""
+layout: single
+toc: true
 ---
 
 [Query languages](https://github.com/AnanthaRajuCprojects/List-of-programming-language-lists/blob/master/Query%20language.md) (computer languages used to make queries in databases) are abundant in style and usage today. In 2018, Microsoft released [Azure Data Explorer](https://azure.microsoft.com/en-us/services/data-explorer/) to GA, introducing another query language that is specifically optimized for semi-structured, unstructured, and time-series data. Even though we have many querying language options,  they are all grounded in a field of mathematics called _relational algebra_.

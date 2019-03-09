@@ -1,61 +1,62 @@
-
-
 <!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
 <html lang="en" class="no-js">
   <head>
-    
+    <meta charset="utf-8">
 
-<meta charset="utf-8">
-
-
-
-<!-- begin SEO -->
+<!-- begin _includes/seo.html --><title>Why is Kurtosis of Standard Normal Distribution 3? - @bykfrankc</title>
+<meta name="description" content="Program Manager at Microsoft">
 
 
 
-
-
-
-
-
-
-<title>Why is Kurtosis of Standard Normal Distribution 3? - Frank Chen</title>
-
-
-
-
-
-
-
-<meta property="og:locale" content="en-US">
-<meta property="og:site_name" content="Frank Chen">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="@bykfrankc">
 <meta property="og:title" content="Why is Kurtosis of Standard Normal Distribution 3?">
+<meta property="og:url" content="http://localhost:4000/posts/2018/10/29/normal-kurtosis-derivation">
 
 
-  <link rel="canonical" href="https://kfrankc.com/posts/2018/10/29/normal-kurtosis-derivation">
-  <meta property="og:url" content="https://kfrankc.com/posts/2018/10/29/normal-kurtosis-derivation">
-
-
-
-  <meta property="og:description" content="The Kurtosis of a random variable $X$ is the fourth moment of $X$. For a normal distribution, we often see it in the textbook as:">
+  <meta property="og:description" content="Program Manager at Microsoft">
 
 
 
+  <meta property="og:image" content="http://localhost:4000/assets/images/kfrankc_ink.png">
 
 
+
+  <meta name="twitter:site" content="@kfrankc95">
+  <meta name="twitter:title" content="Why is Kurtosis of Standard Normal Distribution 3?">
+  <meta name="twitter:description" content="Program Manager at Microsoft">
+  <meta name="twitter:url" content="http://localhost:4000/posts/2018/10/29/normal-kurtosis-derivation">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="http://localhost:4000/assets/images/kfrankc_ink.png">
+    
   
 
   
 
 
 
-
-
-  <meta property="og:type" content="article">
   <meta property="article:published_time" content="2018-10-29T00:00:00-07:00">
 
 
 
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/posts/2018/10/29/normal-kurtosis-derivation">
 
 
 
@@ -63,11 +64,22 @@
 
   <script type="application/ld+json">
     {
-      "@context" : "http://schema.org",
-      "@type" : "Person",
-      "name" : "Frank Chen",
-      "url" : "https://kfrankc.com",
-      "sameAs" : null
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/assets/images/kfrankc_ink.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Frank",
+      "url": "http://localhost:4000",
+      "sameAs": ["https://twitter.com/kfrankc95","https://instagram.com/bykfrankc","https://www.linkedin.com/in/kfrankc"]
     }
   </script>
 
@@ -76,14 +88,13 @@
 
 
 
-<!-- end SEO -->
+
+<!-- end _includes/seo.html -->
 
 
-<link href="https://kfrankc.com/feed.xml" type="application/atom+xml" rel="alternate" title="Frank Chen Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="@bykfrankc Feed">
 
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
+<!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script>
@@ -91,34 +102,36 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="https://kfrankc.com/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css">
 
-<meta http-equiv="cleartype" content="on">
-    
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
 
-<!-- start custom head snippets -->
 
-<link rel="apple-touch-icon" sizes="57x57" href="https://kfrankc.com/images/apple-touch-icon-57x57.png?v=M44lzPylqQ">
-<link rel="apple-touch-icon" sizes="60x60" href="https://kfrankc.com/images/apple-touch-icon-60x60.png?v=M44lzPylqQ">
-<link rel="apple-touch-icon" sizes="72x72" href="https://kfrankc.com/images/apple-touch-icon-72x72.png?v=M44lzPylqQ">
-<link rel="apple-touch-icon" sizes="76x76" href="https://kfrankc.com/images/apple-touch-icon-76x76.png?v=M44lzPylqQ">
-<link rel="apple-touch-icon" sizes="114x114" href="https://kfrankc.com/images/apple-touch-icon-114x114.png?v=M44lzPylqQ">
-<link rel="apple-touch-icon" sizes="120x120" href="https://kfrankc.com/images/apple-touch-icon-120x120.png?v=M44lzPylqQ">
-<link rel="apple-touch-icon" sizes="144x144" href="https://kfrankc.com/images/apple-touch-icon-144x144.png?v=M44lzPylqQ">
-<link rel="apple-touch-icon" sizes="152x152" href="https://kfrankc.com/images/apple-touch-icon-152x152.png?v=M44lzPylqQ">
-<link rel="apple-touch-icon" sizes="180x180" href="https://kfrankc.com/images/apple-touch-icon-180x180.png?v=M44lzPylqQ">
-<link rel="icon" type="image/png" href="https://kfrankc.com/images/favicon-32x32.png?v=M44lzPylqQ" sizes="32x32">
-<link rel="icon" type="image/png" href="https://kfrankc.com/images/android-chrome-192x192.png?v=M44lzPylqQ" sizes="192x192">
-<link rel="icon" type="image/png" href="https://kfrankc.com/images/favicon-96x96.png?v=M44lzPylqQ" sizes="96x96">
-<link rel="icon" type="image/png" href="https://kfrankc.com/images/favicon-16x16.png?v=M44lzPylqQ" sizes="16x16">
-<link rel="manifest" href="https://kfrankc.com/images/manifest.json?v=M44lzPylqQ">
-<link rel="mask-icon" href="https://kfrankc.com/images/safari-pinned-tab.svg?v=M44lzPylqQ" color="#000000">
-<link rel="shortcut icon" href="/images/favicon.ico?v=M44lzPylqQ">
-<meta name="msapplication-TileColor" content="#000000">
-<meta name="msapplication-TileImage" content="https://kfrankc.com/images/mstile-144x144.png?v=M44lzPylqQ">
-<meta name="msapplication-config" content="https://kfrankc.com/images/browserconfig.xml?v=M44lzPylqQ">
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#2b5797">
 <meta name="theme-color" content="#ffffff">
-<link rel="stylesheet" href="https://kfrankc.com/assets/css/academicons.css"/>
+<!-- end custom head snippets -->
 
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -135,123 +148,178 @@
   });
 </script>
 <script type= "text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
-<!-- end custom head snippets -->
 
   </head>
 
-  <body>
+  <body class="layout--single">
 
     <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
+
     
 
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <button><div class="navicon"></div></button>
-        <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg"><a href="https://kfrankc.com/">Frank Chen</a></li>
-          
-            
-            <li class="masthead__menu-item"><a href="https://kfrankc.com/portfolio/">Portfolio</a></li>
-          
-            
-            <li class="masthead__menu-item"><a href="https://kfrankc.com/publications/">Publications</a></li>
-          
-            
-            <li class="masthead__menu-item"><a href="https://kfrankc.com/year-archive/">Blog Posts</a></li>
-          
-            
-            <li class="masthead__menu-item"><a href="https://kfrankc.com/assets/files/kfrankc_CV.pdf">CV</a></li>
-          
-            
-            <li class="masthead__menu-item"><a href="https://kfrankc.com/assets/files/kfrankc_RESUME.pdf">Resume</a></li>
-          
-        </ul>
+        
+        <a class="site-title" href="/">@bykfrankc</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/blog-archive/" >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/assets/files/kfrankc_RESUME.pdf" >Resume</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
         <ul class="hidden-links hidden"></ul>
       </nav>
     </div>
   </div>
 </div>
 
-    
 
-
+    <div class="initial-content">
+      
 
 
 
 <div id="main" role="main">
   
-
-
   <div class="sidebar sticky">
   
 
 
+<div itemscope itemtype="https://schema.org/Person">
 
-<div itemscope itemtype="http://schema.org/Person">
+  
+    <div class="author__avatar">
+      
 
-  <div class="author__avatar">
-    
-    	<img src="https://kfrankc.com/images/kfrankc_profile.png" class="author__avatar" alt="Frank Chen">
-    
-  </div>
+      
+        <img src="/assets/images/kfrankc_ink.png" alt="Frank" itemprop="image">
+      
+    </div>
+  
 
   <div class="author__content">
-    <h3 class="author__name">Frank Chen</h3>
-    <p class="author__bio">Program Manager at Microsoft pursuing a Masters in Data Science</p>
+    
+      <h3 class="author__name" itemprop="name">Frank</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        PM, Data, & Illustrations
+      </p>
+    
   </div>
 
   <div class="author__urls-wrapper">
     <button class="btn btn--inverse">Follow</button>
     <ul class="author__urls social-icons">
       
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Microsoft, Redmond</span>
+        </li>
       
-        <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> Microsoft, Redmond</li>
+
       
+        
+          
+            <li><a href="mailto:kfrankc@uw.edu" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://keybase.io/kfrankc" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-keybase" aria-hidden="true"></i> Keybase</a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/kfrankc95" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> Twitter</a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/in/kfrankc" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+          
+        
+          
+            <li><a href="https://github.com/kfrankc" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/bykfrankc" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+          
+        
+          
+            <li><a href="https://medium.com/@kfrankc" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-medium" aria-hidden="true"></i> Medium</a></li>
+          
+        
+          
+            <li><a href="https://goodreads.com/kfrankc" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-goodreads" aria-hidden="true"></i> Goodreads</a></li>
+          
+        
       
+
       
-        <li><a href="mailto:kfrankc@uw.edu"><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+
       
+
       
-        <li><a href="https://keybase.io/kfrankc"><i class="fa fa-fw fa-key" aria-hidden="true"></i> Keybase</a></li>
+
       
+
       
-        <li><a href="https://twitter.com/kfrankc95"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+
       
+
       
+
       
+
       
-        <li><a href="https://www.linkedin.com/in/kfrankc"><i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn</a></li>
+
       
+
       
+
       
-        <li><a href="https://instagram.com/bykfrankc"><i class="fa fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+
       
+
       
+
       
+
       
-        <li><a href="https://github.com/kfrankc"><i class="fa fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+
       
+
       
+
       
+
       
+
       
+
       
+
       
+
       
+
       
-      
-      
-      
-      
-      
-        <li><a href="https://scholar.google.com/citations?user=v2iJEd8AAAAJ&hl=en"><i class="ai ai-google-scholar-square ai-fw"></i> Google Scholar</a></li>
-      
-      
-      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
     </ul>
   </div>
 </div>
@@ -260,39 +328,41 @@
   </div>
 
 
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Why is Kurtosis of Standard Normal Distribution 3?">
-    <meta itemprop="description" content="The Kurtosis of a random variable $X$ is the fourth moment of $X$. For a normal distribution, we often see it in the textbook as:">
+    <meta itemprop="description" content="">
     <meta itemprop="datePublished" content="October 29, 2018">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Why is Kurtosis of Standard Normal Distribution 3?
+          <h1 id="page-title" class="page__title" itemprop="headline">Why is Kurtosis of Standard Normal Distribution 3?
 </h1>
           
-            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
-  
-	  2 minute read
-	
+
+
+  2 minute read
 </p>
           
-        
-        
-        
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2018-10-29T00:00:00-07:00">October 29, 2018</time></p>
-        
-        
-             
-        
-    
         </header>
       
 
       <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#assumptions">Assumptions</a></li>
+  <li><a href="#derivation">Derivation</a></li>
+</ul>
+            </nav>
+          </aside>
+        
         <p>The Kurtosis of a random variable $X$ is the fourth moment of $X$. For a normal distribution, we often see it in the textbook as:</p>
 
 <script type="math/tex; mode=display">\begin{align}\label{kurt}
@@ -412,11 +482,7 @@ $$
       <footer class="page__meta">
         
         
-
-
   
-
-
 
 
   
@@ -424,16 +490,16 @@ $$
   
 
   <p class="page__taxonomy">
-    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
       
       
-      <a href="https://kfrankc.com/tags/#math" class="page__taxonomy-item" rel="tag">math</a><span class="sep">, </span>
+      <a href="/tags/#math" class="page__taxonomy-item" rel="tag">math</a><span class="sep">, </span>
     
       
       
-      <a href="https://kfrankc.com/tags/#statistics" class="page__taxonomy-item" rel="tag">statistics</a>
+      <a href="/tags/#statistics" class="page__taxonomy-item" rel="tag">statistics</a>
     
     </span>
   </p>
@@ -441,134 +507,272 @@ $$
 
 
 
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-10-29T00:00:00-07:00">October 29, 2018</time></p>
+        
       </footer>
 
-      
-
-<section class="page__share">
+      <section class="page__share">
   
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=https://kfrankc.com/posts/2018/10/29/normal-kurtosis-derivation" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=kfrankc95&text=Why+is+Kurtosis+of+Standard+Normal+Distribution+3%3F%20http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2018%2F10%2F29%2Fnormal-kurtosis-derivation" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https://kfrankc.com/posts/2018/10/29/normal-kurtosis-derivation" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2018%2F10%2F29%2Fnormal-kurtosis-derivation" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=https://kfrankc.com/posts/2018/10/29/normal-kurtosis-derivation" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2018%2F10%2F29%2Fnormal-kurtosis-derivation" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://kfrankc.com/posts/2018/10/29/normal-kurtosis-derivation" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2018%2F10%2F29%2Fnormal-kurtosis-derivation" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
+
       
-
-
   <nav class="pagination">
     
-      <a href="https://kfrankc.com/posts/2018/10/19/normal-dist-derivation" class="pagination--pager" title="Deriving the Normal Distribution
+      <a href="/posts/2018/10/19/normal-dist-derivation" class="pagination--pager" title="Deriving the Normal Distribution
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/posts/2018/12/28/lessons-microsoft" class="pagination--pager" title="Lessons from 1 Year at Microsoft
+">Next</a>
     
   </nav>
 
     </div>
 
     
-      
-
-<div class="page__comments">
-  
-  
-    <h4 class="page__comments-title">Leave a Comment</h4>
-    <section id="disqus_thread"></section>
-  
-</div>
-    
   </article>
 
   
   
+    <div class="page__related">
+      <!-- <h4 class="page__related-title">You may also enjoy</h4> -->
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            ""
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/posts/2019/03/07/jekyll-masonry" rel="permalink">Building a Portfolio using Jekyll and Masonry
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
 </div>
 
+        
+          
 
-    </script>
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            ""
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/posts/2019/02/09/relational-algebra" rel="permalink">Relational Algebra &amp; SQL
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            ""
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/posts/2018/12/28/lessons-microsoft" rel="permalink">Lessons from 1 Year at Microsoft
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            ""
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/posts/2018/10/19/normal-dist-derivation" rel="permalink">Deriving the Normal Distribution
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
 
     <div class="page__footer">
       <footer>
         <!-- start custom footer snippets -->
-<!-- <a href="/sitemap/">Sitemap</a> -->
+
 <!-- end custom footer snippets -->
-
-        
-
-<div class="page__footer-follow">
+        <div class="page__footer-follow">
   <ul class="social-icons">
-    
+<!--     
       <li><strong>Follow:</strong></li>
+     -->
+
     
+      
+        
+          <li><a href="https://linkedin/in/kfrankc" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i></a></li>
+        
+      
+        
+          <li><a href="https://instagram.com/bykfrankc" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i></a></li>
+        
+      
+        
+          <li><a href="https://twitter.com/kfrankc95" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i></a></li>
+        
+      
+        
+          <li><a href="https://goodreads.com/bykfrankc" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-goodreads" aria-hidden="true"></i></a></li>
+        
+      
     
-    
-    
-      <li><a href="http://github.com/kfrankc"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-    
-    
-    <li><a href="https://kfrankc.com/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+
+<!--     <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2018 Frank Chen. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2019 Frank. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
 
-    <script src="https://kfrankc.com/assets/js/main.min.js"></script>
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
 
 
 
 
+
+
+
+    
   <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-128201385-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-
-
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/posts/2018/10/29/normal-kurtosis-derivation";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/posts/2018/10/29/normal-kurtosis-derivation"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://kfrankc-com.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
   
-  <script type="text/javascript">
-  	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-  	var disqus_shortname = 'kfrankc-com';
-
-  	/* * * DON'T EDIT BELOW THIS LINE * * */
-  	(function() {
-  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  	})();
-
-  	/* * * DON'T EDIT BELOW THIS LINE * * */
-  	(function () {
-  		var s = document.createElement('script'); s.async = true;
-  		s.type = 'text/javascript';
-  		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-  		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-  	}());
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-
 
 
 
   </body>
 </html>
-

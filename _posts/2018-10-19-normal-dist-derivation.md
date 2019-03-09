@@ -6,6 +6,8 @@ tags:
   - statistics
   - math
 excerpt: ""
+layout: single
+toc: true
 ---
 
 ![Normal Distribution](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Normal_Distribution_PDF.svg/525px-Normal_Distribution_PDF.svg.png)
