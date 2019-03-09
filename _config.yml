@@ -88,7 +88,7 @@ facebook:
   username               : "kfrankc"
   app_id                 :
   publisher              :
-og_image                 : /assets/images/kfrankc_ink.png
+og_image                 : /assets/images/kfrankc_ink.PNG
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
@@ -110,7 +110,7 @@ analytics:
 # Site Author
 author:
   name             : "Frank"
-  avatar           : "/assets/images/kfrankc_ink.png"
+  avatar           : "/assets/images/kfrankc_ink.PNG"
   bio              : "PM, Data, & Illustrations"
   location         : "Microsoft, Redmond"
   email            : 
