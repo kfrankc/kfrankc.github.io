@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-09T09:49:01-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">@bykfrankc</title><subtitle>Program Manager at Microsoft</subtitle><author><name>Frank</name></author><entry><title type="html">Building a Portfolio using Jekyll and Masonry</title><link href="http://localhost:4000/posts/2019/03/07/jekyll-masonry" rel="alternate" type="text/html" title="Building a Portfolio using Jekyll and Masonry" /><published>2019-03-07T00:00:00-08:00</published><updated>2019-03-07T00:00:00-08:00</updated><id>http://localhost:4000/posts/2019/03/07/jekyll-masonry</id><content type="html" xml:base="http://localhost:4000/posts/2019/03/07/jekyll-masonry">&lt;figure class=&quot;&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-10T22:37:41-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">kfrankc</title><subtitle>Frank - PM, Data, &amp; Illustrations</subtitle><author><name>Frank</name></author><entry><title type="html">Building a Responsive Portfolio using Jekyll and Masonry</title><link href="http://localhost:4000/posts/2019/03/07/jekyll-masonry" rel="alternate" type="text/html" title="Building a Responsive Portfolio using Jekyll and Masonry" /><published>2019-03-07T00:00:00-08:00</published><updated>2019-03-07T00:00:00-08:00</updated><id>http://localhost:4000/posts/2019/03/07/jekyll-masonry</id><content type="html" xml:base="http://localhost:4000/posts/2019/03/07/jekyll-masonry">&lt;figure class=&quot;&quot;&gt;
   &lt;img src=&quot;/assets/images/blog/responsive_website.png&quot; alt=&quot;Responsive Website&quot; /&gt;
   
     &lt;figcaption&gt;Jekyll + Masonry + imagesloaded = Responsive Portfolio.
@@ -10,7 +10,7 @@
 
 &lt;p&gt;My first experience using Jekyll for building a personal website was with &lt;a href=&quot;https://github.com/academicpages/academicpages.github.io&quot;&gt;academicpages&lt;/a&gt;, which is an excellent theme that is mostly catered to, as you guessed, people in academia: it included many built-in &lt;a href=&quot;https://jekyllrb.com/docs/front-matter/&quot;&gt;front matter&lt;/a&gt; to list papers, publications, and talks.&lt;/p&gt;
 
-&lt;p&gt;I later switched to the theme academicpages forked from, which is &lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/&quot;&gt;Minimal Mistakes&lt;/a&gt;, since it offered more opportunities for customizations. It was around this time when I started to think about creating a custom home page to show some of my artwork and other engineering projects. I used to have this portfolio page done in pure HTML and CSS in my &lt;a href=&quot;https://github.com/kfrankc/kfrankc.github.io/releases&quot;&gt;personal website v1&lt;/a&gt;, but with Jekyll, I figured the effort to refactor will be worth it.&lt;/p&gt;
+&lt;p&gt;I later switched to &lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/&quot;&gt;Minimal Mistakes&lt;/a&gt;, which is theme academicpages forked from. MM offered more opportunities for customizations. It was around this time when I started to think about creating a custom home page to show some of my artwork and other engineering projects. I used to have this portfolio page done in pure HTML and CSS in my &lt;a href=&quot;https://github.com/kfrankc/kfrankc.github.io/releases&quot;&gt;personal website v1&lt;/a&gt;, but with Jekyll, I figured the effort to refactor will be worth it.&lt;/p&gt;
 
 &lt;p&gt;The features I wanted to implement included:&lt;/p&gt;
 
@@ -24,13 +24,13 @@
 
 &lt;h2 id=&quot;set-up-minimal-mistakes&quot;&gt;Set up Minimal Mistakes&lt;/h2&gt;
 
-&lt;p&gt;In Jekyll lingo, a portfolio page is simply a form of &lt;a href=&quot;https://jekyllrb.com/docs/collections/&quot;&gt;collections&lt;/a&gt;, which serves to group related contents together. In the Minimal Mistakes theme, &lt;code class=&quot;highlighter-rouge&quot;&gt;.md&lt;/code&gt; file entries in a folder with the syntax &lt;code class=&quot;highlighter-rouge&quot;&gt;_&amp;lt;folder_name&amp;gt;&lt;/code&gt; can be aggregated into a single view.&lt;/p&gt;
+&lt;p&gt;In Jekyll lingo, a portfolio page is simply a form of &lt;a href=&quot;https://jekyllrb.com/docs/collections/&quot;&gt;collections&lt;/a&gt;, which serves to group related contents together. In the MM theme, &lt;code class=&quot;highlighter-rouge&quot;&gt;.md&lt;/code&gt; file entries in a folder with the syntax &lt;code class=&quot;highlighter-rouge&quot;&gt;_&amp;lt;folder_name&amp;gt;&lt;/code&gt; can be aggregated into a single view.&lt;/p&gt;
 
 &lt;p&gt;In my case, I have a &lt;code class=&quot;highlighter-rouge&quot;&gt;_portfolio&lt;/code&gt; folder with all my project/artwork entries, and I have a &lt;code class=&quot;highlighter-rouge&quot;&gt;portfolio-archive.md&lt;/code&gt; file where these entries are aggreated.&lt;/p&gt;
 
 &lt;h3 id=&quot;configure-portfolio-archivemd&quot;&gt;Configure &lt;code class=&quot;highlighter-rouge&quot;&gt;portfolio-archive.md&lt;/code&gt;&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/docs/front-matter/&quot;&gt;Front Matter&lt;/a&gt; is a useful configuration within a file that Jekyll will process first. Minimal Mistakes has several features instrumented in the front matter that makes building collection pages extremely easy.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/docs/front-matter/&quot;&gt;Front Matter&lt;/a&gt; is a useful configuration within a file that Jekyll will process first. MM has several features instrumented in the front matter that makes building collection pages extremely easy.&lt;/p&gt;
 
 &lt;p&gt;For example, this is the front matter in my &lt;code class=&quot;highlighter-rouge&quot;&gt;portfolio-archive.md&lt;/code&gt;:&lt;/p&gt;
 
@@ -56,7 +56,7 @@
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;collection&lt;/code&gt;: This specifies which folder I pull content from. As mentioned before, I have a &lt;code class=&quot;highlighter-rouge&quot;&gt;_portfolio/&lt;/code&gt; folder where I store my &lt;code class=&quot;highlighter-rouge&quot;&gt;.md&lt;/code&gt; project/artwork files&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;entries_layout&lt;/code&gt;: I use &lt;code class=&quot;highlighter-rouge&quot;&gt;grid&lt;/code&gt; to lay out the entries in a portfolio-like format. More information on other layouts (here](https://mmistakes.github.io/minimal-mistakes/docs/layouts/).&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;classes&lt;/code&gt;: I use &lt;code class=&quot;highlighter-rouge&quot;&gt;wide&lt;/code&gt; to give myself more width for the grid&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;author_profile&lt;/code&gt;: Minimal Mistakes has a nice &lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/docs/authors/&quot;&gt;customized author profile&lt;/a&gt; that you can optionally include on each page.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;author_profile&lt;/code&gt;: MM has a nice &lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/docs/authors/&quot;&gt;customized author profile&lt;/a&gt; that you can optionally include on each page.&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sort_by&lt;/code&gt;: I specify &lt;code class=&quot;highlighter-rouge&quot;&gt;date&lt;/code&gt; values in the front matter of each entry so I can sort the grid by the most recent entry.&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;home&lt;/code&gt;: I will cover this in &lt;a href=&quot;#load-javascript&quot;&gt;Load Javascript&lt;/a&gt; section.&lt;/li&gt;
 &lt;/ul&gt;
@@ -73,7 +73,7 @@
 
 &lt;h2 id=&quot;configure-masonry-and-imagesloaded&quot;&gt;Configure Masonry and imagesLoaded&lt;/h2&gt;
 
-&lt;p&gt;One fallback of using purely Minimal Mistakes’ &lt;code class=&quot;highlighter-rouge&quot;&gt;grid&lt;/code&gt; layout is that the resulting tiles are not responsive to changes in orientation/screen size. I needed an external library, and Masonry was the clear choice.&lt;/p&gt;
+&lt;p&gt;One fallback of using purely MM &lt;code class=&quot;highlighter-rouge&quot;&gt;grid&lt;/code&gt; layout is that the resulting tiles are not responsive to changes in orientation/screen size. I needed an external library, and Masonry was the clear choice.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://masonry.desandro.com/&quot;&gt;Masonry&lt;/a&gt; is a Javascript library that enables cascading grid layout. It places &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt; elements in &lt;em&gt;optimal&lt;/em&gt; positions based on the available vertical space on the screen. This allows tiles with unequal lengths and widths to stack optimally on the page, creating a layout very similar to that found in Pinterest.&lt;/p&gt;
 
@@ -81,7 +81,7 @@
 
 &lt;h3 id=&quot;load-javascript&quot;&gt;Load Javascript&lt;/h3&gt;
 
-&lt;p&gt;First, we need to load the scripts. In Minimal Mistakes, we do this in the &lt;code class=&quot;highlighter-rouge&quot;&gt;custom.html&lt;/code&gt; file under &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; folder in &lt;code class=&quot;highlighter-rouge&quot;&gt;_includes/&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;First, we need to load the scripts. In MM, we do this in the &lt;code class=&quot;highlighter-rouge&quot;&gt;custom.html&lt;/code&gt; file under &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; folder in &lt;code class=&quot;highlighter-rouge&quot;&gt;_includes/&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
@@ -127,7 +127,7 @@
 
 &lt;h3 id=&quot;using-breakpoint&quot;&gt;Using Breakpoint&lt;/h3&gt;
 
-&lt;p&gt;Minimal Mistakes utilizes a tool called &lt;a href=&quot;http://breakpoint-sass.com/&quot;&gt;Breakpoint&lt;/a&gt; for organized media queries. At a high level, Breakpoint allows you to quickly define variables to hold the media query. This enables you to generate variables that account for different devices and orientations.&lt;/p&gt;
+&lt;p&gt;MM utilizes a tool called &lt;a href=&quot;http://breakpoint-sass.com/&quot;&gt;Breakpoint&lt;/a&gt; for organized media queries. At a high level, Breakpoint allows you to quickly define variables to hold the media query. This enables you to generate variables that account for different devices and orientations.&lt;/p&gt;
 
 &lt;p&gt;I made several Breakpoint variables to adjust the width of my &lt;code class=&quot;highlighter-rouge&quot;&gt;grid__items&lt;/code&gt; class, which wraps each of my portfolio items.&lt;/p&gt;
 
