@@ -1,0 +1,81 @@
+==================================================================
+https://keybase.io/kfrankc
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://kfrankc.com
+  * I am kfrankc (https://keybase.io/kfrankc) on keybase.
+  * I have a public key with fingerprint CC8F D213 330C F229 339E  EA04 5893 B411 168F 2FF3
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01018ef70a8f9220feec837e7c55f7e672317f26594ffbe8fa49ebd03518530451f10a",
+      "fingerprint": "cc8fd213330cf229339eea045893b411168f2ff3",
+      "host": "keybase.io",
+      "key_id": "5893b411168f2ff3",
+      "kid": "01018ef70a8f9220feec837e7c55f7e672317f26594ffbe8fa49ebd03518530451f10a",
+      "uid": "26eee2292312b2a6edd3b1f3c3106f19",
+      "username": "kfrankc"
+    },
+    "merkle_root": {
+      "ctime": 1545514321,
+      "hash_meta": "38f87e5e88cb0959334ff275268e9eceb15b1e71c6147a2bb7f87629f070765a",
+      "seqno": 4185855
+    },
+    "revoke": {
+      "sig_ids": [
+        "2d9346bcead641893c6b5cc366ebba092b285b412d58e424186793218456a7260f"
+      ]
+    },
+    "service": {
+      "hostname": "kfrankc.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1545514381,
+  "expire_in": 157680000,
+  "prev": "441622796b46c870ab76525b0cb10ec9ce6a96c0dcc2288f3a946ba190558ace",
+  "seqno": 20,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.80
+Comment: https://keybase.io/crypto
+
+yMK6AnicrZNbaB1FGMfPaZNq4q1CoSBRzIpiaZruzOzMzpwYaLR4odo2sSK0KceZ
+2W+S9eScPe7uSQ0xaR6soZgotFS0qUjpRWIN4iUt4kvphUqltBYNmEKkVRRs8aFq
+8aGis0EFxUf3Zdjd//f//t9vZk7csjDXmN90vTx1c+58Q/6zY2kt133X1Pigo6Jg
+wCkMOiWYX6AvgCQtlsLAKTguchEH47uSG4GxawA0Jz74mlLjA/MxQb7BjArPGAXc
+SE+AClxCEafE9SgyyJVOi2PCSg/E1TispNZWa24CjAghrjYYC0IEgLRyLojyEEKM
+G2wMsYW9UZJV2HBKJtAaRvabfSnOx/sP/f+cuzZvhxkA2Jy2CissGQQBUcgQTZDL
+DBKZMIG4IsuQZTWxrJS0M9TilCEu9UExjqI0Y6vTMFMg6lGKPIKRnU8mvcUypNIW
+Em64DxQ418oV1GKx6bBPMeMgQINCVCHwkWbI8yVWyrd6hoVxfddnNMubwHOVyCl4
+dgxOqU0QQ39Ugqx5EvZYaolT2OTgQBCPKQ0yYFYqiGaKak0YA6WkK+yQnFqwOKAc
+PGwlzBc2Lvcokz5mrnE2D2XN4v5Qz5tn2/TP8Vt1VLaBqnGURjrqsz9607SaFDIs
+6UA1U24BVfzTo6jCSmDPiK3ohzgJo4rFZJX/IsYtMXi+GsZQDDMF9Rl37ZP1gX5r
+6XmIYewLpjymud1/ZcFgqlytkAtaaGBSMO0GWmPMuSFSWBASCZdSLu0sfyPE1jSV
+PdbTgqvItBaDM3TsaHddLt+YW1S/ILs8ucaGxX9dqU/X3PD72qvvwkNzlw//duJg
+3TfDa3dMLlu87UDpvpm7G25rfqTj9XNHt458MfnD/R0rr53f0Dc9+tT3h7smXlo2
+98yZtvpDLRNft6+/vujMwEfrdl58Z+nZFQseH/ZfePa9W1c37Wx7bXnh4d18VbBm
+ZOED21XHqUsjHzZfGl99esebSv36xtPLr3x7KH/2yIPjKyYHaydfPb5/1c+7gs7Z
+4enptwTety2365fvTu/e8ORXH1TYkuSVH2cunPt8sOen2bdHt3Rdbb83337nknBq
+4ycDRB14sVibvby57cKVm5o6x74c27t39Hj3+3NL6w/O7qmjM037Vh659sTY1o3t
+L9/+2MU77ll/4/jHXdV4wnS2bX80bm79A4PHerY=
+=zsXC
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/kfrankc
+
+==================================================================

@@ -17,7 +17,18 @@ Personal Portfolio and Blog built on top of [Minimal Mistakes](https://mmistakes
 There's a few files/folders I am excluding, for various reasons (ex. some are static files that are built from Jekyll).
 
 ```
+*.gem
+*.sublime-project
+*.sublime-workspace
+.bundle
 .DS_Store
-_site/
-node_modules/
+.jekyll-metadata
+.sass-cache
+_asset_bundler_cache
+_site
+codekit-config.json
+example/_site
+Gemfile.lock
+node_modules
+npm-debug.log*
 ```
