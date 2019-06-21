@@ -83,7 +83,7 @@ naver_site_verification  :
 
 # Social Sharing
 twitter:
-  username               : "kfrankc95"
+  username               : "bykfrankc"
 facebook:
   username               : "kfrankc"
   app_id                 :
@@ -95,7 +95,7 @@ social:
   type                   : # Person or Organization (defaults to Person)
   name                   : # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
-    - "https://twitter.com/kfrankc95"
+    - "https://twitter.com/bykfrankc"
     - "https://instagram.com/bykfrankc"
     - "https://www.linkedin.com/in/kfrankc"
 
@@ -123,7 +123,7 @@ author:
       url: "https://keybase.io/kfrankc"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter"
-      url: "https://twitter.com/kfrankc95"
+      url: "https://twitter.com/bykfrankc"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://linkedin.com/in/kfrankc"
@@ -151,7 +151,7 @@ footer:
       url: "https://instagram.com/bykfrankc"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter"
-      url: "https://twitter.com/kfrankc95"
+      url: "https://twitter.com/bykfrankc"
     - label: "Goodreads"
       icon: "fab fa-fw fa-goodreads"
       url: "https://goodreads.com/bykfrankc"
