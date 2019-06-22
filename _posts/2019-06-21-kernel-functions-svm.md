@@ -1,9 +1,10 @@
 ---
-title: 'Kernel Functions'
+title: 'Kernel Functions & SVMs'
 date: 2019-06-21
-permalink: /posts/2019/06/21/kernel-functions
+permalink: /posts/2019/06/21/kernel-functions-svm
 tags:
   - machine learning
+  - statistics
   - math
 excerpt: ""
 layout: single
@@ -15,11 +16,11 @@ header:
 
 ## Background
 
-In a typical introductory machine learning class, students generally learn the classifiers first (ex. Nearest Neighbor, Decision Trees, Naive Bayes). However, the methods to reduce computational cost and optimize dimensionality are just as important, especially when students begin dealing with real-world datasets that are in high dimensions. Kernel functions are one method to reduce computational cost and complexity.
+In a typical introductory machine learning class, students generally learn the classifiers first (ex. Nearest Neighbor, Decision Trees, Naive Bayes). However, the methods to reduce computational cost and optimize dimensionality are just as important, especially when students begin dealing with real-world datasets that are in high dimensions. Kernel functions are one method to reduce computational cost and complexity. Additionally, many machine learning algorithms (ex. SVMs) can be enhanced by using kernels, so it is beneficial to understand how they work.
 
 ## Kernel Functions
 
-Intuitively, kernel functions can be interpreted as similarity measures. A kernel function takes two input from a set $\mathcal{X}$, and outputs a real number $\in \mathbb{R}$.
+Kernel functions can be interpreted as similarity measures between two entities. A kernel function takes two input from a set $\mathcal{X}$, and outputs a real number $\in \mathbb{R}$.
 
 Mathematically, kernel functions allow you to compute the dot product of two vectors $\textbf{x}$ and $\textbf{y}$ in a high dimensional feature space, without requiring you to know that feature space at all. This aligns with what we said about reducing computational cost, since you don't need to visit a higher dimensional space to perform the granular calculations if you choose a good kernel.
 
@@ -27,7 +28,32 @@ Oftentimes in classification problems, we are attemping to build a classifier th
 
 ### Connection between Kernel Functions & Learning Algorithms
 
-If we know an algorithm relies only on the inner product between features (ex. ridge regression, SVMs, k-means), then we can kernalize the data.
+If we know an algorithm relies only on the inner product between features (ex. ridge regression, SVMs, k-means), then we can _kernalize_ the data. Since many algorithms involve inner products, kernels become an essential part in the machine learning pipeline.
+
+## Kernel Support Vector Machines
+
+Kernel functions are especially useful in SVMs, since it will allow us to project our data into a dimension of our choosing, without the complexity of building the full dimensional representation of the kernel transformation. This is achieved using the [kernel trick](https://www.wikiwand.com/en/Kernel_method).
+
+Suppose we have inputs $x_1,\dots, x_n\in\mathbb{R}^d$ and corresponding labels $y_1,\dots, y_n\in\{-1, +1\}$. For linear SVM with squared [hinge loss](https://www.wikiwand.com/en/Hinge_loss), we have:
+
+$$
+\min_{w\in\mathbb{R}^d} \frac{1}{n}\sum_{i=1}^n \left\{\max\left(0, 1-y_iw^Tx_i\right)\right\}^2 + \lambda\|w\|^2_2
+$$
+
+Letting $\beta=(\beta_1, \dots, \beta_n)^T$ and $K_i=(K(x_1, x_i),K(x_2,x_i),\dots, K(x_n,x_i))^T$, the kernelized version of the above objective becomes:
+
+$$
+\min_{\beta\in\mathbb{R}^n} F(\beta) = \frac{1}{n}\sum_{i=1}^n \left\{\max\left(0, 1-y_i\beta^TK_i\right)\right\}^2 + \lambda \beta^TK\beta
+$$
+
+where $K \in \mathbb{R}^{n \times n}$ is the [Gram matrix](https://www.wikiwand.com/en/Gramian_matrix). Now, we can optimize $\beta$, usually by running gradient descent. The gradient can be calculated using chain rule:
+
+$$
+\nabla F(\beta) = -\frac{2}{n}\sum_{i=1}^n \left\{\max\left(0, 1-y_i\beta^TK_i\right)\right\}yK + 2\lambda K\beta
+$$
+
+
+There are many different types of kernel functions that can be used to compute $K$. Below are a few of the common ones:
 
 ## Examples of Kernel Functions
 
@@ -55,10 +81,10 @@ $$
 
 for $\gamma > 0$. The difference between this kernel and the gaussian kernel is the amount of regularization applied.
 
-## Exponential Kernel
+### Exponential Kernel
 
 $$
-k(x, y) = text{exp}\left(-\frac{\|x - y\|}{2\sigma^2}\right)
+k(x, y) = \text{exp}\left(-\frac{\|x - y\|}{2\sigma^2}\right)
 $$
 
 ### Laplace RBF Kernel
