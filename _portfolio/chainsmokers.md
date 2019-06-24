@@ -13,4 +13,6 @@ header:
 
 {% include figure image_path="/assets/images/portfolio/chainsmokers.png" alt="Chainsmokers" caption="Chainsmokers Set Review for History of EDM class" %}
 
+Coded in HTML, CSS, and [Highcharts.js](https://www.highcharts.com/).
+
 [Website](https://kfrankc.com/chainsmokers/){: .btn .btn--info}
