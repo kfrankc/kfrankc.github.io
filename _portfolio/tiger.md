@@ -17,4 +17,6 @@ _This is part of a series on Chinese Zodiac Animals._
 
 > The tiger in Chinese culture often represents the spirit and drive to achieve and make progress.
 
+Drawn on [Procreate](https://procreate.art/).
+
 [More on Instagram](https://instagram.com/bykfrankc){: .btn .btn--primary}

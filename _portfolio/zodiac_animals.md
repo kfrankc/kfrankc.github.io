@@ -13,4 +13,6 @@ header:
 
 {% include figure image_path="/assets/images/portfolio/zodiac_animals.png" alt="Zodiac Animals" caption="The 12 Chinese Zodiac Animals." %}
 
+Drawn on [Procreate](https://procreate.art/).
+
 [More on Instagram](https://instagram.com/bykfrankc){: .btn .btn--primary}

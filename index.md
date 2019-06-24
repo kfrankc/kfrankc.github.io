@@ -2,7 +2,6 @@
 permalink: /
 layout: single
 title: ""
-classes: wide
 author_profile: true
 home: true
 ---
