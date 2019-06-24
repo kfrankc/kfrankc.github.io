@@ -23,11 +23,13 @@ var frank = new Image();
 var mask = new Image();
 var floaters_front = new Image();
 
+var base_url = window.location.origin;
+
 // Create a list of layer objects
 var layer_list = [
     {
         'image': background,
-        'src': 'assets/images/parallax/layer_1.png',
+        'src': base_url + '/assets/images/parallax/layer_1.png',
         'z_index': -2.25,
         'position': {x: 0, y: 0},
         'blend': null,
@@ -35,7 +37,7 @@ var layer_list = [
     },
     {
         'image': mountains,
-        'src': 'assets/images/parallax/layer_2.png',
+        'src': base_url + '/assets/images/parallax/layer_2.png',
         'z_index': -2,
         'position': {x: 0, y: 0},
         'blend': null,
@@ -43,7 +45,7 @@ var layer_list = [
     },
     {
         'image': floaters_back,
-        'src': 'assets/images/parallax/layer_3.png',
+        'src': base_url + '/assets/images/parallax/layer_3.png',
         'z_index': -1.5,
         'position': {x: 0, y: 0},
         'blend': null,
@@ -51,7 +53,7 @@ var layer_list = [
     },
     {
         'image': shadows,
-        'src': 'assets/images/parallax/layer_4.png',
+        'src': base_url + '/assets/images/parallax/layer_4.png',
         'z_index': -1,
         'position': {x: 0, y: 0},
         'blend': 'multiply',
@@ -59,7 +61,7 @@ var layer_list = [
     },
     {
         'image': frank,
-        'src': 'assets/images/parallax/layer_5.png',
+        'src': base_url + '/assets/images/parallax/layer_5.png',
         'z_index': -0.5,
         'position': {x: 0, y: 0},
         'blend': null,
@@ -67,7 +69,7 @@ var layer_list = [
     },
     {
         'image': mask,
-        'src': 'assets/images/parallax/layer_6.png',
+        'src': base_url + '/assets/images/parallax/layer_6.png',
         'z_index': 0,
         'position': {x: 0, y: 0},
         'blend': null,
@@ -75,7 +77,7 @@ var layer_list = [
     },
     {
         'image': floaters_front,
-        'src': 'assets/images/parallax/layer_7.png',
+        'src': base_url + '/assets/images/parallax/layer_7.png',
         'z_index': 2,
         'position': {x: 0, y: 0},
         'blend': null,
