@@ -1,14 +1,12 @@
 $(function() {
 // Get reference to Canvas
 var canvas = document.getElementById('canvas');
-console.log(canvas);
 
 // Get reference to Canvas Context
 var context = canvas.getContext('2d');
 
 // Get reference to loading screen
 var loading_screen = document.getElementById('loading');
-console.log(loading_screen)
 
 // Initialize loading variables
 var loaded = false;
