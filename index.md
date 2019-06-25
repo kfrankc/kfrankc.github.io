@@ -17,7 +17,7 @@ home: true
     </div>
 </div>
 
-# PM at Microsoft, [MRW](https://www.microsoft.com/en-us/hololens)
+# PM at Microsoft, [MRW](https://dynamics.microsoft.com/en-us/mixed-reality/overview/)
 
 My interests are in Mixed Reality at Work & Perception Analytics. I am also a Masters student in _Data Science_ at University of Washington.
 
@@ -25,7 +25,7 @@ Previously at UCLA, I graduated with a B.S. in _Computer Science_. There, I was 
 
 **Recent News**
 
-- 7/19: PM II in [Mixed Reality at Work](https://www.microsoft.com/en-us/hololens)
+- 7/19: PM II in [Mixed Reality at Work](https://dynamics.microsoft.com/en-us/mixed-reality/overview/)
 - 11/18: Celebrating 1 year at Microsoft! Here's a [reflection](https://www.linkedin.com/pulse/lessons-from-1-year-microsoft-frank-chen/) of my experience so far
 - 10/18: Start Masters in Data Science at UW
 - 6/17: [UCLA Commencement Student Speaker](https://www.youtube.com/watch?v=wr6u5Q-SZRo&feature=youtu.be&t=1h59m20s)
