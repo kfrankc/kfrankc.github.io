@@ -15,4 +15,6 @@ header:
 
 ![Westworld](https://www.pyramidinternational.com/assets/img/products/WDC101152)
 
+Drawn on [Procreate](https://procreate.art/).
+
 [More on Instagram](https://instagram.com/bykfrankc){: .btn .btn--info}

@@ -13,6 +13,6 @@ header:
 
 {% include figure image_path="/assets/images/portfolio/img2color.png" alt="Image 2 Color" caption="Useful for creating themed slide decks!" %}
 
-Create color palette instantly from input image using [Vibrant.js](https://jariz.github.io/vibrant.js/).
+Create color palette instantly from input image using HTML, CSS, and [Vibrant.js](https://jariz.github.io/vibrant.js/).
 
 [Demo](https://kfrankc.com/img2color/){: .btn .btn--info}

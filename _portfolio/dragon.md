@@ -17,4 +17,6 @@ _This is part of a series on Chinese Zodiac Animals._
 
 > The dragon in Chinese culture represents a symbol of power, strength, and good luck. Historically, only Chiense emperors can wear robes decorated with dragon patterns.
 
+Drawn on [Procreate](https://procreate.art/).
+
 [More on Instagram](https://instagram.com/bykfrankc){: .btn .btn--primary}

@@ -15,4 +15,6 @@ header:
 
 > Lion dance is a tranditional dance in Chinese and Asian culture. The performers typically mimic a lion's movement to bring good luck and fortune.
 
+Drawn on [Procreate](https://procreate.art/).
+
 [More on Instagram](https://instagram.com/bykfrankc){: .btn .btn--primary}

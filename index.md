@@ -2,25 +2,31 @@
 permalink: /
 layout: single
 title: ""
-classes: wide
 author_profile: true
+home: true
 ---
 
-# About
+<div class="image-container">
+    <canvas class="canvas" width="800" height="800" id="canvas"></canvas>
+    <div class="loading-screen" id="loading">
+        <div class="la-ball-triangle-path la-dark la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
 
-I am a Program Manager in the Telemetry & Analytics team at Microsoft, where I contribute in the following areas:
+# PM at Microsoft, [MRW](https://dynamics.microsoft.com/en-us/mixed-reality/overview/)
 
-- Build a unified telemetry platform across Microsoft internal tools and services, using Azure big data technologies ([ApplicationInsights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview), [Data Explorer](https://azure.microsoft.com/en-us/services/data-explorer/), [Data Lake](https://azure.microsoft.com/en-us/solutions/data-lake/), [CosmosDB](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction))
-- Enable our organization to achieve software service maturity by improving health metrics (example: [How Microsoft uses our platform to enable end-to-end visibility into SAP workloads](https://www.microsoft.com/itshowcase/blog/microsoft-internal-sap-workload-gets-a-telemetry-boost-with-azure/)).
-- Organize mentorship and leadership events for the Early in Career community to learn and grow
+My interests are in computer vision, IoT, and [intelligent edge](https://azure.microsoft.com/en-us/overview/future-of-cloud/). I am also a Masters student in _Data Science_ at University of Washington.
 
-I am also a Masters student in _Data Science_ at University of Washington. I like to [draw](https://instagram.com/bykfrankc) from time to time.
-
-**Previously**: _Computer Science_ at UCLA, Researcher at [VCLA](http://vcla.stat.ucla.edu/), Organizer at [LA Hacks](https://lahacks.com/), [Resident Assistant](https://reslife.ucla.edu/employment/ra), and Student Lecturer on [Cybersecurity](https://kfrankc.com/cs88s/)
+Previously at UCLA, I graduated with a B.S. in _Computer Science_. There, I was a Researcher at [VCLA](http://vcla.stat.ucla.edu/), Organizer at [LA Hacks](https://lahacks.com/), [Resident Assistant](https://reslife.ucla.edu/employment/ra), and Student Lecturer on [Cybersecurity](https://kfrankc.com/cs88s/)
 
 **Recent News**
 
-- 11/18: Celebrating 1 year at Microsoft! Here's my [reflection](https://www.linkedin.com/pulse/lessons-from-1-year-microsoft-frank-chen/) of my experience so far
-- 10/18: Start Masters in Data Science at UW
+- 7/19: PM II in [Mixed Reality at Work](https://dynamics.microsoft.com/en-us/mixed-reality/overview/)
+- 10/18: Start [Masters in Data Science](https://www.datasciencemasters.uw.edu/) at UW
+- 7/18: Celebrating 1 year at Microsoft! Here's a [reflection](https://www.linkedin.com/pulse/lessons-from-1-year-microsoft-frank-chen/) of my experience so far
 - 6/17: [UCLA Commencement Student Speaker](https://www.youtube.com/watch?v=wr6u5Q-SZRo&feature=youtu.be&t=1h59m20s)
 - 5/17: All slides from my Cybersecurity seminar have been posted to the [course website](https://kfrankc.com/cs88s)
