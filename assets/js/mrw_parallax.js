@@ -178,7 +178,7 @@ function pointerStart(event) {
     }
 }
 
-window.addEventListener('touchmove', pointerMove, {passive:false});
+canvas.addEventListener('touchmove', pointerMove, {passive:false});
 window.addEventListener('mousemove', pointerMove, {passive:false});
 
 function pointerMove(event) {
