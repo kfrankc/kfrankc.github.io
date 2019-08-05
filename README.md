@@ -10,7 +10,34 @@ Personal Portfolio and Blog built on top of [Minimal Mistakes](https://mmistakes
 
 ### Local Development
 
-`bundle exec jekyll serve` and go to `localhost:4000`.
+1. Check that you have Ruby 2.1.0 or higher installed.
+
+```
+$ ruby --version
+> ruby 2.X.X
+```
+
+If you don't have Ruby installed, install [Ruby 2.1.0 or higher](https://www.ruby-lang.org/en/downloads/).
+
+2. Install Bundler
+
+```
+$ gem install bundler
+```
+
+3. Install all dependencies
+
+```
+$ bundle install
+```
+
+4. Build site locally
+
+```
+$ bundle exec jekyll serve
+```
+
+This loads the site at `localhost:4000`.
 
 ### .gitignore
 
@@ -31,4 +58,5 @@ example/_site
 Gemfile.lock
 node_modules
 npm-debug.log*
+vendor
 ```
