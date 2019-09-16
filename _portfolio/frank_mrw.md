@@ -12,7 +12,7 @@ home: true
 
 # Parallax Portrait
 
-<div class="image-container">
+<div class="image-container" aria-label="Drag Me! 🖱️" data-balloon-pos="up">
     <canvas class="canvas" width="800" height="800" id="canvas"></canvas>
     <div class="loading-screen" id="loading">
       <div class="la-ball-triangle-path la-dark la-2x">
