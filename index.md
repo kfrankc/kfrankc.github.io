@@ -25,6 +25,7 @@ Previously at UCLA, I graduated with a B.S. in _Computer Science_. There, I was 
 
 **Recent News**
 
+- 10/19: Shipped [Dynamics 365 Connected Store](https://dynamics.microsoft.com/en-us/ai/connected-store/) into preview
 - 7/19: PM II in [Mixed Reality at Work](https://dynamics.microsoft.com/en-us/mixed-reality/overview/)
 - 10/18: Start [Masters in Data Science](https://www.datasciencemasters.uw.edu/) at UW
 - 7/18: Celebrating 1 year at Microsoft! Here's a [reflection](https://www.linkedin.com/pulse/lessons-from-1-year-microsoft-frank-chen/) of my experience so far
