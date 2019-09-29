@@ -6,7 +6,7 @@ date: 2019-06-23
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/frank_mrw.png
+  teaser: assets/images/portfolio/frank_mrw.gif
 home: true
 ---
 
