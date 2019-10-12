@@ -17,7 +17,7 @@ home: true
     </div>
 </div>
 
-# PM at Microsoft, [MRW](https://dynamics.microsoft.com/en-us/mixed-reality/overview/)
+# PM at Microsoft, [Connected Store](https://dynamics.microsoft.com/en-us/ai/connected-store/)
 
 My interests are in computer vision, IoT, and [intelligent edge](https://azure.microsoft.com/en-us/overview/future-of-cloud/). I am also a Masters student in _Data Science_ at University of Washington.
 
