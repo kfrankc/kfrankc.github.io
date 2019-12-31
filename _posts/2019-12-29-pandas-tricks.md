@@ -14,7 +14,7 @@ toc: true
 
 ## Background
 
-Pandas is a comprehensive Python library for data analysis, but its syntax for performing certain specific data transformations can be difficult to discern from its documentation. I recently used Pandas in my [analysis of Billboard Top 100 Music data](https://kfrankc.com/portfolio/billboard/)), and I've uncovered several useful Pandas commands that I will most likely use again in the future, so I'm compiling a (growing) list here for both my own reference and the benefit of someone else struggling with these problems in the future.
+Pandas is a comprehensive Python library for data analysis, but its syntax for performing certain specific data transformations can be difficult to discern from its documentation. I recently used Pandas in my [analysis of Billboard Top 100 Music data](https://kfrankc.com/portfolio/billboard/)), and I've uncovered several useful commands that I will most likely use again in the future, so I'm compiling a (growing) list here for both my own reference and the benefit of someone else struggling with these problems in the future.
 
 I will be updating this as I come across/learn new useful methods.
 
