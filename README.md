@@ -17,7 +17,7 @@ $ ruby --version
 > ruby 2.X.X
 ```
 
-If you don't have Ruby installed, install [Ruby 2.1.0 or higher](https://www.ruby-lang.org/en/downloads/).
+If you don't have Ruby installed, install [Ruby 2.1.0 or higher](https://www.ruby-lang.org/en/downloads/). Follow [this guide](https://stackoverflow.com/questions/37720892/you-dont-have-write-permissions-for-the-var-lib-gems-2-3-0-directory) for using `rbenv` (preferred method to install Ruby)
 
 2. Install Bundler
 
