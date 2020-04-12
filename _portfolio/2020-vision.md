@@ -6,7 +6,7 @@ date: 2020-1-1
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/2020-vision.GIF
+  teaser: assets/images/portfolio/min/min-2020-vision.GIF
 ---
 
 # 2020 Vision
