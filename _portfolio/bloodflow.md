@@ -6,7 +6,7 @@ date: 2017-05-30
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/bloodflow.gif
+  teaser: assets/images/portfolio/min/min-bloodflow.gif
 ---
 
 # Blood Flow Visualization
