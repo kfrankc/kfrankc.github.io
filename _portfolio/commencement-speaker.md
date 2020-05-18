@@ -6,7 +6,7 @@ date: 2017-06-17
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/speaker.png
+  teaser: assets/images/portfolio/min/min-speaker.png
 ---
 
 # UCLA Engineering Commencement Speaker

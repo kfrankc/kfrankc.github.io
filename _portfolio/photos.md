@@ -6,7 +6,7 @@ date: 2018-05-24
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/photos.png
+  teaser: assets/images/portfolio/min/min-photos.png
 ---
 
 # Photos by kfrankc

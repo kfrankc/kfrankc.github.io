@@ -9,9 +9,15 @@ header:
   teaser: assets/images/portfolio/min/min-searching.PNG
 ---
 
-# Searching for ____ 🔍
+# Surrealism in Technology
 
-{% include figure image_path="/assets/images/portfolio/searching.PNG" alt="Searching for ____" caption="" %}
+A 3-part series on technology surrealism.
+
+{% include figure image_path="/assets/images/portfolio/searching.PNG" alt="Searching for ____" caption="Searching for ___" %}
+
+{% include figure image_path="/assets/images/portfolio/vr-monster.PNG" alt="VR Monster" caption="VR Monster" %}
+
+{% include figure image_path="/assets/images/portfolio/hololens-ar.PNG" alt="It's not a box" caption="Not just sitting on a box.." %}
 
 Drawn on [Procreate 5](https://procreate.art).
 
