@@ -6,7 +6,7 @@ date: 2017-06-11
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/frank-the-coder.jpg
+  teaser: assets/images/portfolio/min/min-frank-the-coder.jpg
 ---
 
 # Graduation Rap Music Video

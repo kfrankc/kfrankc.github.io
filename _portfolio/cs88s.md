@@ -6,7 +6,7 @@ date: 2017-04-01
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/cs88s.png
+  teaser: assets/images/portfolio/min/min-cs88s.png
 ---
 
 # CS 88S: Safety in the Cloud

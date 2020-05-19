@@ -6,7 +6,7 @@ date: 2019-12-10
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/bboard-banner.PNG
+  teaser: assets/images/portfolio/min/min-bboard-banner.PNG
 ---
 
 # Music Through The Ages: Billboard Top 100 Charts Analysis

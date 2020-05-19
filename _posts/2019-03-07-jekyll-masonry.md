@@ -112,7 +112,7 @@ The `portfolio_masonry.js` file contains the Javascript code to apply Masonry on
 </div>
 ```
 
-First, create the Masonry object using `grid`, then indicate `grid-item` as the `itemSelector` variable:
+First, create the Masonry object using `grid`, then indicate `grid__item` as the `itemSelector` variable:
 
 ```js
 $(window).on('load', function() {
