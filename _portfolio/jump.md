@@ -6,7 +6,7 @@ date: 2019-11-17
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/kfrankc-jump.GIF
+  teaser: assets/images/portfolio/min/min-kfrankc-jump.GIF
 ---
 
 # A Study in Jump

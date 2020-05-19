@@ -6,7 +6,7 @@ date: 2017-06-09
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/chainsmokers.png
+  teaser: assets/images/portfolio/min/min-chainsmokers.png
 ---
 
 # Chainsmokers Set Review

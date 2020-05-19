@@ -6,7 +6,7 @@ date: 2016-03-15
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/spectrum.png
+  teaser: assets/images/portfolio/min/min-spectrum.png
 ---
 
 # Spectrum Redesign

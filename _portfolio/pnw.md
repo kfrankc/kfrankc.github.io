@@ -6,7 +6,7 @@ date: 2018-06-05
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/pnw.PNG
+  teaser: assets/images/portfolio/min/min-pnw.PNG
 ---
 
 # Pacific NorthWest-World

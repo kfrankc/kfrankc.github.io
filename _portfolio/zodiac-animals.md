@@ -6,7 +6,7 @@ date: 2019-02-04
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/zodiac-animals.png
+  teaser: assets/images/portfolio/min/min-zodiac-animals.png
 ---
 
 # Happy Chinese New Year! (十二生肖)

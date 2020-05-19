@@ -6,7 +6,7 @@ date: 2015-03-20
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/natcar.jpg
+  teaser: assets/images/portfolio/min/min-natcar.jpg
 ---
 
 # NATCAR

@@ -6,7 +6,7 @@ date: 2018-05-03
 layout: single
 author_profile: true
 header:
-  teaser: assets/images/portfolio/franos.PNG
+  teaser: assets/images/portfolio/min/min-franos.PNG
 ---
 
 # Franos
