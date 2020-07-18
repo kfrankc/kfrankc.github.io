@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Frank Chen</title>
+	<meta name="description" content="PM, Data, and Illustrations" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="kfrankc" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css?v=1.3.2" />
+    <link rel="stylesheet" type="text/css" href="/css/component.css?v=0.0.9" />
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+
+	<script src="/js/debouncedresize.js"></script>
+	<script src="/js/modernizr.custom.js"></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="theme-color" content="#ffffff">
+	<meta property="og:title" content="Deriving the Normal Distribution" />
+<meta property="og:description" content="AKA Gaussian distribution" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kfrankc.com/posts/normal-dist/" />
+<meta property="og:image" content="https://kfrankc.com/author.PNG"/>
+<meta property="article:published_time" content="2018-10-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-10-19T00:00:00+00:00" /><meta property="og:site_name" content="Frank Chen" />
+
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128201385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+	<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://kfrankc.com/author.PNG"/>
+
+<meta name="twitter:title" content="Deriving the Normal Distribution"/>
+<meta name="twitter:description" content="AKA Gaussian distribution"/>
+
+</head>
+    <body><nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="https://kfrankc.com">kfrankc</a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      
+      
+        <a class="nav-item nav-link" href="/contact/" title="Contact">
+          Contact
+        </a>
+      
+        <a class="nav-item nav-link" href="/drawings/" title="Drawings">
+          Drawings
+        </a>
+      
+        <a class="nav-item nav-link" href="/posts/" title="Posts">
+          Posts
+        </a>
+      
+    </div>
+  </div>
+</nav>
+<div id="content">
+
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+        equationNumbers: {
+          autoNumber: "AMS"
+        }
+      },
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'] ],
+        processEscapes: true
+      }
+    });
+</script>
+
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h3 class="font-tertiary mt-4 mb-2">Deriving the Normal Distribution</h3>
+          <p class="font-secondary"><span class="author" class="text-primary">October 10, 2018</span></p>
+          <div class="content">
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Normal_Distribution_PDF.svg/525px-Normal_Distribution_PDF.svg.png" alt="Normal Distribution"></p>
+<p>In every introductory statistics class, we learned about the normal distribution, which has Probability Density Function (PDF):</p>
+<p>$$
+\tag{1} f(x | \mu, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+$$</p>
+<p>This looks like a fairly complicated equation, but the resulting graph (shown above) has some very cool properties (integrates to 1, represents real-valued random variables whose distributions are not known etc&hellip;). I&rsquo;ve always wondered how this is derived, and I finally found some answers via great <a href="https://www.youtube.com/watch?v=cTyPuZ9-JZ0">videos</a> and <a href="https://math.stackexchange.com/questions/384893/how-was-the-normal-distribution-derived">online forums</a>. I will give an overview of the derivation here, based on YouTuber Mathoma&rsquo;s amazing video (linked above).</p>
+<h2 id="part-1-the-theory">Part 1: The Theory</h2>
+<p>Mathoma gave a great analogy about how to understand this distribution: imagine you are throwing darts on a polar coordinate system, with the goal of hitting the center \((0,0)\). Now, given an arbitrary dart landing on coordinate \((r, \theta)\), we can also say that the coordinate is \((x, y)\) if we convert from polar to cartesian.</p>
+<p>We have to make a couple assumptions here before moving forward. First, we assume that \(x\) and \(y\) are statistically independent. Second, we assume that the PDF is rotationally invariant, which means the distribution of where my dart lands only depends on the distance \(r\), of the dart to the center.</p>
+<p>With those assumptions, I can define PDF \(\varphi(r) = f(x)f(y)\). This can be rewritten as</p>
+<p>$$
+\begin{align}
+\tag{2} \varphi(\sqrt{x^2 + y^2}) &amp;= f(x)f(y)
+\end{align}
+$$</p>
+<p>Next, suppose \(y=0\). We will then have</p>
+<p>$$
+\begin{aligned}
+\varphi(\sqrt{x^2 + 0^2}) &amp;= f(x)f(0) \\<br>
+\varphi(x) &amp;= f(x)\lambda, \text{ where $\lambda$ is a constant}
+\end{aligned}
+$$</p>
+<p>Plugging this back into Eq 2, we have</p>
+<p>$$
+\begin{align}
+\tag{3} \lambda f(\sqrt{x^2 + y^2}) = f(x)f(y)
+\end{align}
+$$</p>
+<p>Next, we will determine the expression for $f(x)$. First, we rewrite Eq 3 as</p>
+<p>$$
+\begin{aligned}
+\frac{\lambda f(\sqrt{x^2 + y^2})}{\lambda^2} = \frac{f(x)}{\lambda} \frac{f(y)}{\lambda}
+\end{aligned}
+$$</p>
+<p>For simplicity in analyzing the equation, define $g(x) = \frac{f(x)}{\lambda}$. We now have</p>
+<p>$$
+\begin{align}
+\tag{4} g(x)g(y) = g(\sqrt{x^2 + y^2})
+\end{align}
+$$</p>
+<p>What kind of function should $g$ be so that Eq 4 is valid? Upon some inspection, we can see that $g$ should be an <strong>exponential function</strong>. Example: suppose we have $h(x) = e^x$, then $h(x)h(y) = e^xe^y = e^{x+y} = h(x+y)$.</p>
+<p>Similarly, let $g(x) = e^{Ax^2}$, where $A$ is a constant.</p>
+<p>$$
+\begin{align*}
+g(x)g(y) &amp;= e^{Ax^2}e^{Ay^2}\\<br>
+&amp;= e^{A(x^2 + y^2)}\\<br>
+&amp;= e^{A(\sqrt{x^2 + y^2})^2}\\<br>
+&amp;= g(\sqrt{x^2 + y^2})
+\end{align*}
+$$</p>
+<p>In turn, our PDF $f$ should be</p>
+<p>$$
+\begin{align}
+\tag{5} f(x) = \lambda e^{Ax^2}
+\end{align}
+$$</p>
+<p><a href="https://www.desmos.com/calculator/hhsa3qpffi">Plotting this equation out</a> with $A=-1$ (more on why $A$ is negative later) and $\lambda=1$, we see that it takes a gaussian form!</p>
+<h2 id="part-2-massaging-the-equation">Part 2: Massaging the Equation</h2>
+<p>The remainder of this derivation serves to massage Eq 5 into the class of gaussians we are interested in, the normal gaussian.</p>
+<p>First, we introduce a constraint on the function: since we are modeling probability, it makes sense for $f(x)$ to integrate to $1$.</p>
+<p>$$
+\begin{aligned}
+\int_{-\infty}^{\infty}f(x)dx = 1
+\end{aligned}
+$$</p>
+<p>Instead of using constant $A$, we will set $A = -h^2$, where $h$ is a constant variable. There are several reasons for this: First, it makes sense for $A$ to be negative, because we want this function (which models the probability) to decrease as we move to $+\infty$. Second, the $-h^2$ form will help when we do the integration.</p>
+<p>We determine the value of $h^2$:</p>
+<p>$$
+\begin{aligned}
+\int_{-\infty}^{\infty}\lambda e^{-h^2x^2}dx &amp;= 1\\<br>
+\lambda\int_{-\infty}^{\infty}e^{-h^2x^2}dx &amp;= 1\\<br>
+\end{aligned}
+$$</p>
+<p>Perform <a href="https://www.wikiwand.com/en/Integration_by_substitution">u-substitution</a>, with $u = hx$, $du = hdx$, and $dx = \frac{1}{h}du$. We now get</p>
+<p>$$
+\begin{align}
+\tag{6} \frac{\lambda}{h}\int_{-\infty}^{\infty}e^{-u^2}du = 1
+\end{align}
+$$</p>
+<p>Interestingly, the integral in Eq 6 is actually famous (it has a name!). The <a href="https://en.wikipedia.org/wiki/Gaussian_integral">Gaussian integral</a>, also known as the Euler-Poisson integral, is equal to $\sqrt{\pi}$ (refer to link for the integral computation).</p>
+<p>We can now compute $h^2$:</p>
+<p>$$
+\begin{aligned}
+\frac{\lambda}{h}\sqrt{\pi} &amp;= 1\\<br>
+h &amp;= \lambda \sqrt{\pi}\\<br>
+h^2 &amp;= \lambda^2\pi
+\end{aligned}
+$$</p>
+<p>Eq 5 becomes</p>
+<p>$$
+\begin{align}
+\tag{7} f(x) = \lambda e^{-\pi \lambda^2x^2}
+\end{align}
+$$</p>
+<p>If we plot $f(x)$ using different $\lambda$ values, we see that as $\lambda$ increases, the variance $\sigma^2$ decreases, since more of the area is accumulated at $x=0$. See plots for <a href="https://www.desmos.com/calculator/lszecvqlgt">$\lambda=1$</a>, <a href="https://www.desmos.com/calculator/jpwcwodqef">$\lambda=2$</a>, <a href="https://www.desmos.com/calculator/uzdhdukutz">$\lambda=3$</a> as examples.</p>
+<p>Next, we need to find the relationship between $\lambda$ and variance $\sigma^2$. From definition of <a href="https://www.wikiwand.com/en/Variance">variance</a>, we see that $Var(X) = E[(X - \mu)^2]$. In our case, $\mu$ is 0, so we have:</p>
+<p>$$
+\begin{aligned}
+Var(x) = \sigma^2 &amp;= \int_{-\infty}^{\infty}x^2 \lambda e^{-\pi \lambda^2x^2}dx \\<br>
+&amp;= \lambda \int_{-\infty}^{\infty} x \cdot x \cdot e^{-\pi \lambda^2x^2}dx
+\end{aligned}
+$$</p>
+<p>We will evaluate this integral via <a href="https://www.wikiwand.com/en/Integration_by_parts">integration by parts</a>. Recall that</p>
+<p>$$
+\begin{aligned}
+\int udv = uv - \int vdu
+\end{aligned}
+$$</p>
+<p>Let $u = x$, $du = dx$, $dv = xe^{-\pi \lambda^2x^2}dx$, $v = -\frac{1}{2\pi\lambda^2}e^{-\pi \lambda^2x^2}$:</p>
+<p>$$
+\begin{aligned}
+Var(x) = \sigma^2 &amp;= \lambda \left(x\left(-\frac{1}{2\pi\lambda^2}e^{-\pi \lambda^2x^2}\Biggr|_{-\infty}^{\infty}\right) - \int_{-\infty}^{\infty}\left(-\frac{1}{2\pi\lambda^2}e^{-\pi \lambda^2x^2}\right)dx\right)\\<br>
+&amp;= \lambda \left((0) + \int_{-\infty}^{\infty}\frac{1}{2\pi\lambda^2}e^{-\pi \lambda^2x^2}dx\right)\\<br>
+&amp;= \frac{1}{2\pi\lambda^2}\int_{-\infty}^{\infty}\lambda e^{-\pi \lambda^2x^2}dx
+\end{aligned}
+$$</p>
+<p>The reason we switched the position of $\lambda$ and $\frac{1}{2\pi\lambda^2}$ is so we can massage the integral to be the form of the gaussian PDF, which we know integrates to 1. Now, with the equation simplified, we can solve for $\lambda$ in terms of $\sigma^2$.</p>
+<p>$$
+\begin{aligned}
+\sigma^2 &amp;= \frac{1}{2\pi\lambda^2}\\<br>
+\lambda^2 &amp;= \frac{1}{\sigma^2 2\pi}\\<br>
+\lambda &amp;= \frac{1}{\sqrt{2\pi\sigma^2}}
+\end{aligned}
+$$</p>
+<p>$\lambda$ and $\sigma$ are inversely proportional, as expected. We can plug in our result here back into Eq 7:</p>
+<p>$$
+\begin{align}
+\tag{8} f(x) &amp;= \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\pi \left(\frac{1}{(\sqrt{2\pi\sigma^2})^2}\right)x^2} \\<br>
+&amp;= \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{x^2}{2\sigma^2}}\nonumber
+\end{align}
+$$</p>
+<p>We are almost done. The above equation has mean $\mu = 0$, but if we want to represent $f(x|\mu, \sigma^2)$, we need to add in $f(x-\mu)$. Therefore, our general PDF equation for the normal distribution is:</p>
+<p>$$
+\begin{align}
+\tag{9} f(x | \mu, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{align}
+$$</p>
+<p>Eq 9 matches Eq 1, and we are now done $\blacksquare$</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="/js/grid.js?v=0.3.4"></script>
+        <script>
+            $(function() {
+                Grid.init();
+            });
+        </script>
+    </body>
+</html>

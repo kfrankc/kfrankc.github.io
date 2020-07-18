@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Frank Chen</title>
+	<meta name="description" content="PM, Data, and Illustrations" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="kfrankc" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css?v=1.3.2" />
+    <link rel="stylesheet" type="text/css" href="/css/component.css?v=0.0.9" />
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+
+	<script src="/js/debouncedresize.js"></script>
+	<script src="/js/modernizr.custom.js"></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="theme-color" content="#ffffff">
+	<meta property="og:title" content="Lessons from 1 Year at Microsoft" />
+<meta property="og:description" content="This was originally published on LinkedIn .
+As 2018 comes to a close, I thought I&rsquo;d share some of the lessons I learned this past year as a Program Manager at Microsoft. These opinions and observations are my own, and should be taken with the understanding that everyone&rsquo;s professional journey is different. Some of these apply directly to the Program Management discipline, while others apply to anyone starting their first full-time job." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kfrankc.com/posts/lessons-microsoft/" />
+<meta property="og:image" content="https://kfrankc.com/author.PNG"/>
+<meta property="article:published_time" content="2018-12-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-12-28T00:00:00+00:00" /><meta property="og:site_name" content="Frank Chen" />
+
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128201385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+	<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://kfrankc.com/author.PNG"/>
+
+<meta name="twitter:title" content="Lessons from 1 Year at Microsoft"/>
+<meta name="twitter:description" content="This was originally published on LinkedIn .
+As 2018 comes to a close, I thought I&rsquo;d share some of the lessons I learned this past year as a Program Manager at Microsoft. These opinions and observations are my own, and should be taken with the understanding that everyone&rsquo;s professional journey is different. Some of these apply directly to the Program Management discipline, while others apply to anyone starting their first full-time job."/>
+
+</head>
+    <body><nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="https://kfrankc.com">kfrankc</a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      
+      
+        <a class="nav-item nav-link" href="/contact/" title="Contact">
+          Contact
+        </a>
+      
+        <a class="nav-item nav-link" href="/drawings/" title="Drawings">
+          Drawings
+        </a>
+      
+        <a class="nav-item nav-link" href="/posts/" title="Posts">
+          Posts
+        </a>
+      
+    </div>
+  </div>
+</nav>
+<div id="content">
+
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h3 class="font-tertiary mt-4 mb-2">Lessons from 1 Year at Microsoft</h3>
+          <p class="font-secondary"><span class="author" class="text-primary">December 12, 2018</span></p>
+          <div class="content">
+            <p><em>This was originally published on <a href="https://www.linkedin.com/pulse/lessons-from-1-year-microsoft-frank-chen/">LinkedIn </a>.</em></p>
+<p>As 2018 comes to a close, I thought I&rsquo;d share some of the lessons I learned this past year as a Program Manager at <a href="https://www.linkedin.com/company/microsoft/">Microsoft</a>. These opinions and observations are my own, and should be taken with the understanding that everyone&rsquo;s professional journey is different. Some of these apply directly to the Program Management discipline, while others apply to anyone starting their first full-time job.</p>
+<p><strong>Have empathy at work.</strong> There&rsquo;s more to your coworkers than their office personality and appearance. You may have just started your career, but many people have worked for a while, and even had multiple jobs in different companies. Meet them. See from their perspective. Learn from their experience. Office atmosphere is an important area of investment in every company&rsquo;s HR department; in fact, there are companies whose purpose is to help build relationships with your coworkers in your own company (an example is Donut). Take the first step to get to know someone via a quick 30-minute 1:1 meeting. You can take the lead on this.</p>
+<p><strong>Know what your team/organization is building, and be on that critical path.</strong> Whether you are a Dev, PM, Designer, or another discipline, you should always ensure that your work is aligned to the current or future focus of your organization. This applies to graduate students as well: you should always strive to be on the critical path of your PI/advisor.</p>
+<p><strong>Assume good intentions and do your own job well.</strong> In the PM role, I&rsquo;ve interacted with various individuals of different personalities: some are welcoming, some are indifferent, some are rude. Stand your ground, but also approach situations by assuming positive intentions. If you lead by example, others will too; ensure that you do your own job very well, and people will take notice.</p>
+<p><strong>Give back and help others.</strong> Microsoft&rsquo;s mission statement is &ldquo;to empower every person and every organization on the planet to achieve more&rdquo;. Satya summed up the employee culture at Microsoft very well when he said &ldquo;You join here, not to be cool, but to make others cool.&rdquo; A truly great person is someone who makes every person great.</p>
+<p><strong>Ask questions and be humble.</strong> As a new employee, you have the added benefit of putting on your learning hat, and asking as many questions as you can. People are generally glad to talk and share their work with you, so give them the opportunity.</p>
+<p><strong>Listen more, talk efficiently.</strong> Especially in a role as a PM, your job is often to listen and correctly identify concerns that customers are raising. My manager <a href="https://www.linkedin.com/in/corydelamarter/">Cory</a> puts it best: &ldquo;Talking is not as much about saying something as it is about hearing something&rdquo;. It is unfortunate that many people default to speaking in fast, continuous stream of words for fear of running out of time during a meeting. Many listeners appreciate more pauses when someone is talking. Listen to your listeners.</p>
+<p><strong>Let your body be tired, but never your mind.</strong> You can always sleep and rejuvenate your physical strength, but mental tiredness can last for days or months. Which also means&hellip;</p>
+<p><strong>Take care of your body, and take care of yourself.</strong> Gone are the college days of staying up until 2 AM and eating junk food to get by. Even if your company caters food, be selective about what you put in your body, and learn some basic life skills, such as cooking for yourself.</p>
+<p><strong>Know that you will have some bad days at work and some good.</strong> Your career is a marathon, not a 100 meter sprint. Regroup &amp; recuperate when you need to; measure yourself not in how well every single day went, but how well each month is going. Looking at your progress from a monthly perspective will also give you a clearer idea of how far you have come since day 1.</p>
+<p><strong>Sleep early! (especially for those transitioning from college - I still need to do a better job at this).</strong> Sleeping earlier means you can start your day earlier, and that can be very beneficial to your productivity; as a PM, for example, you&rsquo;ll have more time to dedicate on individual work before the flock of meetings take over the rest of your day.</p>
+<p>Looking forward to sleeping more &amp; learning more in 2019!</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="/js/grid.js?v=0.3.4"></script>
+        <script>
+            $(function() {
+                Grid.init();
+            });
+        </script>
+    </body>
+</html>

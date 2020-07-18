@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Frank Chen</title>
+	<meta name="description" content="PM, Data, and Illustrations" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="kfrankc" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css?v=1.3.2" />
+    <link rel="stylesheet" type="text/css" href="/css/component.css?v=0.0.9" />
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+
+	<script src="/js/debouncedresize.js"></script>
+	<script src="/js/modernizr.custom.js"></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="theme-color" content="#ffffff">
+	<meta property="og:title" content="Building a Responsive Portfolio using Jekyll and Masonry" />
+<meta property="og:description" content="Customizations in static site generators" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kfrankc.com/posts/jekyll-masonry/" />
+<meta property="og:image" content="https://kfrankc.com/author.PNG"/>
+<meta property="article:published_time" content="2019-03-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-03-07T00:00:00+00:00" /><meta property="og:site_name" content="Frank Chen" />
+
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128201385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+	<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://kfrankc.com/author.PNG"/>
+
+<meta name="twitter:title" content="Building a Responsive Portfolio using Jekyll and Masonry"/>
+<meta name="twitter:description" content="Customizations in static site generators"/>
+
+</head>
+    <body><nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="https://kfrankc.com">kfrankc</a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      
+      
+        <a class="nav-item nav-link" href="/contact/" title="Contact">
+          Contact
+        </a>
+      
+        <a class="nav-item nav-link" href="/drawings/" title="Drawings">
+          Drawings
+        </a>
+      
+        <a class="nav-item nav-link" href="/posts/" title="Posts">
+          Posts
+        </a>
+      
+    </div>
+  </div>
+</nav>
+<div id="content">
+
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h3 class="font-tertiary mt-4 mb-2">Building a Responsive Portfolio using Jekyll and Masonry</h3>
+          <p class="font-secondary"><span class="author" class="text-primary">March 3, 2019</span></p>
+          <div class="content">
+            <p><em>I built this site using Hugo. I built the previous <a href="https://github.com/kfrankc/kfrankc.github.io/releases">version</a> using Jekyll and Masonry</em></p>
+<p>My first experience using Jekyll for building a personal website was with <a href="https://github.com/academicpages/academicpages.github.io">academicpages</a>, which is an excellent theme that is mostly catered to, as you guessed, people in academia: it included many built-in <a href="https://jekyllrb.com/docs/front-matter/">front matter</a> to list papers, publications, and talks.</p>
+<p>I later switched to <a href="https://mmistakes.github.io/minimal-mistakes/">Minimal Mistakes</a>, which is theme academicpages forked from. MM offered more opportunities for customizations. It was around this time when I started to think about creating a custom home page to show some of my artwork and other engineering projects. I used to have this portfolio page done in pure HTML and CSS in my <a href="https://github.com/kfrankc/kfrankc.github.io/releases">personal website v1</a>, but with Jekyll, I figured the effort to refactor will be worth it.</p>
+<p>The features I wanted to implement included:</p>
+<ol>
+<li>Easier project entry management using static Markdown (<code>.md</code>) files.</li>
+<li>Load tiles seamlessly in masonry format for a clean viewing experience</li>
+<li>Responsive tiles that can be customized and resized for any screen dimensions</li>
+</ol>
+<p>I ultimately ended up using a combination of <a href="https://masonry.desandro.com/">Masonry</a> and <a href="https://imagesloaded.desandro.com/">imagesloaded</a> to achieve this. Below are the steps I took:</p>
+<h4 id="set-up-minimal-mistakes">Set up Minimal Mistakes</h4>
+<p>In Jekyll lingo, a portfolio page is simply a form of <a href="https://jekyllrb.com/docs/collections/">collections</a>, which serves to group related contents together. In the MM theme, <code>.md</code> file entries in a folder with the syntax <code>_&lt;folder_name&gt;</code> can be aggregated into a single view.</p>
+<p>In my case, I have a <code>_portfolio</code> folder with all my project/artwork entries, and I have a <code>portfolio-archive.md</code> file where these entries are aggreated.</p>
+<p><strong>Configure <code>portfolio-archive.md</code></strong></p>
+<p><a href="https://jekyllrb.com/docs/front-matter/">Front Matter</a> is a useful configuration within a file that Jekyll will process first. MM has several features instrumented in the front matter that makes building collection pages extremely easy.</p>
+<p>For example, this is the front matter in my <code>portfolio-archive.md</code>:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---<span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb"></span><span style="color:#2c5dcd;font-weight:bold">title</span>:<span style="color:#cbcbcb"> </span><span style="color:#0c6">&#34;&#34;</span><span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb"></span><span style="color:#2c5dcd;font-weight:bold">layout</span>:<span style="color:#cbcbcb"> </span>collection<span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb"></span><span style="color:#2c5dcd;font-weight:bold">permalink</span>:<span style="color:#cbcbcb"> </span>/<span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb"></span><span style="color:#2c5dcd;font-weight:bold">collection</span>:<span style="color:#cbcbcb"> </span>portfolio<span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb"></span><span style="color:#2c5dcd;font-weight:bold">entries_layout</span>:<span style="color:#cbcbcb"> </span>grid<span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb"></span><span style="color:#2c5dcd;font-weight:bold">classes</span>:<span style="color:#cbcbcb"> </span>wide<span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb"></span><span style="color:#2c5dcd;font-weight:bold">author_profile</span>:<span style="color:#cbcbcb"> </span><span style="color:#2c5dcd;font-weight:bold">true</span><span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb"></span><span style="color:#2c5dcd;font-weight:bold">sort_by</span>:<span style="color:#cbcbcb"> </span>date<span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb"></span><span style="color:#2c5dcd;font-weight:bold">sort_order</span>:<span style="color:#cbcbcb"> </span>reverse<span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb"></span><span style="color:#2c5dcd;font-weight:bold">home</span>:<span style="color:#cbcbcb"> </span><span style="color:#2c5dcd;font-weight:bold">true</span><span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb"></span>---<span style="color:#cbcbcb">
+</span></code></pre></div><p>We can go through each one:</p>
+<ul>
+<li><code>title</code>: I left this empty, since my home page has a masthead, and doesn&rsquo;t need a title</li>
+<li><code>layout</code>: I specify collection here to let Jekyll know that this is an aggregation page</li>
+<li><code>permalink</code>: This page will be my home page, so I use <code>/</code></li>
+<li><code>collection</code>: This specifies which folder I pull content from. As mentioned before, I have a <code>_portfolio/</code> folder where I store my <code>.md</code> project/artwork files</li>
+<li><code>entries_layout</code>: I use <code>grid</code> to lay out the entries in a portfolio-like format. More information on other layouts (here](<a href="https://mmistakes.github.io/minimal-mistakes/docs/layouts/)">https://mmistakes.github.io/minimal-mistakes/docs/layouts/)</a>.</li>
+<li><code>classes</code>: I use <code>wide</code> to give myself more width for the grid</li>
+<li><code>author_profile</code>: MM has a nice <a href="https://mmistakes.github.io/minimal-mistakes/docs/authors/">customized author profile</a> that you can optionally include on each page.</li>
+<li><code>sort_by</code>: I specify <code>date</code> values in the front matter of each entry so I can sort the grid by the most recent entry.</li>
+<li><code>home</code>: I will cover this in <a href="#load-javascript">Load Javascript</a> section.</li>
+</ul>
+<p>That&rsquo;s it! In fact, I have no other content in my <code>portfolio-archive.md</code>. This front matter is all I need to populate my content. For each of my project/artwork <code>.md</code> files, I include a teaser tag with a local link to the asset. This teaser image (or gif) is what will be shown in the collection.</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#2c5dcd;font-weight:bold">header</span>:<span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb">  </span><span style="color:#2c5dcd;font-weight:bold">teaser</span>:<span style="color:#cbcbcb"> </span>assets/images/portfolio/bloodflow.gif<span style="color:#cbcbcb">
+</span></code></pre></div><p>I have completed my first feature to manage my entries using collections in Jekyll.</p>
+<p>Next, I used Masonry and imagesLoaded to finish my second feature.</p>
+<h4 id="configure-masonry-and-imagesloaded">Configure Masonry and imagesLoaded</h4>
+<p>One fallback of using purely MM <code>grid</code> layout is that the resulting tiles are not responsive to changes in orientation/screen size. I needed an external library, and Masonry was the clear choice.</p>
+<p><a href="https://masonry.desandro.com/">Masonry</a> is a Javascript library that enables cascading grid layout. It places <code>&lt;div&gt;</code> elements in <em>optimal</em> positions based on the available vertical space on the screen. This allows tiles with unequal lengths and widths to stack optimally on the page, creating a layout very similar to that found in Pinterest.</p>
+<p>Since my tiles will be images for each of my project/artwork, I wanted them to be loaded in the browser before Masonry kicks in and adjusts them. This will avoid the <a href="https://masonry.desandro.com/layout.html#imagesloaded">image overlapping issue</a>, and the library to use here is <a href="https://imagesloaded.desandro.com/">imagesLoaded</a>.</p>
+<p><strong>Load Javascript</strong></p>
+<p>First, we need to load the scripts. In MM, we do this in the <code>custom.html</code> file under <code>head</code> folder in <code>_includes/</code>.</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#2c5dcd;font-weight:bold">script</span> <span style="color:#2c5dcd;font-style:italic">type</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;text/javascript&#34;</span> <span style="color:#2c5dcd;font-style:italic">src</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js&#34;</span>&gt;&lt;/<span style="color:#2c5dcd;font-weight:bold">script</span>&gt;
+&lt;<span style="color:#2c5dcd;font-weight:bold">script</span> <span style="color:#2c5dcd;font-style:italic">type</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;text/javascript&#34;</span> <span style="color:#2c5dcd;font-style:italic">src</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js&#34;</span>&gt;&lt;/<span style="color:#2c5dcd;font-weight:bold">script</span>&gt;
+&lt;<span style="color:#2c5dcd;font-weight:bold">script</span> <span style="color:#2c5dcd;font-style:italic">type</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;text/javascript&#34;</span> <span style="color:#2c5dcd;font-style:italic">src</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js&#34;</span>&gt;&lt;/<span style="color:#2c5dcd;font-weight:bold">script</span>&gt;
+&lt;<span style="color:#2c5dcd;font-weight:bold">script</span> <span style="color:#2c5dcd;font-style:italic">type</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;text/javascript&#34;</span> <span style="color:#2c5dcd;font-style:italic">src</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;/assets/js/portfolio_masonry.js&#34;</span>&gt;&lt;/<span style="color:#2c5dcd;font-weight:bold">script</span>&gt;
+</code></pre></div><p><strong>Note</strong>: since I am only using these scripts for my portfolio page, I&rsquo;ve added a front matter variable called <code>home</code> in my <code>portfolio-archive.md</code>, and I&rsquo;ve nested the above script tags into a <code>if page.home</code> and <code>endif</code> Ruby tag.
+{: .notice&ndash;danger}</p>
+<p><strong>Instrument Masonry and imagesLoaded</strong></p>
+<p>The <code>portfolio_masonry.js</code> file contains the Javascript code to apply Masonry on the <code>&lt;divs&gt;</code> for each tile. Masonry works on a nested <code>&lt;div&gt;</code> object as follows:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#2c5dcd;font-weight:bold">div</span> <span style="color:#2c5dcd;font-style:italic">class</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;grid&#34;</span>&gt;
+  &lt;<span style="color:#2c5dcd;font-weight:bold">div</span> <span style="color:#2c5dcd;font-style:italic">class</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;grid-item&#34;</span>&gt;&lt;/<span style="color:#2c5dcd;font-weight:bold">div</span>&gt;
+  &lt;<span style="color:#2c5dcd;font-weight:bold">div</span> <span style="color:#2c5dcd;font-style:italic">class</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;grid-item&#34;</span>&gt;&lt;/<span style="color:#2c5dcd;font-weight:bold">div</span>&gt;
+  ...
+&lt;/<span style="color:#2c5dcd;font-weight:bold">div</span>&gt;
+</code></pre></div><p>First, create the Masonry object using <code>grid</code>, then indicate <code>grid__item</code> as the <code>itemSelector</code> variable:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">$(<span style="color:#5918bb;font-weight:bold">window</span>).on(<span style="color:#0c6">&#39;load&#39;</span>, <span style="color:#2c5dcd;font-weight:bold">function</span>() {
+    <span style="color:#2c5dcd;font-weight:bold">var</span> grid <span style="color:#2c5dcd">=</span> $(<span style="color:#0c6">&#39;.grid__item&#39;</span>);
+    <span style="color:#2c5dcd;font-weight:bold">var</span> container <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">document</span>.querySelector(<span style="color:#0c6">&#39;.archive&#39;</span>);
+    imagesLoaded(container, <span style="color:#2c5dcd;font-weight:bold">function</span>() {
+        grid.fadeIn();
+
+        <span style="color:#2c5dcd;font-weight:bold">var</span> msnry <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">new</span> Masonry(<span style="color:#5918bb;font-weight:bold">document</span>.querySelector(<span style="color:#0c6">&#39;.archive&#39;</span>), {
+           columnWidth<span style="color:#2c5dcd">:</span> <span style="color:#5918bb;font-weight:bold">100</span>,
+           itemSelector<span style="color:#2c5dcd">:</span> <span style="color:#0c6">&#39;.grid__item&#39;</span>,
+           percentPosition<span style="color:#2c5dcd">:</span> <span style="color:#2c5dcd;font-weight:bold">true</span>,
+           horizontalOrder<span style="color:#2c5dcd">:</span> <span style="color:#2c5dcd;font-weight:bold">true</span>,
+        });
+    });
+});
+</code></pre></div><p>I trigger this code on page load, and utilizes the imagesLoaded function to ensure I only run Masonry when all the images are loaded. There appears to be some image shifting as a result of Masonry on the images, so I made the <code>grid__item</code> class initially invisible, and only run the <code>grid.fadIn()</code> function within imagesLoaded.</p>
+<h4 id="implement-responsive-tiles">Implement responsive tiles</h4>
+<p>Lastly, I will make my Masonry layout responsive to various screen sizes and orientation.</p>
+<p><strong>Using Breakpoint</strong></p>
+<p>MM utilizes a tool called <a href="http://breakpoint-sass.com/">Breakpoint</a> for organized media queries. At a high level, Breakpoint allows you to quickly define variables to hold the media query. This enables you to generate variables that account for different devices and orientations.</p>
+<p>I made several Breakpoint variables to adjust the width of my <code>grid__items</code> class, which wraps each of my portfolio items.</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss">$small<span style="color:#2c5dcd">:</span> (<span style="color:#5918bb;font-weight:bold">600</span><span style="color:#5918bb;font-weight:bold">px</span>) (<span style="color:#2c5dcd;font-weight:bold">or</span>ientation <span style="color:#318495">portrait</span>) !default;
+$small-landscape<span style="color:#2c5dcd">:</span> (<span style="color:#5918bb;font-weight:bold">600</span><span style="color:#5918bb;font-weight:bold">px</span>) (<span style="color:#2c5dcd;font-weight:bold">or</span>ientation <span style="color:#318495">landscape</span>) !default;
+$medium<span style="color:#2c5dcd">:</span> (<span style="color:#5918bb;font-weight:bold">768</span><span style="color:#5918bb;font-weight:bold">px</span>) (<span style="color:#2c5dcd;font-weight:bold">or</span>ientation <span style="color:#318495">portrait</span>) !default;
+$medium-landscape<span style="color:#2c5dcd">:</span> (<span style="color:#5918bb;font-weight:bold">1024</span><span style="color:#5918bb;font-weight:bold">px</span>) (<span style="color:#2c5dcd;font-weight:bold">or</span>ientation <span style="color:#318495">landscape</span>) !default;
+$medium-wide<span style="color:#2c5dcd">:</span> <span style="color:#5918bb;font-weight:bold">900</span><span style="color:#5918bb;font-weight:bold">px</span> !default;
+$large<span style="color:#2c5dcd">:</span> (<span style="color:#5918bb;font-weight:bold">1024</span><span style="color:#5918bb;font-weight:bold">px</span>) !default;
+$large-landscape<span style="color:#2c5dcd">:</span> (<span style="color:#5918bb;font-weight:bold">1200</span><span style="color:#5918bb;font-weight:bold">px</span>) (<span style="color:#2c5dcd;font-weight:bold">or</span>ientation <span style="color:#318495">landscape</span>) !default;
+</code></pre></div><p>I can use these variables in my <code>grid__items</code> class as follows:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="text-decoration:underline">.grid__item</span> {
+  <span style="color:#2c5dcd;font-weight:bold">display</span><span style="color:#ff8000;font-weight:bold">:</span> <span style="color:#2c5dcd;font-weight:bold">none</span>;
+  <span style="color:#2c5dcd;font-weight:bold">@include</span><span style="color:#ff8000;font-weight:bold"> breakpoint</span>($small) {
+    <span style="color:#2c5dcd;font-weight:bold">float</span><span style="color:#ff8000;font-weight:bold">:</span> <span style="color:#2c5dcd;font-weight:bold">left</span>;
+  }
+
+  <span style="color:#2c5dcd;font-weight:bold">@include</span><span style="color:#ff8000;font-weight:bold"> breakpoint</span>($small-landscape) {
+    <span style="color:#2c5dcd;font-weight:bold">float</span><span style="color:#ff8000;font-weight:bold">:</span> <span style="color:#2c5dcd;font-weight:bold">left</span>;
+    <span style="color:#2c5dcd;font-weight:bold">width</span><span style="color:#ff8000;font-weight:bold">:</span> <span style="color:#2c5dcd;font-weight:bold">40</span><span style="color:#fff;background-color:#c00">%</span>;
+  }
+
+  <span style="color:#2c5dcd;font-weight:bold">@include</span><span style="color:#ff8000;font-weight:bold"> breakpoint</span>($medium) {
+    <span style="color:#2c5dcd;font-weight:bold">float</span><span style="color:#ff8000;font-weight:bold">:</span> <span style="color:#2c5dcd;font-weight:bold">left</span>;
+    <span style="color:#2c5dcd;font-weight:bold">width</span><span style="color:#ff8000;font-weight:bold">:</span> <span style="color:#2c5dcd;font-weight:bold">38</span><span style="color:#fff;background-color:#c00">%</span>;
+  }
+
+  <span style="color:#2c5dcd;font-weight:bold">@include</span><span style="color:#ff8000;font-weight:bold"> breakpoint</span>($medium-landscape) {
+    <span style="color:#2c5dcd;font-weight:bold">float</span><span style="color:#ff8000;font-weight:bold">:</span> <span style="color:#2c5dcd;font-weight:bold">left</span>;
+    <span style="color:#2c5dcd;font-weight:bold">width</span><span style="color:#ff8000;font-weight:bold">:</span> <span style="color:#2c5dcd;font-weight:bold">27</span><span style="color:#fff;background-color:#c00">%</span>;
+  }
+
+  <span style="color:#2c5dcd;font-weight:bold">@include</span><span style="color:#ff8000;font-weight:bold"> breakpoint</span>($large) {
+    <span style="color:#2c5dcd;font-weight:bold">float</span><span style="color:#ff8000;font-weight:bold">:</span> <span style="color:#2c5dcd;font-weight:bold">left</span>;
+    <span style="color:#2c5dcd;font-weight:bold">width</span><span style="color:#ff8000;font-weight:bold">:</span> <span style="color:#2c5dcd;font-weight:bold">35</span><span style="color:#fff;background-color:#c00">%</span>;
+  }
+
+  <span style="color:#2c5dcd;font-weight:bold">@include</span><span style="color:#ff8000;font-weight:bold"> breakpoint</span>($large-landscape) {
+    <span style="color:#2c5dcd;font-weight:bold">float</span><span style="color:#ff8000;font-weight:bold">:</span> <span style="color:#2c5dcd;font-weight:bold">left</span>;
+    <span style="color:#2c5dcd;font-weight:bold">width</span><span style="color:#ff8000;font-weight:bold">:</span> <span style="color:#2c5dcd;font-weight:bold">30</span><span style="color:#fff;background-color:#c00">%</span>;
+  }
+</code></pre></div><h2 id="results">Results</h2>
+<p>See <a href="https://github.com/kfrankc/kfrankc.github.io/releases">v2.1 release</a> on Github.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="/js/grid.js?v=0.3.4"></script>
+        <script>
+            $(function() {
+                Grid.init();
+            });
+        </script>
+    </body>
+</html>

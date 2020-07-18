@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on </title>
+    <link>https://kfrankc.com/posts/</link>
+    <description>Recent content in Posts on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 29 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://kfrankc.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pandas Tips &amp; Tricks</title>
+      <link>https://kfrankc.com/posts/pandas-tricks/</link>
+      <pubDate>Sun, 29 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/pandas-tricks/</guid>
+      <description>A growing list!</description>
+    </item>
+    
+    <item>
+      <title>Building a Responsive Portfolio using Jekyll and Masonry</title>
+      <link>https://kfrankc.com/posts/jekyll-masonry/</link>
+      <pubDate>Thu, 07 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/jekyll-masonry/</guid>
+      <description>Customizations in static site generators</description>
+    </item>
+    
+    <item>
+      <title>Relational Algebra &amp; SQL</title>
+      <link>https://kfrankc.com/posts/query-languages/</link>
+      <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/query-languages/</guid>
+      <description>Review of mathematical concepts in database query languages</description>
+    </item>
+    
+    <item>
+      <title>Lessons from 1 Year at Microsoft</title>
+      <link>https://kfrankc.com/posts/lessons-microsoft/</link>
+      <pubDate>Fri, 28 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/lessons-microsoft/</guid>
+      <description>This was originally published on LinkedIn .
+As 2018 comes to a close, I thought I&amp;rsquo;d share some of the lessons I learned this past year as a Program Manager at Microsoft. These opinions and observations are my own, and should be taken with the understanding that everyone&amp;rsquo;s professional journey is different. Some of these apply directly to the Program Management discipline, while others apply to anyone starting their first full-time job.</description>
+    </item>
+    
+    <item>
+      <title>Why is Kurtosis of Standard Normal Distribution 3?</title>
+      <link>https://kfrankc.com/posts/kurtosis/</link>
+      <pubDate>Mon, 29 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/kurtosis/</guid>
+      <description>More about normal distribution properties</description>
+    </item>
+    
+    <item>
+      <title>Deriving the Normal Distribution</title>
+      <link>https://kfrankc.com/posts/normal-dist/</link>
+      <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/normal-dist/</guid>
+      <description>AKA Gaussian distribution</description>
+    </item>
+    
+    <item>
+      <title>Enabling MathJax</title>
+      <link>https://kfrankc.com/posts/mathjax/</link>
+      <pubDate>Tue, 09 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/mathjax/</guid>
+      <description>✖️➕➖➗</description>
+    </item>
+    
+    <item>
+      <title>Lukas Graham &amp; 汪峰: Artistic Parallels</title>
+      <link>https://kfrankc.com/posts/lukas-wangfeng/</link>
+      <pubDate>Tue, 13 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/lukas-wangfeng/</guid>
+      <description>Comparing two songs in two languages from 2 countries</description>
+    </item>
+    
+    <item>
+      <title>What makes Black Panther a great film</title>
+      <link>https://kfrankc.com/posts/black-panther/</link>
+      <pubDate>Tue, 20 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/black-panther/</guid>
+      <description>A great film consists not only of a great cast, but also a great director, screenwriter, composer, cinematographer, and costume designer.
+Black Panther Fever is REAL, and here are some of the amazing people who made this film great.
+Director
+Ryan Coogler is a visionary man. Just look at how he deconstructs a complicated fight sequence from the film in terms of both the action and the symbolism. Coogler is not merely making another superhero film; he’s using his platform to tell the story about a fictional African nation uninterrupted by colonialism, a stand-alone film not dependent on others in the Marvel cinematic universe, and a narrative about multiple strong, independent female characters in an action-focused film.</description>
+    </item>
+    
+    <item>
+      <title>Beauty of Human Learning &amp; Intelligence</title>
+      <link>https://kfrankc.com/posts/human-intelligence/</link>
+      <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/human-intelligence/</guid>
+      <description>We still have much to learn about our own journey in learning</description>
+    </item>
+    
+    <item>
+      <title>Why we should all learn Chinese</title>
+      <link>https://kfrankc.com/posts/learn-chinese/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/learn-chinese/</guid>
+      <description>There are benefits to learning several languages</description>
+    </item>
+    
+    <item>
+      <title>UCLA Engineering Commencement Speech</title>
+      <link>https://kfrankc.com/posts/ucla-commencement-speech/</link>
+      <pubDate>Tue, 18 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/ucla-commencement-speech/</guid>
+      <description>Sharing my thoughts about being an engineer to the class of 2017</description>
+    </item>
+    
+    <item>
+      <title>Looking for life advice? Look to the Ancient Chinese</title>
+      <link>https://kfrankc.com/posts/chinese-life-advice/</link>
+      <pubDate>Tue, 27 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/chinese-life-advice/</guid>
+      <description>Life philosophy in 24 characters</description>
+    </item>
+    
+    <item>
+      <title>3 Qualities of Self-Worth (人贵有三品)</title>
+      <link>https://kfrankc.com/posts/self-worth/</link>
+      <pubDate>Thu, 22 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/self-worth/</guid>
+      <description>A framework for measuring ourselves</description>
+    </item>
+    
+    <item>
+      <title>Thank you Jon</title>
+      <link>https://kfrankc.com/posts/jon-stewart/</link>
+      <pubDate>Fri, 07 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/jon-stewart/</guid>
+      <description>&amp;hellip; for teaching me how to smell BS</description>
+    </item>
+    
+    <item>
+      <title>Turning 20</title>
+      <link>https://kfrankc.com/posts/20/</link>
+      <pubDate>Sun, 04 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/20/</guid>
+      <description>Yesterday, my parents celebrated my birthday early, because I’ll be at college during my actual birthday later in January. Usually, I reflect about being 1 year older AFTER my birthday, but since I’ve been having this ‘early celebration’ for a while, so I thought I’ll jot down some of my thoughts about the big two-zero now.
+ Turning 20 is amazing. The moment when the tens-digit of your age changes is always a milestone.</description>
+    </item>
+    
+  </channel>
+</rss>

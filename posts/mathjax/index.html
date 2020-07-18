@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Frank Chen</title>
+	<meta name="description" content="PM, Data, and Illustrations" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="kfrankc" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css?v=1.3.2" />
+    <link rel="stylesheet" type="text/css" href="/css/component.css?v=0.0.9" />
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+
+	<script src="/js/debouncedresize.js"></script>
+	<script src="/js/modernizr.custom.js"></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="theme-color" content="#ffffff">
+	<meta property="og:title" content="Enabling MathJax" />
+<meta property="og:description" content="✖️➕➖➗" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kfrankc.com/posts/mathjax/" />
+<meta property="og:image" content="https://kfrankc.com/author.PNG"/>
+<meta property="article:published_time" content="2018-10-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-10-09T00:00:00+00:00" /><meta property="og:site_name" content="Frank Chen" />
+
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128201385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+	<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://kfrankc.com/author.PNG"/>
+
+<meta name="twitter:title" content="Enabling MathJax"/>
+<meta name="twitter:description" content="✖️➕➖➗"/>
+
+</head>
+    <body><nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="https://kfrankc.com">kfrankc</a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      
+      
+        <a class="nav-item nav-link" href="/contact/" title="Contact">
+          Contact
+        </a>
+      
+        <a class="nav-item nav-link" href="/drawings/" title="Drawings">
+          Drawings
+        </a>
+      
+        <a class="nav-item nav-link" href="/posts/" title="Posts">
+          Posts
+        </a>
+      
+    </div>
+  </div>
+</nav>
+<div id="content">
+
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+        equationNumbers: {
+          autoNumber: "AMS"
+        }
+      },
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'] ],
+        processEscapes: true
+      }
+    });
+</script>
+
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h3 class="font-tertiary mt-4 mb-2">Enabling MathJax</h3>
+          <p class="font-secondary"><span class="author" class="text-primary">October 10, 2018</span></p>
+          <div class="content">
+            <p>It&rsquo;s cool to enable LaTeX rendering. Here&rsquo;s how to do it on Hugo:</p>
+<p>In the <code>partials/</code> folder, create a new partial called <code>math.html</code>:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#2c5dcd;font-weight:bold">script</span> <span style="color:#2c5dcd;font-style:italic">type</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;text/javascript&#34;</span> <span style="color:#2c5dcd;font-style:italic">async</span>
+  <span style="color:#2c5dcd;font-style:italic">src</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML&#34;</span>&gt;
+&lt;/<span style="color:#2c5dcd;font-weight:bold">script</span>&gt;
+&lt;<span style="color:#2c5dcd;font-weight:bold">script</span> <span style="color:#2c5dcd;font-style:italic">type</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;text/x-mathjax-config&#34;</span>&gt;
+    MathJax.Hub.Config({
+        TeX<span style="color:#2c5dcd">:</span> {
+        equationNumbers<span style="color:#2c5dcd">:</span> {
+          autoNumber<span style="color:#2c5dcd">:</span> <span style="color:#0c6">&#34;AMS&#34;</span>
+        }
+      },
+      tex2jax<span style="color:#2c5dcd">:</span> {
+        inlineMath<span style="color:#2c5dcd">:</span> [ [<span style="color:#0c6">&#39;$&#39;</span>,<span style="color:#0c6">&#39;$&#39;</span>], [<span style="color:#0c6">&#34;\\(&#34;</span>,<span style="color:#0c6">&#34;\\)&#34;</span>] ],
+        displayMath<span style="color:#2c5dcd">:</span> [ [<span style="color:#0c6">&#39;$$&#39;</span>,<span style="color:#0c6">&#39;$$&#39;</span>] ],
+        processEscapes<span style="color:#2c5dcd">:</span> <span style="color:#2c5dcd;font-weight:bold">true</span>
+      }
+    });
+&lt;/<span style="color:#2c5dcd;font-weight:bold">script</span>&gt;
+</code></pre></div><p>In the layouts HTML file, add the following:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{ <span style="color:#2c5dcd;font-weight:bold">if</span> or .Params.math .Site.Params.math }}
+  {{ partial <span style="color:#0c6">&#34;math.html&#34;</span> . }}
+{{ end }}
+</code></pre></div><p>Now I can write LaTeX on each post simply by defining <code>math: true</code> in the front matter:</p>
+<p>$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="/js/grid.js?v=0.3.4"></script>
+        <script>
+            $(function() {
+                Grid.init();
+            });
+        </script>
+    </body>
+</html>

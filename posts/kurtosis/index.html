@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Frank Chen</title>
+	<meta name="description" content="PM, Data, and Illustrations" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="kfrankc" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css?v=1.3.2" />
+    <link rel="stylesheet" type="text/css" href="/css/component.css?v=0.0.9" />
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+
+	<script src="/js/debouncedresize.js"></script>
+	<script src="/js/modernizr.custom.js"></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="theme-color" content="#ffffff">
+	<meta property="og:title" content="Why is Kurtosis of Standard Normal Distribution 3?" />
+<meta property="og:description" content="More about normal distribution properties" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kfrankc.com/posts/kurtosis/" />
+<meta property="og:image" content="https://kfrankc.com/author.PNG"/>
+<meta property="article:published_time" content="2018-10-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-10-29T00:00:00+00:00" /><meta property="og:site_name" content="Frank Chen" />
+
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128201385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+	<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://kfrankc.com/author.PNG"/>
+
+<meta name="twitter:title" content="Why is Kurtosis of Standard Normal Distribution 3?"/>
+<meta name="twitter:description" content="More about normal distribution properties"/>
+
+</head>
+    <body><nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="https://kfrankc.com">kfrankc</a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      
+      
+        <a class="nav-item nav-link" href="/contact/" title="Contact">
+          Contact
+        </a>
+      
+        <a class="nav-item nav-link" href="/drawings/" title="Drawings">
+          Drawings
+        </a>
+      
+        <a class="nav-item nav-link" href="/posts/" title="Posts">
+          Posts
+        </a>
+      
+    </div>
+  </div>
+</nav>
+<div id="content">
+
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+        equationNumbers: {
+          autoNumber: "AMS"
+        }
+      },
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'] ],
+        processEscapes: true
+      }
+    });
+</script>
+
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h3 class="font-tertiary mt-4 mb-2">Why is Kurtosis of Standard Normal Distribution 3?</h3>
+          <p class="font-secondary"><span class="author" class="text-primary">October 10, 2018</span></p>
+          <div class="content">
+            <p>The Kurtosis of a random variable $X$ is the fourth moment of $X$. For a normal distribution, we often see it in the textbook as:</p>
+<p>$$
+\begin{align}\label{kurt}
+Kurt(X) = E\left[\left(\frac{X-\mu}{\sigma}\right)^4\right] - 3
+\end{align}
+$$</p>
+<p>My textbook explains:</p>
+<p>&ldquo;We subtract $3$ to make any Normal distribution have kurtosis $0$ &quot;</p>
+<p>I&rsquo;ve always wondered how $E\left[\left(\frac{X-\mu}{\sigma}\right)^4\right]$ is calculated to be 3. I will attempt to derive this solution.</p>
+<h2 id="assumptions">Assumptions</h2>
+<p>The Normal Distribution has Probability Density Function (PDF):</p>
+<p>$$
+\begin{align}\label{eq1}
+f(x | \mu, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{align}
+$$</p>
+<p>We are dealing with standard normal, so mean $\mu = 0$, and variance $\sigma^2 = 1$. We can now write Eq $\ref{eq1}$ as</p>
+<p>$$
+\begin{align}\label{eq2}
+f(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{(x)^2}{2}}
+\end{align}
+$$</p>
+<p>We need to find $E\left[\left(\frac{X-\mu}{\sigma}\right)^4\right]$, which can now be written as $E[X^4]$.</p>
+<h2 id="derivation">Derivation</h2>
+<p>$$
+\begin{align*}
+E[X^4] &amp;= \int^{\infty}_{-\infty}x^4 f(x)dx \\<br>
+&amp;= \frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}x^4 e^{-\frac{x^2}{2}}dx \\<br>
+\end{align*}
+$$</p>
+<p>We will evaluate this integral via <a href="https://www.wikiwand.com/en/Integration_by_parts">integration by parts</a>. Recall that</p>
+<p>$$
+\begin{align*}
+\int udv = uv - \int vdu
+\end{align*}
+$$</p>
+<p>Let $u = x^3$, $du = 3x^2dx$, $dv = xe^{-\frac{x^2}{2}}dx$, $v = -e^{-\frac{x^2}{2}}$:</p>
+<p>$$
+\begin{align*}
+E[X^4] &amp;= \frac{1}{\sqrt{2\pi}}\left(x^3 \left(-e^{-\frac{x^2}{2}}\right) - \int^{\infty}_{-\infty}\left(-e^{-\frac{x^2}{2}}\right)3x^2dx\right) \\<br>
+&amp;= \frac{1}{\sqrt{2\pi}}\left(-x^3e^{-\frac{x^2}{2}} + 3\int_{-\infty}^{\infty}x^2e^{-\frac{x^2}{2}}dx\right)
+\end{align*}
+$$</p>
+<p>We can begin some evaluations of the terms here. We&rsquo;ll use <a href="https://www.wikiwand.com/en/L%27H%C3%B4pital%27s_rule">L&rsquo;Hôpital&rsquo;s rule</a> to evaluate the first term in the parentheses, $-x^3e^{-\frac{x^2}{2}}$. We know that $e^{-\frac{x^2}{2}}$ goes to zero faster than $x^3$ goes to infinity.</p>
+<p>$$
+\begin{align*}
+\lim_{x\to\infty} \frac{-x^3}{e^{\frac{x^2}{2}}} &amp;= \lim_{x\to\infty} \frac{-3x^2}{xe^{\frac{x^2}{2}}} \\<br>
+&amp;= \lim_{x\to\infty} \frac{-6x}{x^2e^{\frac{x^2}{2}}} \\<br>
+&amp;= \lim_{x\to\infty} \frac{-6}{x^3e^{\frac{x^2}{2}}} \\<br>
+&amp;= 0
+\end{align*}
+$$</p>
+<p>Therefore, this term is $0$. We are now left with:</p>
+<p>$$
+\begin{align*}
+E[X^4] &amp;= \frac{1}{\sqrt{2\pi}}\left(3\int_{-\infty}^{\infty}x^2e^{-\frac{x^2}{2}}dx\right) \\<br>
+&amp;= 3\left(\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}x^2e^{-\frac{x^2}{2}}dx\right)
+\end{align*}
+$$</p>
+<p>Notice that $\left(\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}x^2e^{-\frac{x^2}{2}}dx\right)$ is actually the second moment $E[X^2]$, or as we know it, the _variance_ of the standard normal distribution. You may recognize $Var(X) = E[X^2] - [EX]^2$, with the second term being the mean ($\mu$) squared. For a standard normal distribution, with $\mu = 0$, $Var(x) = E[X^2]$. Additionally, we know that for a standard normal, the variance $\sigma^2 = 1$. Therefore:</p>
+<p>$$
+\begin{align*}
+E[X^4] &amp;= 3\left(\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}x^2e^{-\frac{x^2}{2}}dx\right) \\<br>
+&amp;= 3 \cdot E[X^2] \\<br>
+&amp;= 3 \cdot Var(X) \\<br>
+&amp;= 3 \cdot (1) \\<br>
+&amp;= 3
+\end{align*}
+$$</p>
+<p>$E[X^4]$ is shown to be 3, and we are now done. As a sanity check, we can use R to do a Monte Carlo simulation of a standard normal distribution and calculate the kurtosis:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#0080ff;font-style:italic"># Standard Normal Distribution</span>
+<span style="color:#ff8000;font-weight:bold">set.seed</span>(<span style="color:#5918bb;font-weight:bold">123</span>)
+n.sample <span style="color:#2c5dcd">&lt;-</span> <span style="color:#ff8000;font-weight:bold">rnorm</span>(n <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">100000</span>, mean <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">0</span>, sd <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">1</span>)
+
+<span style="color:#0080ff;font-style:italic"># Kurtosis</span>
+<span style="color:#ff8000;font-weight:bold">library</span>(moments)
+<span style="color:#ff8000;font-weight:bold">kurtosis</span>(n.sample) <span style="color:#0080ff;font-style:italic"># we get 2.990068</span>
+</code></pre></div><p>Close enough! $\blacksquare$</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="/js/grid.js?v=0.3.4"></script>
+        <script>
+            $(function() {
+                Grid.init();
+            });
+        </script>
+    </body>
+</html>
