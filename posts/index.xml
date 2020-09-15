@@ -6,10 +6,19 @@
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kfrankc.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The easiest way to lazy-load images</title>
+      <link>https://kfrankc.com/posts/lazy-load-images/</link>
+      <pubDate>Mon, 14 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/lazy-load-images/</guid>
+      <description>Load speed is everything</description>
+    </item>
     
     <item>
       <title>Pandas Tips &amp; Tricks</title>

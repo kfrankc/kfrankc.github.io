@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Frank Chen</title>
+	<meta name="description" content="PM @ Microsoft" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="kfrankc" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css?v=1.3.2" />
+    <link rel="stylesheet" type="text/css" href="/css/component.css?v=0.0.9" />
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+
+	<script src="/js/debouncedresize.js"></script>
+	<script src="/js/modernizr.custom.js"></script>
+	<script src="/js/lazysizes.min.js" async=""></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="theme-color" content="#ffffff">
+	<meta property="og:title" content="The easiest way to lazy-load images" />
+<meta property="og:description" content="Load speed is everything" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kfrankc.com/posts/lazy-load-images/" />
+<meta property="og:image" content="https://kfrankc.com"/>
+<meta property="article:published_time" content="2020-09-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-09-14T00:00:00+00:00" /><meta property="og:site_name" content="Frank Chen" />
+
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128201385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+	<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://kfrankc.com"/>
+
+<meta name="twitter:title" content="The easiest way to lazy-load images"/>
+<meta name="twitter:description" content="Load speed is everything"/>
+
+</head>
+    <body><nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="https://kfrankc.com">kfrankc</a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      
+      
+        <a class="nav-item nav-link" href="/contact/" title="Contact">
+          Contact
+        </a>
+      
+        <a class="nav-item nav-link" href="/drawings/" title="Drawings">
+          Drawings
+        </a>
+      
+        <a class="nav-item nav-link" href="/posts/" title="Posts">
+          Posts
+        </a>
+      
+    </div>
+  </div>
+</nav>
+<div id="content">
+
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h3 class="font-tertiary mt-4 mb-2">The easiest way to lazy-load images</h3>
+          <p class="font-secondary"><span class="author" class="text-primary">September 2020</span></p>
+          <div class="content">
+            <p>Recently, I&rsquo;ve been interested in improving the performance of my website, especially on the &lsquo;Drawings&rsquo; page, where I showcase some of my artwork. Images are often the most common cause of poor website performance, due to their large file size. I found a neat tool called <a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse</a> that helps debug performance issues and provide suggestions for improvements.</p>
+<p>I ran Lighthouse on the previous version of my drawings page, and got the following:</p>
+<p><img src="../../img/poor-performance.png" alt=""></p>
+<p>Here are the definitions of each metric, according to Lighthouse:</p>
+<ul>
+<li><a href="http://localhost:36675/">First Contentful Paint (FCP)</a>: how long it takes the browser to render the first piece of DOM content after a user navigates to your page</li>
+<li><a href="https://web.dev/first-meaningful-paint/">Time to Interactive (TTI)</a>: how long it takes a page to become fully interactive</li>
+<li><a href="https://web.dev/speed-index/">Speed Index (SI)</a>: how quickly content is visually displayed during page load</li>
+<li><a href="https://web.dev/lighthouse-total-blocking-time/">Total Blocking Time (TBP)</a>: total amount of time that a page is blocked from responding to user input, such as mouse clicks, screen taps, or keyboard presses</li>
+<li><a href="https://web.dev/lighthouse-largest-contentful-paint/">Largest Contentful Paint (LCP)</a>: when the largest content element in the viewport is rendered to the screen</li>
+<li><a href="https://web.dev/cls/">Cumulative Layout Shift (CLS)</a>: sum total of all individual layout shift scores for every unexpected layout shift that occurs during the entire lifespan of the page (not very applicable in my case)</li>
+</ul>
+<p>Clearly, the metrics in red are opportunities for improvement. Images are the usually the most common cause of poor TTI and SI metrics. There are two strategies for making images load more efficiently: properly size images and offscreen images.</p>
+<hr>
+<p>I draw in <a href="https://procreate.art/">Procreate</a>, and typically output images that are 2078x2078 in dimensions (or around that size for non-square canvas). Even though I generate 250x250 thumbnails on the website, these files are way too big. I used <a href="https://imagemagick.org/script/index.php">ImageMagick</a> and resized them down to 1000x1000.</p>
+<pre><code>convert old-image.png -resize 1000x1000 new-image.png
+</code></pre><p>This change, however, was not enough. 1000x1000 is still a considerable size, and rendering all images at once continues to generate poor TTI and SI metrics. My drawings page displays a grid of thumbnails that only show the full-res image after you click on a particular thumbnail. One idea is to defer loading the full-res image until after a user clicks on a thumbnail.</p>
+<p>To achieve this, I used <a href="https://github.com/aFarkas/lazysizes">lazysizes</a> for lazy loading images. Lazy loading is the approach of waiting to load resources until they are needed, rather than loading them in advance. This can improve TTI and SI by reducing the number of resources that need to be loaded on initial page load.</p>
+<p>3 Steps (I&rsquo;m using <a href="https://gohugo.io/">Hugo</a>):</p>
+<ol>
+<li>Download <code>lazysizes.min.js</code> and place in <code>static/js</code> folder</li>
+<li>In <code>layouts/partials/head.html</code>, add <code>&lt;script src=&quot;/js/lazysizes.min.js&quot; async=&quot;&quot;&gt;&lt;/script&gt;</code></li>
+<li>In <code>layouts/drawings/list.html</code>, add <code>lazyload</code> class to full-res images and change <code>src</code> to <code>data-src</code>:</li>
+</ol>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#2c5dcd;font-weight:bold">img</span> <span style="color:#2c5dcd;font-style:italic">class</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;d-block d-sm-none lazyload&#34;</span> <span style="color:#2c5dcd;font-style:italic">data-src</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;../{{ .image }}&#34;</span> <span style="color:#2c5dcd;font-style:italic">alt</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;{{ .alt }}&#34;</span>&gt;
+</code></pre></div><hr>
+<p>Here is my new performance results after resizing and lazy-loading:</p>
+<p><img src="../../img/better-performance.png" alt="">.</p>
+<p>The most significant improvements are in TTI and SI; they each had decreased by more than 90 percent! LCP is still not ideal at around 21 seconds, but now it is due to render-blocking Javascript and CSS resources as opposed to large image files.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="/js/grid.js?v=0.3.4"></script>
+        <script>
+            $(function() {
+                Grid.init();
+            });
+        </script>
+    </body>
+</html>

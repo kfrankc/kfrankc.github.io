@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kfrankc.com/posts/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kfrankc.com/posts/lazy-load-images/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kfrankc.com/contact/</loc>
     <lastmod>2020-07-02T00:00:00+00:00</lastmod>
   </url>
@@ -14,11 +24,6 @@
   
   <url>
     <loc>https://kfrankc.com/posts/pandas-tricks/</loc>
-    <lastmod>2019-12-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kfrankc.com/posts/</loc>
     <lastmod>2019-12-29T00:00:00+00:00</lastmod>
   </url>
   

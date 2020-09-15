@@ -109,3 +109,7 @@ code {
 li {
 	margin-left: 30px;
 }
+
+img {
+    max-width: 100%;
+}
