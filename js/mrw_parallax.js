@@ -123,7 +123,7 @@ function drawCanvas() {
         if (layer.blend) {
             context.globalCompositeOperation = layer.blend;
         } else {
-            context.globalCompositeOperation = 'normal';
+            context.globalCompositeOperation = 'source-over';
         }
         context.globalAlpha = layer.opacity;
         context.drawImage(layer.image, layer.position.x, layer.position.y);
