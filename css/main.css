@@ -98,6 +98,10 @@ a:hover {
 	max-width: 600px;
 }
 
+.hidden {
+    display: none;
+}
+
 button:focus {
 	outline: 5px auto black;
 }

@@ -24,6 +24,14 @@
 	height: auto;
 }
 
+.og-grid li > a img {
+	opacity: 0;
+	-webkit-transition: opacity .5s ease;
+	-moz-transition: opacity .5s ease;
+	-o-transition: opacity .5s ease;
+	transition: opacity .5s ease;
+}
+
 .og-grid li.og-expanded > a::after {
 	top: auto;
 	border: solid transparent;
