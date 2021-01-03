@@ -12,12 +12,25 @@
     
     
     <item>
+      <title>Favorite Films &amp; TV Shows watched in Quarantine</title>
+      <link>https://kfrankc.com/posts/film-tv-2020/</link>
+      <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kfrankc.com/posts/film-tv-2020/</guid>
+      <description>Tenet - A SciFi action-thriller that is best digested via multiple viewings while perusing Reddit discussions.
+Nightcrawler - A neo-noir psychological-thriller with a highlight performance from Jake Gyllenhaal as a creepy, tenacious photojournalist.
+The Irishman - An epic crime film that is well worth the extended 209-min runtime, with themes that echo Scorsese&amp;rsquo;s 1990 film, Goodfellas.
+Uncut Gems - A crime-thriller that kept me on the edge of my seats and my heart pounding from start to finish.</description>
+    </item>
+    
+    <item>
       <title>The easiest way to lazy-load images</title>
       <link>https://kfrankc.com/posts/lazy-load-images/</link>
       <pubDate>Mon, 14 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://kfrankc.com/posts/lazy-load-images/</guid>
-      <description>Load speed is everything</description>
+      <description>Recently, I&amp;rsquo;ve been interested in improving the performance of my website, especially on the &amp;lsquo;Drawings&amp;rsquo; page, where I showcase some of my artwork. Images are often the most common cause of poor website performance, due to their large file size. I found a neat tool called Lighthouse that helps debug performance issues and provide suggestions for improvements.
+I ran Lighthouse on the previous version of my drawings page, and got the following:</description>
     </item>
     
     <item>
@@ -26,7 +39,7 @@
       <pubDate>Sun, 29 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kfrankc.com/posts/pandas-tricks/</guid>
-      <description>A growing list!</description>
+      <description>Pandas is a comprehensive Python library for data analysis, but its syntax for performing certain specific data transformations can be difficult to discern from its documentation. I recently used Pandas in my analysis of Billboard Top 100 Music data, and I&amp;rsquo;ve uncovered several useful commands that I will most likely use again in the future, so I&amp;rsquo;m compiling a (growing) list here for both my own reference and the benefit of someone else struggling with these problems in the future.</description>
     </item>
     
     <item>
@@ -35,7 +48,9 @@
       <pubDate>Thu, 07 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kfrankc.com/posts/jekyll-masonry/</guid>
-      <description>Customizations in static site generators</description>
+      <description>I built this site using Hugo. I built the previous version using Jekyll and Masonry
+My first experience using Jekyll for building a personal website was with academicpages, which is an excellent theme that is mostly catered to, as you guessed, people in academia: it included many built-in front matter to list papers, publications, and talks.
+I later switched to Minimal Mistakes, which is theme academicpages forked from. MM offered more opportunities for customizations.</description>
     </item>
     
     <item>
@@ -44,7 +59,8 @@
       <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kfrankc.com/posts/query-languages/</guid>
-      <description>Review of mathematical concepts in database query languages</description>
+      <description>Query languages (computer languages used to make queries in databases) are abundant in style and usage today. In 2018, Microsoft released Azure Data Explorer to GA, introducing another query language that is specifically optimized for semi-structured, unstructured, and time-series data. Even though we have many querying language options, they are all grounded in a field of mathematics called relational algebra.
+Relational Algebra is an algebra where operands are defined as relations, or variables that represent relations.</description>
     </item>
     
     <item>
@@ -63,7 +79,12 @@ As 2018 comes to a close, I thought I&amp;rsquo;d share some of the lessons I le
       <pubDate>Mon, 29 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kfrankc.com/posts/kurtosis/</guid>
-      <description>More about normal distribution properties</description>
+      <description>The Kurtosis of a random variable $X$ is the fourth moment of $X$. For a normal distribution, we often see it in the textbook as:
+$$ \begin{align}\label{kurt} Kurt(X) = E\left[\left(\frac{X-\mu}{\sigma}\right)^4\right] - 3 \end{align} $$
+My textbook explains:
+&amp;ldquo;We subtract $3$ to make any Normal distribution have kurtosis $0$ &amp;quot;
+I&amp;rsquo;ve always wondered how $E\left[\left(\frac{X-\mu}{\sigma}\right)^4\right]$ is calculated to be 3. I will attempt to derive this solution.
+Assumptions The Normal Distribution has Probability Density Function (PDF):</description>
     </item>
     
     <item>
@@ -72,7 +93,9 @@ As 2018 comes to a close, I thought I&amp;rsquo;d share some of the lessons I le
       <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kfrankc.com/posts/normal-dist/</guid>
-      <description>AKA Gaussian distribution</description>
+      <description>In every introductory statistics class, we learned about the normal distribution, which has Probability Density Function (PDF):
+$$ \tag{1} f(x | \mu, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} $$
+This looks like a fairly complicated equation, but the resulting graph (shown above) has some very cool properties (integrates to 1, represents real-valued random variables whose distributions are not known etc&amp;hellip;). I&amp;rsquo;ve always wondered how this is derived, and I finally found some answers via great videos and online forums.</description>
     </item>
     
     <item>
@@ -81,7 +104,10 @@ As 2018 comes to a close, I thought I&amp;rsquo;d share some of the lessons I le
       <pubDate>Tue, 09 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kfrankc.com/posts/mathjax/</guid>
-      <description>✖️➕➖➗</description>
+      <description>It&amp;rsquo;s cool to enable LaTeX rendering. Here&amp;rsquo;s how to do it on Hugo:
+In the partials/ folder, create a new partial called math.html:
+&amp;lt;script type=&amp;#34;text/javascript&amp;#34; async src=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML&amp;#34;&amp;gt; &amp;lt;/script&amp;gt; &amp;lt;script type=&amp;#34;text/x-mathjax-config&amp;#34;&amp;gt; MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: &amp;#34;AMS&amp;#34; } }, tex2jax: { inlineMath: [ [&amp;#39;$&amp;#39;,&amp;#39;$&amp;#39;], [&amp;#34;\\(&amp;#34;,&amp;#34;\\)&amp;#34;] ], displayMath: [ [&amp;#39;$$&amp;#39;,&amp;#39;$$&amp;#39;] ], processEscapes: true } }); &amp;lt;/script&amp;gt; In the layouts HTML file, add the following:
+{{ if or .Params.math .Site.Params.math }} {{ partial &amp;#34;math.</description>
     </item>
     
     <item>
@@ -90,7 +116,8 @@ As 2018 comes to a close, I thought I&amp;rsquo;d share some of the lessons I le
       <pubDate>Tue, 13 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kfrankc.com/posts/lukas-wangfeng/</guid>
-      <description>Comparing two songs in two languages from 2 countries</description>
+      <description>Last night at home, I heard Chinese singer 汪峰’s hit song from 2017, titled &amp;lsquo;那年我五岁&amp;rsquo; (That year when I was five), and surprisingly, I found that the lyrics and even the music video parallels the song &amp;lsquo;7 Years&amp;rsquo; from Danish band Lukas Graham. After scrolling through the Internet, I have yet to find anyone else juxtaposing these two songs; henceforth, here’s my take:
+&amp;lsquo;7 Years&amp;rsquo; is a single from Lukas Graham’s second studio album, released on September 15, 2015.</description>
     </item>
     
     <item>
@@ -111,7 +138,8 @@ Ryan Coogler is a visionary man. Just look at how he deconstructs a complicated 
       <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kfrankc.com/posts/human-intelligence/</guid>
-      <description>We still have much to learn about our own journey in learning</description>
+      <description>I recently finished reading Prof. Song-Chun Zhu’s 60K+ character article on Artificial Intelligence (AI) over the holidays. One part of Prof. Zhu’s essay that caught my attention was Section 4, where he discusses the cognitive framework of AI research.
+In the prior section, Prof. Zhu gives an extended example of a common crow that not only learned how to take advantage of passing cars to crack open nuts for the bird to eat, but also intentionally dropping the nut on pedestrian crosswalks so that the bird won’t be run over by vehicles as it swoops down to eat the nut.</description>
     </item>
     
     <item>
@@ -120,7 +148,9 @@ Ryan Coogler is a visionary man. Just look at how he deconstructs a complicated 
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://kfrankc.com/posts/learn-chinese/</guid>
-      <description>There are benefits to learning several languages</description>
+      <description>A couple weeks ago, my dad sent me a very long WeChat article, titled “浅谈人工智能：现状、任务、构架与统一 | 正本清源”.
+Loosely translated, the title reads: “A light discussion of Artificial Intelligence: Current Situation, Purpose, Framework, and Unification | Finding the root of the issue”
+The PI I used to do undergraduate research for — Prof. Song-Chun Zhu — wrote this 20,000+ character article. Prof. Zhu leads the Vision, Cognition, Learning, and Autonomy Lab at the University of California, Los Angeles.</description>
     </item>
     
     <item>
@@ -129,7 +159,7 @@ Ryan Coogler is a visionary man. Just look at how he deconstructs a complicated 
       <pubDate>Tue, 18 Jul 2017 00:00:00 +0000</pubDate>
       
       <guid>https://kfrankc.com/posts/ucla-commencement-speech/</guid>
-      <description>Sharing my thoughts about being an engineer to the class of 2017</description>
+      <description>On June 17, 2017, I had the honor to speak about what being an Engineer means to me in front of 10,000+ people in Pauley Pavilion, at the 2017 UCLA Engineering Commencement for PhDs, Masters, and Bachelors degree recipients. As the Commencement Student Speaker, I wanted to find a voice that resonates with all Engineers, and so I focused on the qualities that applies to all of us moving forward: Mentorship.</description>
     </item>
     
     <item>
@@ -138,7 +168,9 @@ Ryan Coogler is a visionary man. Just look at how he deconstructs a complicated 
       <pubDate>Tue, 27 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>https://kfrankc.com/posts/chinese-life-advice/</guid>
-      <description>Life philosophy in 24 characters</description>
+      <description>I completed my undergraduate degree this past June. Like many new grads preparing to work in industry, I feel nervous about making a smooth transition from being a student to being a working-class young adult. Where do I go from here? How do I live a good life?
+Last night, I found some reassurance in a quote by a Chinese official in the 清 (Qīng) Dynasty.
+The story starts with a typical post-dinner discussion with my dad.</description>
     </item>
     
     <item>
@@ -147,7 +179,7 @@ Ryan Coogler is a visionary man. Just look at how he deconstructs a complicated 
       <pubDate>Thu, 22 Dec 2016 00:00:00 +0000</pubDate>
       
       <guid>https://kfrankc.com/posts/self-worth/</guid>
-      <description>A framework for measuring ourselves</description>
+      <description>A couple weeks ago, my dad sent me a link to an excellent blog entry written in Mandarin Chinese. I have always loved the Chinese language for its elegant brevity, and this entry was no exception. In just a few lines of characters, it succinctly summarized 3 qualities of self-worth. I wanted to share this with my friends in the United States, so I decided to translate the entry into English:</description>
     </item>
     
     <item>
@@ -156,7 +188,9 @@ Ryan Coogler is a visionary man. Just look at how he deconstructs a complicated 
       <pubDate>Fri, 07 Aug 2015 00:00:00 +0000</pubDate>
       
       <guid>https://kfrankc.com/posts/jon-stewart/</guid>
-      <description>&amp;hellip; for teaching me how to smell BS</description>
+      <description>&amp;ldquo;The best defense against bullshit is vigilance. So if you smell something, say something.&amp;rdquo; — Jon Stewart
+On Thursday, Comedy Central bid its final farewell to comedian Jon Stewart on The Daily Show. For 16 years, Jon scrutinized media, politicians, scandals, tragedies, and various controversies, using humor as his medium to give Americans a second lens into the world we live in today.
+I was not there to watch The Daily Show in the very beginning.</description>
     </item>
     
     <item>
