@@ -1,6 +1,6 @@
 
 /* General Demo Style */
-@import url(//fonts.googleapis.com/css?family=Lato:300,400,700);
+/* @import url(//fonts.googleapis.com/css?family=Comfortaa:wght@300;400;700&display=swap); */
 
 html { height: 100%; }
 
@@ -31,7 +31,7 @@ html { height: 100%; }
 }
 
 body {
-    font-family: 'Lato', Calibri, Arial, sans-serif;
+    font-family: 'Quicksand', sans-serif;
     font-weight: 400;
     font-size: 15px;
     color: #333;
@@ -40,13 +40,13 @@ body {
 }
 
 a {
-	color: #555;
-	text-decoration: none;
+	color: rgb(73, 72, 72);
 	font-weight: bold;
 }
 
 a:hover {
-	color: #555;
+	color: rgb(99, 99, 99);
+	text-decoration: none;
 }
 
 .container {

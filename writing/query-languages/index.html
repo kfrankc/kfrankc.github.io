@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Frank Chen</title>
+	<meta name="description" content="PM @ Microsoft" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="kfrankc" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css?v=1.3.2" />
+	<link rel="stylesheet" type="text/css" href="/css/component.css?v=0.0.9" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script src="/js/debouncedresize.js"></script>
+	<script src="/js/modernizr.custom.js"></script>
+	<script src="/js/lazysizes.min.js" async=""></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="theme-color" content="#ffffff">
+	<meta property="og:title" content="Relational algebra &amp; SQL" />
+<meta property="og:description" content="Query languages (computer languages used to make queries in databases) are abundant in style and usage today. In 2018, Microsoft released Azure Data Explorer to GA, introducing another query language that is specifically optimized for semi-structured, unstructured, and time-series data. Even though we have many querying language options, they are all grounded in a field of mathematics called relational algebra.
+Relational Algebra is an algebra where operands are defined as relations, or variables that represent relations." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kfrankc.com/writing/query-languages/" />
+<meta property="og:image" content="https://kfrankc.com"/>
+<meta property="article:published_time" content="2019-02-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-02-09T00:00:00+00:00" /><meta property="og:site_name" content="Frank Chen" />
+
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128201385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+	<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://kfrankc.com"/>
+
+<meta name="twitter:title" content="Relational algebra &amp; SQL"/>
+<meta name="twitter:description" content="Query languages (computer languages used to make queries in databases) are abundant in style and usage today. In 2018, Microsoft released Azure Data Explorer to GA, introducing another query language that is specifically optimized for semi-structured, unstructured, and time-series data. Even though we have many querying language options, they are all grounded in a field of mathematics called relational algebra.
+Relational Algebra is an algebra where operands are defined as relations, or variables that represent relations."/>
+
+</head>
+    <body>
+      
+    
+
+<section class="section pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-8 mx-auto">
+        <h4 style="text-align:center"><a href="/">kfrankc</a></h4>
+        <h6 style="text-align:center"><a style="font-weight:regular; color: grey" href="/drawings" title="drawings">drawings</a></h6>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="content">
+
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+        equationNumbers: {
+          autoNumber: "AMS"
+        }
+      },
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'] ],
+        processEscapes: true
+      }
+    });
+</script>
+
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 mx-auto">
+          <h3 class="font-tertiary mt-4 mb-2">Relational algebra &amp; SQL</h3>
+          <p class="font-secondary"><span class="author" class="text-primary">Feb 2019</span></p>
+          <div class="content">
+            <p><a href="https://github.com/AnanthaRajuCprojects/List-of-programming-language-lists/blob/master/Query%20language.md">Query languages</a> (computer languages used to make queries in databases) are abundant in style and usage today. In 2018, Microsoft released <a href="https://azure.microsoft.com/en-us/services/data-explorer/">Azure Data Explorer</a> to GA, introducing another query language that is specifically optimized for semi-structured, unstructured, and time-series data. Even though we have many querying language options,  they are all grounded in a field of mathematics called <em>relational algebra</em>.</p>
+<p>Relational Algebra is an algebra where operands are defined as relations, or variables that represent relations. This is why relational algebra provides the basis for a query language in relational databases.</p>
+<p><strong>Union $\cup$</strong></p>
+<p>Given relations $R$ and $S$, $R \cup S = \{T | T \in R \vee T \in S\}$. In SQL, this is written as</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#2c5dcd;font-weight:bold">SELECT</span> column1 [, column2 ]
+<span style="color:#2c5dcd;font-weight:bold">FROM</span> table1 [, table2 ]
+[<span style="color:#2c5dcd;font-weight:bold">WHERE</span> condition]
+
+<span style="color:#2c5dcd;font-weight:bold">UNION</span>
+
+<span style="color:#2c5dcd;font-weight:bold">SELECT</span> column1 [, column2 ]
+<span style="color:#2c5dcd;font-weight:bold">FROM</span> table1 [, table2 ]
+[<span style="color:#2c5dcd;font-weight:bold">WHERE</span> condition]
+</code></pre></div><p><strong>Intersection $\cap$</strong></p>
+<p>Given relations $R$ and $S$, $R \cap S = \{T | T \in R \wedge T \in S\}$. In SQL, this is written as</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#2c5dcd;font-weight:bold">SELECT</span> column1 [, column2 ]
+<span style="color:#2c5dcd;font-weight:bold">FROM</span> table1 [, table2 ]
+[<span style="color:#2c5dcd;font-weight:bold">WHERE</span> condition]
+
+<span style="color:#2c5dcd;font-weight:bold">INTERSECT</span>
+
+<span style="color:#2c5dcd;font-weight:bold">SELECT</span> column1 [, column2 ]
+<span style="color:#2c5dcd;font-weight:bold">FROM</span> table1 [, table2 ]
+[<span style="color:#2c5dcd;font-weight:bold">WHERE</span> condition]
+</code></pre></div><p><strong>Difference $\setminus$</strong></p>
+<p>Given relations $R$ and $S$, $R \setminus S = \{T | T \in R \wedge T \notin S\}$. In SQL, this is commonly written as</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#2c5dcd;font-weight:bold">SELECT</span> column1 [, column2 ]
+<span style="color:#2c5dcd;font-weight:bold">FROM</span> table1 [, table2 ]
+[<span style="color:#2c5dcd;font-weight:bold">WHERE</span> condition]
+
+<span style="color:#2c5dcd;font-weight:bold">EXCEPT</span>
+
+<span style="color:#2c5dcd;font-weight:bold">SELECT</span> column1 [, column2 ]
+<span style="color:#2c5dcd;font-weight:bold">FROM</span> table1 [, table2 ]
+[<span style="color:#2c5dcd;font-weight:bold">WHERE</span> condition]
+</code></pre></div><p>However, a <code>LEFT JOIN</code> operator can also perform the same functionality.</p>
+<p><strong>Selection $\sigma$</strong></p>
+<p>Given relation $R$, $\sigma_{p}(R)$ is selecting typles that satisfy predicate $p = a \theta b$ or $p = a \theta v$ from a relation $R$. $a$ and $b$ are attribute names, $v$ is a value constant, and $\theta$ is a binary operation in $\{&lt;. \le, =, \neq, \ge, &gt;\}$. In SQL, this is simply the <code>WHERE</code> keyword. Given table <code>R</code>:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#2c5dcd;font-weight:bold">SELECT</span> <span style="color:#2c5dcd">*</span>
+<span style="color:#2c5dcd;font-weight:bold">FROM</span> R
+[<span style="color:#2c5dcd;font-weight:bold">WHERE</span> predicate condition]
+</code></pre></div><p><strong>Projection $\prod$</strong></p>
+<p>Given relation $R$, $\prod_{a_1, &hellip;, a_n}(R)$ is projecting a set obtained when the components of relation $R$ are restricted to the set $\{a_1, &hellip;, a_n\}$. In SQL, the <code>SELECT</code> operator performs this functionality. Given table <code>R</code> with attributes <code>a</code>, <code>b</code>, <code>c</code></p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#2c5dcd;font-weight:bold">SELECT</span> a, b, <span style="color:#2c5dcd;font-weight:bold">c</span>
+<span style="color:#2c5dcd;font-weight:bold">FROM</span> R;
+</code></pre></div><p><em>Fun Fact</em>: the query language from Azure Data Explorer actually has a <code>project</code> keyword that behaves exactly like this. Given table <code>R</code> with attributes <code>a</code>, <code>b</code>, <code>c</code>:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">R
+<span style="color:#2c5dcd">|</span> project a, b, <span style="color:#2c5dcd;font-weight:bold">c</span>
+</code></pre></div><p><strong>Products $\times$</strong></p>
+<p>Given relations $R$ and $S$, $R \times S = \{(r,s) | r \in R and s \in S\}$. In SQL, this is known as a <code>CROSS JOIN</code>:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#2c5dcd;font-weight:bold">SELECT</span> <span style="color:#2c5dcd">*</span> 
+<span style="color:#2c5dcd;font-weight:bold">FROM</span> table1 
+<span style="color:#2c5dcd;font-weight:bold">CROSS</span> <span style="color:#2c5dcd;font-weight:bold">JOIN</span> table2;
+</code></pre></div><p><strong>Natural Join $\Join$</strong></p>
+<p>Given relations $R$ and $S$, $R \Join S$ is the set of all combinations of tuples in $R$ and $S$ that are equal on their common attribute names. Formally:</p>
+<p>$R \Join S = \{r \cup s | r \in R \wedge s \in S \wedge \text{Fun}(r \cup s)\}$</p>
+<p>In SQL, this is known as the <code>NATURAL JOIN</code>:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#2c5dcd;font-weight:bold">SELECT</span> <span style="color:#2c5dcd">*</span> 
+<span style="color:#2c5dcd;font-weight:bold">FROM</span> table1 
+<span style="color:#2c5dcd;font-weight:bold">NATURAL</span> <span style="color:#2c5dcd;font-weight:bold">JOIN</span> table2;
+</code></pre></div><p>**Theta Join $\Join_{c}$**</p>
+<p>Given relations $R$ and $S$, $R \Join_c S$ takes the product $R \times S$, then apply $\sigma_c$ to the result.</p>
+<p><strong>Renaming $\rho$</strong></p>
+<p>Given relation $R$, $\rho_{R(a_1, &hellip;, a_n}(R)$ makes the resulting relation be one with attributes $a_1, &hellip;, a_n$ and the same tuples as $R$. In SQL, the <code>AS</code> operator allows for remaining of attributes:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#2c5dcd;font-weight:bold">SELECT</span> a <span style="color:#2c5dcd;font-weight:bold">AS</span> apple, b <span style="color:#2c5dcd;font-weight:bold">AS</span> banana
+<span style="color:#2c5dcd;font-weight:bold">FROM</span> R
+</code></pre></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+        </div>
+        
+        
+    </body>
+</html>

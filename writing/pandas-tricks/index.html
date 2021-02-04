@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Frank Chen</title>
+	<meta name="description" content="PM @ Microsoft" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="kfrankc" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css?v=1.3.2" />
+	<link rel="stylesheet" type="text/css" href="/css/component.css?v=0.0.9" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script src="/js/debouncedresize.js"></script>
+	<script src="/js/modernizr.custom.js"></script>
+	<script src="/js/lazysizes.min.js" async=""></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="theme-color" content="#ffffff">
+	<meta property="og:title" content="Pandas tips &amp; tricks" />
+<meta property="og:description" content="Pandas is a comprehensive Python library for data analysis, but its syntax for performing certain specific data transformations can be difficult to discern from its documentation. I recently used Pandas in my analysis of Billboard Top 100 Music data, and I&rsquo;ve uncovered several useful commands that I will most likely use again in the future, so I&rsquo;m compiling a (growing) list here for both my own reference and the benefit of someone else struggling with these problems in the future." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kfrankc.com/writing/pandas-tricks/" />
+<meta property="og:image" content="https://kfrankc.com"/>
+<meta property="article:published_time" content="2019-12-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-12-29T00:00:00+00:00" /><meta property="og:site_name" content="Frank Chen" />
+
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128201385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+	<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://kfrankc.com"/>
+
+<meta name="twitter:title" content="Pandas tips &amp; tricks"/>
+<meta name="twitter:description" content="Pandas is a comprehensive Python library for data analysis, but its syntax for performing certain specific data transformations can be difficult to discern from its documentation. I recently used Pandas in my analysis of Billboard Top 100 Music data, and I&rsquo;ve uncovered several useful commands that I will most likely use again in the future, so I&rsquo;m compiling a (growing) list here for both my own reference and the benefit of someone else struggling with these problems in the future."/>
+
+</head>
+    <body>
+      
+    
+
+<section class="section pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-8 mx-auto">
+        <h4 style="text-align:center"><a href="/">kfrankc</a></h4>
+        <h6 style="text-align:center"><a style="font-weight:regular; color: grey" href="/drawings" title="drawings">drawings</a></h6>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="content">
+
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 mx-auto">
+          <h3 class="font-tertiary mt-4 mb-2">Pandas tips &amp; tricks</h3>
+          <p class="font-secondary"><span class="author" class="text-primary">Dec 2019</span></p>
+          <div class="content">
+            <p>Pandas is a comprehensive Python library for data analysis, but its syntax for performing certain specific data transformations can be difficult to discern from its documentation. I recently used Pandas in my <a href="https://github.com/kfrankc/data512-final-project">analysis of Billboard Top 100 Music data</a>, and I&rsquo;ve uncovered several useful commands that I will most likely use again in the future, so I&rsquo;m compiling a (growing) list here for both my own reference and the benefit of someone else struggling with these problems in the future.</p>
+<p>I will be updating this as I come across/learn new useful methods.</p>
+<p><strong>(Growing) List of Useful Tips</strong></p>
+<p><strong>Note:</strong> assume <code>import pandas as pd</code> below:</p>
+<p><strong>Datetime Manipulation</strong></p>
+<p>Many datasets contain a <code>datetime</code> field of some sort, following patterns such as <code>mm/dd/yyyy</code>, <code>dd/mm/yyyy</code>, <code>mm-dd-yyyy</code> etc. It is often useful to separate this single column into the respective month, day, and year. For example, if we have a Pandas dataframe with the following <code>WeekID</code> field that follows <code>mm/dd/yyyy</code>: `2/10/1999&rsquo;, we can use the following Pandas code:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># use to_datetime to separate one column into multiple</span>
+data[<span style="color:#0c6">&#39;WeekID&#39;</span>] <span style="color:#2c5dcd">=</span> pd<span style="color:#2c5dcd">.</span>to_datetime(data[<span style="color:#0c6">&#39;WeekID&#39;</span>], format<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;%m/</span><span style="color:#0c6">%d</span><span style="color:#0c6">/%Y&#39;</span>)
+<span style="color:#0080ff;font-style:italic"># extract the year, month, and day into separate columns</span>
+data[<span style="color:#0c6">&#39;year&#39;</span>] <span style="color:#2c5dcd">=</span> data[<span style="color:#0c6">&#39;WeekID&#39;</span>]<span style="color:#2c5dcd">.</span>dt<span style="color:#2c5dcd">.</span>year
+data[<span style="color:#0c6">&#39;month&#39;</span>] <span style="color:#2c5dcd">=</span> data[<span style="color:#0c6">&#39;WeekID&#39;</span>]<span style="color:#2c5dcd">.</span>dt<span style="color:#2c5dcd">.</span>month
+data[<span style="color:#0c6">&#39;day&#39;</span>] <span style="color:#2c5dcd">=</span> data[<span style="color:#0c6">&#39;WeekID&#39;</span>]<span style="color:#2c5dcd">.</span>dt<span style="color:#2c5dcd">.</span>day
+</code></pre></div><p>Similarly, <code>/</code> can be replaced in the format variable with <code>-</code> if that&rsquo;s the syntax for the datetime pattern.</p>
+<p><strong>Row Selections</strong></p>
+<p>Rows can be selected based on logical comparisons:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># return all the rows where &#39;year&#39; is 2018 or 2017</span>
+data <span style="color:#2c5dcd">=</span> data<span style="color:#2c5dcd">.</span>loc[(data[<span style="color:#0c6">&#39;year&#39;</span>] <span style="color:#2c5dcd">==</span> <span style="color:#5918bb;font-weight:bold">2018</span>) <span style="color:#2c5dcd">|</span> (data[<span style="color:#0c6">&#39;year&#39;</span>] <span style="color:#2c5dcd">==</span> <span style="color:#5918bb;font-weight:bold">2017</span>)]
+</code></pre></div><p>For <code>datetime</code>, can also be achieved using masks:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># isolate dates to between Dec. 1, 2017 and May 31, 2018</span>
+data[<span style="color:#0c6">&#39;datetime&#39;</span>] <span style="color:#2c5dcd">=</span> pd<span style="color:#2c5dcd">.</span>to_datetime(data[<span style="color:#0c6">&#39;datetime&#39;</span>])
+mask <span style="color:#2c5dcd">=</span> (data[<span style="color:#0c6">&#39;datetime&#39;</span>] <span style="color:#2c5dcd">&gt;</span> <span style="color:#0c6">&#39;2017-12-01&#39;</span>) <span style="color:#2c5dcd">&amp;</span> (data[<span style="color:#0c6">&#39;datetime&#39;</span>] <span style="color:#2c5dcd">&lt;=</span> <span style="color:#0c6">&#39;2018-05-31&#39;</span>)
+data <span style="color:#2c5dcd">=</span> data<span style="color:#2c5dcd">.</span>loc[mask]
+</code></pre></div><p><strong>Map</strong></p>
+<p>Append additional information to every entry in a column using <code>map</code>:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># add month and year to id column</span>
+data[<span style="color:#0c6">&#39;id&#39;</span>] <span style="color:#2c5dcd">=</span> data<span style="color:#2c5dcd">.</span>id<span style="color:#2c5dcd">.</span>map(<span style="color:#5918bb;font-weight:bold">str</span>) <span style="color:#2c5dcd">+</span> <span style="color:#0c6">&#34;-&#34;</span> <span style="color:#2c5dcd">+</span> data<span style="color:#2c5dcd">.</span>Month<span style="color:#2c5dcd">.</span>map(<span style="color:#5918bb;font-weight:bold">str</span>) <span style="color:#2c5dcd">+</span><span style="color:#0c6">&#34;-&#34;</span> <span style="color:#2c5dcd">+</span> data<span style="color:#2c5dcd">.</span>Year<span style="color:#2c5dcd">.</span>map(<span style="color:#5918bb;font-weight:bold">str</span>)
+</code></pre></div><p><strong>Pivot Tables</strong></p>
+<p>Pivot tables summarize data of more extensive tables using sums, aggregations, averages, or other statistics. They are useful in business intelligence and data analysis.</p>
+<p>Say we have a dataframe <code>data</code> with columns <code>position</code> (between values <code>1</code> and <code>100</code>) and <code>id</code>; I want a new table that displays, for each <code>id</code> entry, the counts for each <code>position</code> value. Pivot tables can be defined and performed in Pandas as follows:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># use pivot table to extract counts of position per id</span>
+data[<span style="color:#0c6">&#39;count&#39;</span>] <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">1</span>
+result <span style="color:#2c5dcd">=</span> data<span style="color:#2c5dcd">.</span>pivot_table(
+    index<span style="color:#2c5dcd">=</span>[<span style="color:#0c6">&#39;id&#39;</span>], columns<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;position&#39;</span>, values<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;count&#39;</span>,
+    fill_value<span style="color:#2c5dcd">=</span><span style="color:#5918bb;font-weight:bold">0</span>, aggfunc<span style="color:#2c5dcd">=</span>np<span style="color:#2c5dcd">.</span>sum
+)
+</code></pre></div><p><strong>Merge on <code>str.contains()</code> instead of 1-to-1 match</strong></p>
+<p>I came across this particular problem when trying to merge two datasets together via partial matching. For example, I have dataframes <code>data1</code> and <code>data2</code>. <code>data1</code> has entries in <code>id</code> column that could be a substring of <code>data2</code>'s <code>id</code> column entries. Merges based on partial matches can be implemented as follows:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># join based on partial matches of data1&#39;s id with data2&#39;s id</span>
+tmp <span style="color:#2c5dcd">=</span> (data1<span style="color:#2c5dcd">.</span>id
+          <span style="color:#2c5dcd">.</span>apply(<span style="color:#2c5dcd;font-weight:bold">lambda</span> idx: data2[data2<span style="color:#2c5dcd">.</span>id<span style="color:#2c5dcd">.</span>str<span style="color:#2c5dcd">.</span>find(idx)<span style="color:#2c5dcd">.</span>ge(<span style="color:#5918bb;font-weight:bold">0</span>)][<span style="color:#0c6">&#39;id&#39;</span>])
+          <span style="color:#2c5dcd">.</span>bfill(axis<span style="color:#2c5dcd">=</span><span style="color:#5918bb;font-weight:bold">1</span>)
+          <span style="color:#2c5dcd">.</span>iloc[:, <span style="color:#5918bb;font-weight:bold">0</span>])
+result <span style="color:#2c5dcd">=</span> pd<span style="color:#2c5dcd">.</span>concat([data1<span style="color:#2c5dcd">.</span>id, tmp], axis<span style="color:#2c5dcd">=</span><span style="color:#5918bb;font-weight:bold">1</span>, ignore_index<span style="color:#2c5dcd">=</span>True)<span style="color:#2c5dcd">.</span>rename(columns<span style="color:#2c5dcd">=</span>{<span style="color:#5918bb;font-weight:bold">0</span>: <span style="color:#0c6">&#39;id1&#39;</span>, <span style="color:#5918bb;font-weight:bold">1</span>: <span style="color:#0c6">&#39;id2&#39;</span>})
+</code></pre></div><p><strong>Sorting</strong></p>
+<p>Often it is useful to keep one max/min row after sorting on a column. In Pandas, this can be done in a line:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data <span style="color:#2c5dcd">=</span> data<span style="color:#2c5dcd">.</span>sort_values(<span style="color:#0c6">&#39;position&#39;</span>)<span style="color:#2c5dcd">.</span>drop_duplicates([<span style="color:#0c6">&#34;id&#34;</span>],keep<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;last&#39;</span>)
+</code></pre></div><p>Furthermore, sorting on two or more columns by order is also possible in a line:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># sort on position first from largest to smallest, then on id from smallest to largest</span>
+data<span style="color:#2c5dcd">.</span>sort_values([<span style="color:#0c6">&#39;position&#39;</span>, <span style="color:#0c6">&#39;id&#39;</span>], ascending<span style="color:#2c5dcd">=</span>[False, True])
+</code></pre></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+        </div>
+        
+        
+    </body>
+</html>

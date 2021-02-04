@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Frank Chen</title>
+	<meta name="description" content="PM @ Microsoft" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="kfrankc" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css?v=1.3.2" />
+	<link rel="stylesheet" type="text/css" href="/css/component.css?v=0.0.9" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script src="/js/debouncedresize.js"></script>
+	<script src="/js/modernizr.custom.js"></script>
+	<script src="/js/lazysizes.min.js" async=""></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="theme-color" content="#ffffff">
+	<meta property="og:title" content="We should all learn Chinese" />
+<meta property="og:description" content="A couple weeks ago, my dad sent me a very long WeChat article, titled “浅谈人工智能：现状、任务、构架与统一 | 正本清源”.
+Loosely translated, the title reads: “A light discussion of Artificial Intelligence: Current Situation, Purpose, Framework, and Unification | Finding the root of the issue”
+The PI I used to do undergraduate research for — Prof. Song-Chun Zhu — wrote this 20,000&#43; character article. Prof. Zhu leads the Vision, Cognition, Learning, and Autonomy Lab at the University of California, Los Angeles." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kfrankc.com/writing/learn-chinese/" />
+<meta property="og:image" content="https://kfrankc.com"/>
+<meta property="article:published_time" content="2017-11-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2017-11-24T00:00:00+00:00" /><meta property="og:site_name" content="Frank Chen" />
+
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128201385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+	<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://kfrankc.com"/>
+
+<meta name="twitter:title" content="We should all learn Chinese"/>
+<meta name="twitter:description" content="A couple weeks ago, my dad sent me a very long WeChat article, titled “浅谈人工智能：现状、任务、构架与统一 | 正本清源”.
+Loosely translated, the title reads: “A light discussion of Artificial Intelligence: Current Situation, Purpose, Framework, and Unification | Finding the root of the issue”
+The PI I used to do undergraduate research for — Prof. Song-Chun Zhu — wrote this 20,000&#43; character article. Prof. Zhu leads the Vision, Cognition, Learning, and Autonomy Lab at the University of California, Los Angeles."/>
+
+</head>
+    <body>
+      
+    
+
+<section class="section pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-8 mx-auto">
+        <h4 style="text-align:center"><a href="/">kfrankc</a></h4>
+        <h6 style="text-align:center"><a style="font-weight:regular; color: grey" href="/drawings" title="drawings">drawings</a></h6>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="content">
+
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 mx-auto">
+          <h3 class="font-tertiary mt-4 mb-2">We should all learn Chinese</h3>
+          <p class="font-secondary"><span class="author" class="text-primary">Nov 2017</span></p>
+          <div class="content">
+            <p>A couple weeks ago, my dad sent me a very long <a href="http://mp.weixin.qq.com/s/-wSYLu-XvOrsST8_KEUa-Q">WeChat article</a>, titled “浅谈人工智能：现状、任务、构架与统一 | 正本清源”.</p>
+<p>Loosely translated, the title reads: “A light discussion of Artificial Intelligence: Current Situation, Purpose, Framework, and Unification | Finding the root of the issue”</p>
+<p>The PI I used to do undergraduate research for — Prof. Song-Chun Zhu — wrote this 20,000+ character article. Prof. Zhu leads the <a href="https://vcla.stat.ucla.edu/">Vision, Cognition, Learning, and Autonomy Lab</a> at the University of California, Los Angeles. In this article, Prof. Zhu takes us through the six disciplines of Artificial Intelligence (AI): computer vision, natural language processing, cognition and reasoning, robotics, game &amp; ethics, and machine learning. He outlines the article’s purpose as follows:</p>
+<ul>
+<li>Broaden graduate students’ horizon if they are interested in entering the field of AI research</li>
+<li>Introduce a comprehensive, cutting-edge introduction to the field for enthusiasts to discuss and think</li>
+<li>Clarify some facts surrounding various press/media’s scientific popularization of AI</li>
+</ul>
+<p>The article grew popular enough to reach even my dad’s WeChat connections in the United States, and is now trending in the Chinese tech sectors, with some Chinese tech companies even making this article a must-read training material for their engineers.</p>
+<p>The significance of Prof. Zhu’s article is not only in its content, but also its ability to generate social media buzz in a country powered neither by Facebook nor Twitter. According to TechCrunch, WeChat has 889 million users as of December 2016, well ahead of Twitter and Snapchat, but still miles away from Facebook and Messenger. However, WeChat thrives in China, and the only way to reach the niche Chinese audience is by speaking their language: mandarin.</p>
+<p>Prof. Zhu’s article serves to illustrate the power of using language to communicate ideas. It is clear that English is basically a universal language, spoken by people in most countries around the world. Even when I attended elementary school in China, I learned English for my foreign language, and my parents did the same.</p>
+<p>As I progressed through high school and college, English became my dominant language — the language I think about before I speak or write. My transformation from thinking in Mandarin to thinking in English also changed the way I communicate ideas: instead of using Chengyu (成语, or Chinese idioms), I began using English idioms to get my point across, as they have more of a cultural connection with English-speaking individuals.</p>
+<p>This idea that a new language can change our worldview or cognition is called <a href="https://www.wikiwand.com/en/Linguistic_relativity">Linguistic Relativity</a>, and it is explored fictitiously by author Ted Chiang in his novella “Stories of Your Life” (adapted into the screenplay for the film &ldquo;Arrival&rdquo;), where a linguist named Louise Banks learns an alien semasiographic language that helps her perceive time non-linearly. While the ability to perceive time differently via a new language sounds more science-fiction than science, it is true that a new language can change the way we perceive the world. Idioms, for example, have a rich history that we simply cannot understand if we merely dabble on the surface of English. Similarly, to truly connect with China, we have to learn not only the country’s written and spoken language, but also its culture. This becomes crucial as China continues to rapidly develop technologically and economically in the next couple of decades.</p>
+<p>This article is confined to only general observations, but it is clear that China has a fast economical and technological trajectory. In this section, we take a close look at China’s ventures in two sectors: computer science research and robotics startups.</p>
+<p><strong>Computer Science Research</strong> - The International Conference on Computer Vision (ICCV) is an IEEE sponsored research conference on the field of computer vision research, and one of the largest in its field. This year, ICCV published its most frequent affiliations, with Tsinghua University (The MIT equivalent in China) at the top, outperforming Carnegie Mellon University and Google. In fact, 3 of the top 10 schools listed are from China (Tsinghua, Shanghai Jiao Tong, and Beihang).</p>
+<p><strong>Robotic Startups</strong> - At the Conference for Robot Learning (CoRL) this year, keynote speaker Prof. Rodney Brooks mentioned the prevalence of Chinese robotics startups in recent years. One factor that contributes to this pattern is in the disappearing population between the ages of 20–30.</p>
+<p>This pattern of a decrease in the working-class population dates back to China’s 1979 <a href="https://www.wikiwand.com/en/One-child_policy">One-Child Policy</a>. Children born in the 80s, 90s, and 2000s are often the only child in their family. As more of China’s working-class age, China will look to factory automation as its solution to balance its manufacturing business. This is evident in China’s plan to support more than <a href="https://www.bloomberg.com/news/articles/2017-04-24/resistance-is-futile-china-s-conquest-plan-for-robot-industry">2,000 robotics/automation startup companies</a> in the Guandong province, where ShenZhen (the city in the article cover photo) is located.</p>
+<p>Towards the end of his keynote, Dr. Brooks defined a term called megatrends to describe trends that are inevitable and rapidly growing in our current decade. The four megatrends he focused on are:</p>
+<ul>
+<li>Climate Change</li>
+<li>Urbanization</li>
+<li>Old Age</li>
+<li>Biotechnology</li>
+</ul>
+<p>Out of the 4 megatrends, the top 3 will soon become important issues that affect China in all aspects of its society, from political and economical to social and geographical. These megatrends will dictate the direction of business process, the laws of the government, and the focus on scientific research. With its climate concerns, its need for better urbanization, and its population density, China is the perfect place where solutions to these megatrends will be developed.</p>
+<p>Collaboration will be crucial for other country’s businesses, politicians, and scientists to address these problems with China.</p>
+<p>Knowledge of the Chinese language will be instrumental to connecting us all together.</p>
+<p>All evidence point to the fact that China will play an important role in the globalization of the world economy and technological development in the next couple of decades.</p>
+<hr>
+<p><strong>Resources for learning Chinese language &amp; culture</strong></p>
+<p>Apps &amp; Websites - Chineasy, award-winning Chinese Learning Methodology; Hello Chinese, the best Chinese learning apps for beginners.</p>
+<p>Language Immersion - If you are in college, take or sit in a mandarin language class. If you have graduated, take an Extension course in mandarin (offered by many public universities). Find mandarin-speaking groups in your community, and practice holding conversations with them.</p>
+<p>Cultural Immersion - Visit China to see for yourself the vast history, art, literature, and culture of the Chinese people. Alternatively, visit a Chinese cultural museum in your own country. Watch a Chinese TV show or film (many are available for streaming, or on Netflix).</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+        </div>
+        
+        
+    </body>
+</html>
