@@ -42,11 +42,23 @@ body {
 a {
 	color: rgb(73, 72, 72);
 	font-weight: bold;
+	-webkit-transition: color 0.3s ease-out;
+	-moz-transition: color 0.3s ease-out;
+	-o-transition: color 0.3s ease-out;
+	transition: color 0.3s ease-out;
 }
 
 a:hover {
-	color: rgb(99, 99, 99);
+	color: #A0A0A0;
 	text-decoration: none;
+}
+
+.inline-svg {
+	display: inline-block;
+	height: 1em;
+	width: 1em;
+	/* top: 0.15rem; */
+	position: relative;
 }
 
 .container {
