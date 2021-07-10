@@ -251,6 +251,32 @@ $$</p>
 \end{align}
 $$</p>
 <p>Eq 9 matches Eq 1, and we are now done $\blacksquare$</p>
+<hr>
+<p>By the way, here&rsquo;s how I added LaTeX equations in Hugo:</p>
+<p>In the <code>partials/</code> folder, create a new partial called <code>math.html</code>:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#2c5dcd;font-weight:bold">script</span> <span style="color:#2c5dcd;font-style:italic">type</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;text/javascript&#34;</span> <span style="color:#2c5dcd;font-style:italic">async</span>
+  <span style="color:#2c5dcd;font-style:italic">src</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML&#34;</span>&gt;
+&lt;/<span style="color:#2c5dcd;font-weight:bold">script</span>&gt;
+&lt;<span style="color:#2c5dcd;font-weight:bold">script</span> <span style="color:#2c5dcd;font-style:italic">type</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;text/x-mathjax-config&#34;</span>&gt;
+    MathJax.Hub.Config({
+        TeX<span style="color:#2c5dcd">:</span> {
+        equationNumbers<span style="color:#2c5dcd">:</span> {
+          autoNumber<span style="color:#2c5dcd">:</span> <span style="color:#0c6">&#34;AMS&#34;</span>
+        }
+      },
+      tex2jax<span style="color:#2c5dcd">:</span> {
+        inlineMath<span style="color:#2c5dcd">:</span> [ [<span style="color:#0c6">&#39;$&#39;</span>,<span style="color:#0c6">&#39;$&#39;</span>], [<span style="color:#0c6">&#34;\\(&#34;</span>,<span style="color:#0c6">&#34;\\)&#34;</span>] ],
+        displayMath<span style="color:#2c5dcd">:</span> [ [<span style="color:#0c6">&#39;$$&#39;</span>,<span style="color:#0c6">&#39;$$&#39;</span>] ],
+        processEscapes<span style="color:#2c5dcd">:</span> <span style="color:#2c5dcd;font-weight:bold">true</span>
+      }
+    });
+&lt;/<span style="color:#2c5dcd;font-weight:bold">script</span>&gt;
+</code></pre></div><p>In the layouts HTML file, add the following:</p>
+<div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{ <span style="color:#2c5dcd;font-weight:bold">if</span> or .Params.math .Site.Params.math }}
+  {{ partial <span style="color:#0c6">&#34;math.html&#34;</span> . }}
+{{ end }}
+</code></pre></div><p>Now I can write LaTeX on each post simply by defining <code>math: true</code> in the front matter:</p>
+<p>$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$</p>
 
           </div>
         </div>
