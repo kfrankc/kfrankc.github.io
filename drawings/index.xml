@@ -4,12 +4,9 @@
     <title>Drawings on </title>
     <link>https://kfrankc.com/drawings/</link>
     <description>Recent content in Drawings on </description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 May 2019 12:14:34 +0600</lastBuildDate>
-    
-	<atom:link href="https://kfrankc.com/drawings/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://kfrankc.com/drawings/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

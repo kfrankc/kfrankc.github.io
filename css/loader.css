@@ -1,0 +1,63 @@
+/* HTML: <div class="loader"></div> */
+.canvas {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+/* .loader {
+    width: 80px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100px 100px 0 0;
+    background: 
+      linear-gradient(0deg, #0000,#fff,#0000) 70% 30%,    
+      linear-gradient(90deg,#0000,#fff,#0000) 72% 32%,
+      linear-gradient(0deg, #0000,#fff,#0000) 26% 42%,    
+      linear-gradient(90deg,#0000,#fff,#0000) 23% 44%,
+      linear-gradient(0deg, #0000,#fff,#0000) 51% 54%,    
+      linear-gradient(90deg,#0000,#fff,#0000) 51% 53% 
+      #020308;
+    background-size: 2px 10px,10px 2px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  } */
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 100px;
+    aspect-ratio: 1;
+    padding: 10px;
+    box-sizing: border-box;
+    display: grid;
+    background: #fff;
+    filter: blur(5px) contrast(10) hue-rotate(300deg);
+    mix-blend-mode: darken;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+.loader:before,
+.loader:after{ 
+content: "";
+grid-area: 1/1; 
+width: 40px;
+height: 40px;
+background: #000000;
+animation: l7 2s infinite;
+}
+.loader:after{ 
+animation-delay: -1s;
+}
+@keyframes l7{
+0%   {transform: translate(   0,0)}
+25%  {transform: translate(100%,0)}
+50%  {transform: translate(100%,100%)}
+75%  {transform: translate(   0,100%)}
+100% {transform: translate(   0,0)}
+}
