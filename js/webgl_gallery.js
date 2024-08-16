@@ -3,6 +3,11 @@
   var params_default = { gallery: [{ name: "doge.jpg" }, { name: "robot.jpg" }, { name: "android.jpg" }, { name: "bird.jpg" }, { name: "reading.jpg" }, { name: "future.jpg" }, { name: "surreal.png" }, { name: "oneill-cylinder.png" }, { name: "space-dinner.png" }, { name: "space-living-room.png" }, { name: "monument-valley.png" }, { name: "windmills.png" }, { name: "rocket.png" }, { name: "dune.png" }, { name: "mount-fuji.png" }, { name: "true-detective.png" }, { name: "waterfall.png" }, { name: "tiger-mist.png" }, { name: "sunset.png" }, { name: "colony.png" }, { name: "three-moons.png" }, { name: "dyson-sphere.png" }] };
 
   // <stdin>
+  var env = "production";
+  if (env === "production") {
+    console.log = function() {
+    };
+  }
   var Grid = class {
     // The constructor receives all the following parameters:
     // - gridSize: The size (width and height) for smallest unit size
@@ -62,7 +67,21 @@
   var diffY;
   var gridSize = 50;
   var gridMin = 10;
-  var imagePadding = 60;
+  var imagePadding = 50;
+  var isMobileDevice = window.matchMedia("only screen and (max-width: 700px)").matches;
+  var isTabletDevice = window.matchMedia("only screen and (min-width: 701px) and (max-width: 1400px)").matches;
+  if (isMobileDevice) {
+    console.log("this is a mobile device");
+    gridSize = 25;
+    gridMin = 10;
+    imagePadding = 25;
+  }
+  if (isTabletDevice) {
+    console.log("this is a tablet");
+    gridSize = 40;
+    gridMin = 10;
+    imagePadding = 35;
+  }
   var gridColumnsCount;
   var gridRowsCount;
   var gridColumns;
