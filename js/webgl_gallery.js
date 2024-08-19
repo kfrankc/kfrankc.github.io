@@ -1,6 +1,6 @@
 (() => {
   // ns-params:@params
-  var params_default = { gallery: [{ name: "doge.jpg" }, { name: "robot.jpg" }, { name: "android.jpg" }, { name: "bird.jpg" }, { name: "reading.jpg" }, { name: "future.jpg" }, { name: "surreal.png" }, { name: "oneill-cylinder.png" }, { name: "space-dinner.png" }, { name: "space-living-room.png" }, { name: "monument-valley.png" }, { name: "windmills.png" }, { name: "rocket.png" }, { name: "dune.png" }, { name: "mount-fuji.png" }, { name: "true-detective.png" }, { name: "waterfall.png" }, { name: "tiger-mist.png" }, { name: "sunset.png" }, { name: "colony.png" }, { name: "three-moons.png" }, { name: "dyson-sphere.png" }] };
+  var params_default = { gallery: [{ name: "desert.jpg" }, { name: "bonfire.jpg" }, { name: "bunche.jpg" }, { name: "seattle.jpg" }, { name: "cherry-blossoms.jpg" }, { name: "sunset.jpg" }, { name: "shipwreck.jpg" }, { name: "tahoe.jpg" }, { name: "road.jpg" }, { name: "lick-observatory.jpg" }, { name: "salt-flats.jpg" }, { name: "dusk.jpg" }, { name: "hwy-1.jpg" }] };
 
   // <stdin>
   var env = "production";
