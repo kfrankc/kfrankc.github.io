@@ -1,6 +1,6 @@
 (() => {
   // ns-params:@params
-  var params_default = { gallery: [{ name: "desert.jpg" }, { name: "bonfire.jpg" }, { name: "bunche.jpg" }, { name: "seattle.jpg" }, { name: "cherry-blossoms.jpg" }, { name: "sunset.jpg" }, { name: "shipwreck.jpg" }, { name: "tahoe.jpg" }, { name: "road.jpg" }, { name: "lick-observatory.jpg" }, { name: "salt-flats.jpg" }, { name: "dusk.jpg" }, { name: "hwy-1.jpg" }] };
+  var params_default = { gallery: [{ name: "desert.jpg" }, { name: "bonfire.jpg" }, { name: "bunche.jpg" }, { name: "seattle.jpg" }, { name: "cherry-blossoms.jpg" }, { name: "sunset.jpg" }, { name: "shipwreck.jpg" }, { name: "tahoe.jpg" }, { name: "road.jpg" }, { name: "lick-observatory.jpg" }, { name: "salt-flats.jpg" }, { name: "dusk.jpg" }, { name: "hwy-1.jpg" }, { name: "alviso.jpg" }, { name: "big-buddha.jpg" }, { name: "dome-home.jpg" }, { name: "dumbo.jpg" }, { name: "hk.jpg" }, { name: "iit-bombay.jpg" }, { name: "kauai.jpg" }, { name: "osaka-castle.jpg" }, { name: "pnw.jpg" }, { name: "sf-sunset.jpg" }, { name: "singapore.JPG" }, { name: "taipei-101.jpg" }, { name: "tokyo.jpg" }, { name: "tulip-field.jpg" }] };
 
   // <stdin>
   var env = "production";
