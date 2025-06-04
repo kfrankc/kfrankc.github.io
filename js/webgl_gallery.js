@@ -1,6 +1,6 @@
 (() => {
-  // ns-params:@params
-  var params_default = { gallery: [{ name: "desert.jpg" }, { name: "bonfire.jpg" }, { name: "bunche.jpg" }, { name: "seattle.jpg" }, { name: "cherry-blossoms.jpg" }, { name: "sunset.jpg" }, { name: "shipwreck.jpg" }, { name: "tahoe.jpg" }, { name: "road.jpg" }, { name: "lick-observatory.jpg" }, { name: "salt-flats.jpg" }, { name: "dusk.jpg" }, { name: "hwy-1.jpg" }, { name: "alviso.jpg" }, { name: "big-buddha.jpg" }, { name: "dome-home.jpg" }, { name: "dumbo.jpg" }, { name: "hk.jpg" }, { name: "iit-bombay.jpg" }, { name: "kauai.jpg" }, { name: "osaka-castle.jpg" }, { name: "pnw.jpg" }, { name: "sf-sunset.jpg" }, { name: "singapore.JPG" }, { name: "taipei-101.jpg" }, { name: "tokyo.jpg" }, { name: "tulip-field.jpg" }, { name: "bridge.jpg" }, { name: "banff.jpg" }, { name: "dome.jpg" }, { name: "bryce-canyon.jpg" }] };
+  // ns-hugo-params:<stdin>
+  var stdin_default = { gallery: [{ name: "desert.jpg" }, { name: "bonfire.jpg" }, { name: "bunche.jpg" }, { name: "seattle.jpg" }, { name: "cherry-blossoms.jpg" }, { name: "sunset.jpg" }, { name: "shipwreck.jpg" }, { name: "tahoe.jpg" }, { name: "road.jpg" }, { name: "lick-observatory.jpg" }, { name: "salt-flats.jpg" }, { name: "dusk.jpg" }, { name: "hwy-1.jpg" }, { name: "alviso.jpg" }, { name: "big-buddha.jpg" }, { name: "dome-home.jpg" }, { name: "dumbo.jpg" }, { name: "hk.jpg" }, { name: "iit-bombay.jpg" }, { name: "kauai.jpg" }, { name: "osaka-castle.jpg" }, { name: "pnw.jpg" }, { name: "sf-sunset.jpg" }, { name: "singapore.JPG" }, { name: "taipei-101.jpg" }, { name: "tokyo.jpg" }, { name: "tulip-field.jpg" }, { name: "bridge.jpg" }, { name: "banff.jpg" }, { name: "dome.jpg" }, { name: "bryce-canyon.jpg" }, { name: "venice-elevation.JPG" }, { name: "venice-canal.JPG" }, { name: "venice-gondola.JPG" }, { name: "bellagio.JPG" }] };
 
   // <stdin>
   var env = "production";
@@ -123,7 +123,7 @@
     rects = grid.generateRects();
     images = [];
     imagesUrls = {};
-    imagesUsed = [...Array(params_default.gallery.length)].map(() => {
+    imagesUsed = [...Array(stdin_default.gallery.length)].map(() => {
       return false;
     });
   }
@@ -158,7 +158,7 @@
     const image = images[index];
     const rect = rects[index];
     const { signal } = rect.controller = new AbortController();
-    var idx = Math.floor(Math.random() * params_default.gallery.length);
+    var idx = Math.floor(Math.random() * stdin_default.gallery.length);
     if (checker(imagesUsed)) {
       console.log("resetting values");
       setAll(imagesUsed, false);
@@ -167,7 +167,7 @@
       loadTextureForImage(index);
     } else {
       let onTextureUpdate = function() {
-        console.log("name: " + params_default.gallery[idx].name + " | width:" + baseTexture.width + " | height: " + baseTexture.height);
+        console.log("name: " + stdin_default.gallery[idx].name + " | width:" + baseTexture.width + " | height: " + baseTexture.height);
         console.log("rect | width: " + image.width + " | height: " + image.height);
         let desired_w, desired_h;
         if (baseTexture.width >= baseTexture.height) {
@@ -206,7 +206,7 @@
       };
       let baseTexture, imageTexture;
       imagesUsed[idx] = true;
-      baseTexture = new PIXI.BaseTexture.from(params_default.gallery[idx].name);
+      baseTexture = new PIXI.BaseTexture.from(stdin_default.gallery[idx].name);
       if (baseTexture.valid) {
         console.log("valid!");
         onTextureUpdate();

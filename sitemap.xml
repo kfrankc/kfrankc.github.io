@@ -2,84 +2,84 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://kfrankc.com/gallery/</loc>
+    <loc>http://localhost:1313/gallery/</loc>
     <lastmod>2024-08-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/film-tv-2022/</loc>
+    <loc>http://localhost:1313/writing/film-tv-2022/</loc>
     <lastmod>2022-12-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/</loc>
+    <loc>http://localhost:1313/writing/</loc>
     <lastmod>2022-12-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/twtr-one-year/</loc>
+    <loc>http://localhost:1313/writing/twtr-one-year/</loc>
     <lastmod>2022-08-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/film-tv-2021/</loc>
+    <loc>http://localhost:1313/writing/film-tv-2021/</loc>
     <lastmod>2021-12-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/lesson-in-humility/</loc>
+    <loc>http://localhost:1313/writing/lesson-in-humility/</loc>
     <lastmod>2021-07-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/zhangyiming-quotes/</loc>
+    <loc>http://localhost:1313/writing/zhangyiming-quotes/</loc>
     <lastmod>2021-03-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/film-tv-2020/</loc>
+    <loc>http://localhost:1313/writing/film-tv-2020/</loc>
     <lastmod>2020-12-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/lazy-load-images/</loc>
+    <loc>http://localhost:1313/writing/lazy-load-images/</loc>
     <lastmod>2020-09-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2020-06-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/pandas-tricks/</loc>
+    <loc>http://localhost:1313/writing/pandas-tricks/</loc>
     <lastmod>2019-12-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/drawings/</loc>
+    <loc>http://localhost:1313/drawings/</loc>
     <lastmod>2019-05-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/jekyll-masonry/</loc>
+    <loc>http://localhost:1313/writing/jekyll-masonry/</loc>
     <lastmod>2019-03-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/query-languages/</loc>
+    <loc>http://localhost:1313/writing/query-languages/</loc>
     <lastmod>2019-02-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/lessons-microsoft/</loc>
+    <loc>http://localhost:1313/writing/lessons-microsoft/</loc>
     <lastmod>2018-12-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/kurtosis/</loc>
+    <loc>http://localhost:1313/writing/kurtosis/</loc>
     <lastmod>2018-10-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/normal-dist/</loc>
+    <loc>http://localhost:1313/writing/normal-dist/</loc>
     <lastmod>2018-10-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/lukas-wangfeng/</loc>
+    <loc>http://localhost:1313/writing/lukas-wangfeng/</loc>
     <lastmod>2018-03-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/black-panther/</loc>
+    <loc>http://localhost:1313/writing/black-panther/</loc>
     <lastmod>2018-02-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/human-intelligence/</loc>
+    <loc>http://localhost:1313/writing/human-intelligence/</loc>
     <lastmod>2018-01-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/learn-chinese/</loc>
+    <loc>http://localhost:1313/writing/learn-chinese/</loc>
     <lastmod>2017-11-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/ucla-commencement-speech/</loc>
+    <loc>http://localhost:1313/writing/ucla-commencement-speech/</loc>
     <lastmod>2017-07-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/chinese-life-advice/</loc>
+    <loc>http://localhost:1313/writing/chinese-life-advice/</loc>
     <lastmod>2017-06-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/self-worth/</loc>
+    <loc>http://localhost:1313/writing/self-worth/</loc>
     <lastmod>2016-12-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/jon-stewart/</loc>
+    <loc>http://localhost:1313/writing/jon-stewart/</loc>
     <lastmod>2015-08-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/writing/20/</loc>
+    <loc>http://localhost:1313/writing/20/</loc>
     <lastmod>2015-01-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kfrankc.com/series/</loc>
+    <loc>http://localhost:1313/series/</loc>
   </url>
 </urlset>
