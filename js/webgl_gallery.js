@@ -20,7 +20,19 @@
       this.gridRows = gridRows2;
       this.gridMin = gridMin2;
       this.rects = [];
-      this.currentRects = [{ x: 0, y: 0, w: this.gridColumns, h: this.gridRows }];
+      const squaresX = Math.ceil(this.gridColumns / this.gridMin);
+      const squaresY = Math.ceil(this.gridRows / this.gridMin);
+      this.currentRects = [];
+      for (let y = 0; y < squaresY; y++) {
+        for (let x = 0; x < squaresX; x++) {
+          this.currentRects.push({
+            x: x * this.gridMin,
+            y: y * this.gridMin,
+            w: this.gridMin,
+            h: this.gridMin
+          });
+        }
+      }
     }
     // Takes the first rectangle on the list, and divides it in 2 more rectangles if possible
     splitCurrentRect() {
@@ -169,38 +181,17 @@
       let onTextureUpdate = function() {
         console.log("name: " + stdin_default.gallery[idx].name + " | width:" + baseTexture.width + " | height: " + baseTexture.height);
         console.log("rect | width: " + image.width + " | height: " + image.height);
-        let desired_w, desired_h;
-        if (baseTexture.width >= baseTexture.height) {
-          console.log("image width >= image height");
-          if (image.width >= image.height) {
-            console.log("rect width >= rect height");
-            desired_w = baseTexture.width * (image.width / baseTexture.height);
-            baseTexture.width = desired_w;
-            baseTexture.height = image.width;
-          } else {
-            console.log("rect width < rect height");
-            desired_w = baseTexture.width * (image.height / baseTexture.height);
-            baseTexture.width = desired_w;
-            baseTexture.height = image.height;
-          }
-        } else {
-          console.log("image width < image height");
-          if (image.width >= image.height) {
-            console.log("rect width >= rect height");
-            desired_h = baseTexture.height * (image.width / baseTexture.width);
-            baseTexture.height = desired_h;
-            baseTexture.width = image.width;
-          } else {
-            console.log("rect width < rect height");
-            desired_h = baseTexture.height * (image.height / baseTexture.width);
-            baseTexture.height = desired_h;
-            baseTexture.width = image.height;
-          }
-        }
-        baseTexture.width = Math.ceil(baseTexture.width);
-        baseTexture.height = Math.ceil(baseTexture.height);
-        console.log("NEW width:" + baseTexture.width + " | NEW height: " + baseTexture.height);
-        imageTexture = new PIXI.Texture(baseTexture, new PIXI.Rectangle(0, 0, image.width, image.height));
+        const scaleX = image.width / baseTexture.width;
+        const scaleY = image.height / baseTexture.height;
+        const scale = Math.min(scaleX, scaleY);
+        const newWidth = baseTexture.width * scale;
+        const newHeight = baseTexture.height * scale;
+        image.anchor.set(0.5);
+        image.x += image.width / 2;
+        image.y += image.height / 2;
+        image.width = newWidth;
+        image.height = newHeight;
+        imageTexture = new PIXI.Texture(baseTexture);
         image.texture = imageTexture;
         rect.loaded = true;
       };
