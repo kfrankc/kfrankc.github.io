@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Drawings on </title>
-    <link>http://localhost:1313/drawings/</link>
+    <link>https://kfrankc.com/drawings/</link>
     <description>Recent content in Drawings on </description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="http://localhost:1313/drawings/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://kfrankc.com/drawings/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
