@@ -31,6 +31,9 @@
     let isReturning = false;
     const RETURN_DURATION_MS = 250; // duration of smooth return
 
+    const isTouchDevice = () =>
+        window.matchMedia?.('(hover: none) and (pointer: coarse)').matches;
+
     /**
      * Round a number to the nearest step value
      */
@@ -364,8 +367,28 @@
         document.addEventListener('mousemove', throttledHandleMovement, { passive: true });
         
         // Add event listeners for touch (mobile support)
-        document.addEventListener('touchmove', handleTouch, { passive: false });
+        // document.addEventListener('touchmove', handleTouch, { passive: false });
         
+        if (isTouchDevice()) {
+            let isTouchingFace = false;
+
+            profileWrapper.addEventListener('touchstart', (e) => {
+                isTouchingFace = true;
+                handleMovement(e);                  // initial update
+            }, { passive: true});                   // don't block scroll on start
+
+            profileWrapper.addEventListener('touchmove', (e) => {
+                if (!isTouchingFace) return;
+                e.preventDefault();                 // stop page scroll only when dragging on the face
+                handleMovement(e);                  
+            }, { passive: false});                  // must be false to allow preventDefault
+
+            profileWrapper.addEventListener('touchend', () => {
+                isTouchingFace = false;
+                startReturnAnimation();
+            }, { passive: true});
+        }
+
         // Smoothly return to center when mouse leaves the window
         document.addEventListener('mouseleave', startReturnAnimation);
         // Cancel return on re-entry
