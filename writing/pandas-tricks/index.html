@@ -41,6 +41,20 @@
     <meta property="og:image" content="https://kfrankc.com/">
 
 	
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-366849346"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-366849346');
+        }
+      </script>
 	
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://kfrankc.com/">
@@ -48,7 +62,6 @@
   <meta name="twitter:description" content="Pandas is a comprehensive Python library for data analysis, but its syntax for performing certain specific data transformations can be difficult to discern from its documentation. I recently used Pandas in my analysis of Billboard Top 100 Music data, and I’ve uncovered several useful commands that I will most likely use again in the future, so I’m compiling a (growing) list here for both my own reference and the benefit of someone else struggling with these problems in the future.">
 
 </head>
-    
     <body><section class="section pt-5">
   <div class="container">
     <div class="row">
@@ -138,8 +151,6 @@
 
 
         </div>
-        
-        
         
     </body>
 </html>

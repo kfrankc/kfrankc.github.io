@@ -43,6 +43,20 @@ This looks like a fairly complicated equation, but the resulting graph (shown ab
     <meta property="og:image" content="https://kfrankc.com/">
 
 	
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-366849346"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-366849346');
+        }
+      </script>
 	
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://kfrankc.com/">
@@ -52,7 +66,6 @@ $$ \tag{1} f(x | \mu, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-\mu
 This looks like a fairly complicated equation, but the resulting graph (shown above) has some very cool properties (integrates to 1, represents real-valued random variables whose distributions are not known etc…). I’ve always wondered how this is derived, and I finally found some answers via great videos and online forums. I will give an overview of the derivation here, based on YouTuber Mathoma’s amazing video (linked above).">
 
 </head>
-    
     <body><section class="section pt-5">
   <div class="container">
     <div class="row">
@@ -261,10 +274,10 @@ $$</p>
 </span></span><span style="display:flex;"><span>    });
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#2c5dcd;font-weight:bold">script</span>&gt;
 </span></span></code></pre></div><p>In the layouts HTML file, add the following:</p>
-<div class="highlight"><pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>{{ <span style="color:#2c5dcd;font-weight:bold">if</span> or .Params.math .Site.Params.math }}
-</span></span><span style="display:flex;"><span>  {{ partial <span style="color:#0c6">&#34;math.html&#34;</span> . }}
-</span></span><span style="display:flex;"><span>{{ end }}
-</span></span></code></pre></div><p>Now I can write LaTeX on each post simply by defining <code>math: true</code> in the front matter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>{{<span style="color:#cbcbcb"> </span><span style="color:#2c5dcd;font-weight:bold">if</span><span style="color:#cbcbcb"> </span>or<span style="color:#cbcbcb"> </span>.Params.math<span style="color:#cbcbcb"> </span>.Site.Params.math<span style="color:#cbcbcb"> </span>}}<span style="color:#cbcbcb">
+</span></span></span><span style="display:flex;"><span><span style="color:#cbcbcb">  </span>{{<span style="color:#cbcbcb"> </span>partial<span style="color:#cbcbcb"> </span><span style="color:#0c6">&#34;math.html&#34;</span><span style="color:#cbcbcb"> </span>.<span style="color:#cbcbcb"> </span>}}<span style="color:#cbcbcb">
+</span></span></span><span style="display:flex;"><span><span style="color:#cbcbcb"></span>{{<span style="color:#cbcbcb"> </span>end<span style="color:#cbcbcb"> </span>}}<span style="color:#cbcbcb">
+</span></span></span></code></pre></div><p>Now I can write LaTeX on each post simply by defining <code>math: true</code> in the front matter:</p>
 <p>$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$</p>
 
           </div>
@@ -275,8 +288,6 @@ $$</p>
 
 
         </div>
-        
-        
         
     </body>
 </html>

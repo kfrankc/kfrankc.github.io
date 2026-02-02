@@ -38,6 +38,20 @@
     <meta property="og:image" content="https://kfrankc.com/card.png">
 
 	
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-366849346"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-366849346');
+        }
+      </script>
 	
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://kfrankc.com/card.png">
@@ -45,11 +59,6 @@
   <meta name="twitter:description" content="A collection of photos by Frank Chen. Click &amp; drag to explore ✨">
 
 </head>
-    
-    <head>
-        <link rel="stylesheet" type="text/css" href="../css/loader.css" />
-    </head>
-    
     <body><section class="section pt-5">
   <div class="container">
     <div class="row">
@@ -72,27 +81,623 @@
   </div>
 </section>
 <div id="content">
-<div class="image-container">
-	<div class="loader"></div>
-	<div class="canvas">
-		<canvas class="view"></canvas>
-	</div>
+<div class="gallery-page">
+  
+  <nav class="gallery-options">
+    <div class="size-buttons">
+      <button data-size="50%">small</button>
+      <button class="active" data-size="100%">medium</button>
+      <button data-size="150%">large</button>
+    </div>
+  </nav>
+
+  
+  <section class="gallery-grid gallery-hidden" id="gallery-grid" data-size-grid="100%">
+    
+    <div class="gallery-item" data-index="1" data-source="dji" data-location="valley of fire state park" data-camera="dji mavic mini">
+      <img class="gallery-image" src="/gallery/desert.webp" alt="Gallery image 1" width="1924" height="1082" style="aspect-ratio: 1924 / 1082;">
+    </div>
+    
+    <div class="gallery-item" data-index="2" data-source="sony" data-location="ucla" data-camera="sony α5100">
+      <img class="gallery-image" src="/gallery/bonfire.webp" alt="Gallery image 2" width="3000" height="2000" style="aspect-ratio: 3000 / 2000;">
+    </div>
+    
+    <div class="gallery-item" data-index="3" data-source="sony" data-location="ucla" data-camera="sony α5100">
+      <img class="gallery-image" src="/gallery/bunche.webp" alt="Gallery image 3" width="2921" height="1947" style="aspect-ratio: 2921 / 1947;">
+    </div>
+    
+    <div class="gallery-item" data-index="4" data-source="sony" data-location="seattle" data-camera="sony α5100">
+      <img class="gallery-image" src="/gallery/seattle.webp" alt="Gallery image 4" width="3000" height="2000" style="aspect-ratio: 3000 / 2000;">
+    </div>
+    
+    <div class="gallery-item" data-index="5" data-source="sony" data-location="university of washington" data-camera="sony α5100">
+      <img class="gallery-image" src="/gallery/cherry-blossoms.webp" alt="Gallery image 5" width="3000" height="2000" style="aspect-ratio: 3000 / 2000;">
+    </div>
+    
+    <div class="gallery-item" data-index="6" data-source="sony" data-location="lake tahoe" data-camera="sony α5100">
+      <img class="gallery-image" src="/gallery/sunset.webp" alt="Gallery image 6" width="3000" height="2000" style="aspect-ratio: 3000 / 2000;">
+    </div>
+    
+    <div class="gallery-item" data-index="7" data-source="sony" data-location="vancouver" data-camera="sony α5100">
+      <img class="gallery-image" src="/gallery/shipwreck.webp" alt="Gallery image 7" width="2962" height="1975" style="aspect-ratio: 2962 / 1975;">
+    </div>
+    
+    <div class="gallery-item" data-index="8" data-source="sony" data-location="lake tahoe" data-camera="sony α5100">
+      <img class="gallery-image" src="/gallery/tahoe.webp" alt="Gallery image 8" width="3000" height="2000" style="aspect-ratio: 3000 / 2000;">
+    </div>
+    
+    <div class="gallery-item" data-index="9" data-source="dji" data-location="livermore hills" data-camera="dji mavic mini">
+      <img class="gallery-image" src="/gallery/road.webp" alt="Gallery image 9" width="1024" height="576" style="aspect-ratio: 1024 / 576;">
+    </div>
+    
+    <div class="gallery-item" data-index="10" data-source="dji" data-location="lick observatory" data-camera="dji mavic mini">
+      <img class="gallery-image" src="/gallery/lick-observatory.webp" alt="Gallery image 10" width="1024" height="576" style="aspect-ratio: 1024 / 576;">
+    </div>
+    
+    <div class="gallery-item" data-index="11" data-source="dji" data-location="bonneville salt flats" data-camera="dji mavic mini">
+      <img class="gallery-image" src="/gallery/salt-flats.webp" alt="Gallery image 11" width="1948" height="1096" style="aspect-ratio: 1948 / 1096;">
+    </div>
+    
+    <div class="gallery-item" data-index="12" data-source="dji" data-location="mt tampalpais" data-camera="dji mavic mini">
+      <img class="gallery-image" src="/gallery/dusk.webp" alt="Gallery image 12" width="2000" height="1125" style="aspect-ratio: 2000 / 1125;">
+    </div>
+    
+    <div class="gallery-item" data-index="13" data-source="dji" data-location="highway 1" data-camera="dji mavic mini">
+      <img class="gallery-image" src="/gallery/hwy-1.webp" alt="Gallery image 13" width="1024" height="576" style="aspect-ratio: 1024 / 576;">
+    </div>
+    
+    <div class="gallery-item" data-index="14" data-source="apple" data-location="alviso salt ponds" data-camera="iphone 12 pro">
+      <img class="gallery-image" src="/gallery/alviso.webp" alt="Gallery image 14" width="1512" height="1512" style="aspect-ratio: 1512 / 1512;">
+    </div>
+    
+    <div class="gallery-item" data-index="15" data-source="apple" data-location="hong kong" data-camera="iphone 12 pro">
+      <img class="gallery-image" src="/gallery/big-buddha.webp" alt="Gallery image 15" width="1477" height="1477" style="aspect-ratio: 1477 / 1477;">
+    </div>
+    
+    <div class="gallery-item" data-index="16" data-source="dji" data-location="san jose hills" data-camera="dji mavic mini">
+      <img class="gallery-image" src="/gallery/dome-home.webp" alt="Gallery image 16" width="2000" height="1125" style="aspect-ratio: 2000 / 1125;">
+    </div>
+    
+    <div class="gallery-item" data-index="17" data-source="apple" data-location="brooklyn" data-camera="iphone 12 pro">
+      <img class="gallery-image" src="/gallery/dumbo.webp" alt="Gallery image 17" width="1512" height="2016" style="aspect-ratio: 1512 / 2016;">
+    </div>
+    
+    <div class="gallery-item" data-index="18" data-source="dji" data-location="hong kong" data-camera="dji osmo pocket 3">
+      <img class="gallery-image" src="/gallery/hk.webp" alt="Gallery image 18" width="720" height="720" style="aspect-ratio: 720 / 720;">
+    </div>
+    
+    <div class="gallery-item" data-index="19" data-source="apple" data-location="iit bombay" data-camera="iphone 12 pro">
+      <img class="gallery-image" src="/gallery/iit-bombay.webp" alt="Gallery image 19" width="720" height="720" style="aspect-ratio: 720 / 720;">
+    </div>
+    
+    <div class="gallery-item" data-index="20" data-source="dji" data-location="kauai" data-camera="dji mavic mini">
+      <img class="gallery-image" src="/gallery/kauai.webp" alt="Gallery image 20" width="2000" height="1125" style="aspect-ratio: 2000 / 1125;">
+    </div>
+    
+    <div class="gallery-item" data-index="21" data-source="apple" data-location="osaka castle" data-camera="iphone 12 pro">
+      <img class="gallery-image" src="/gallery/osaka-castle.webp" alt="Gallery image 21" width="1512" height="2016" style="aspect-ratio: 1512 / 2016;">
+    </div>
+    
+    <div class="gallery-item" data-index="22" data-source="sony" data-location="pnw" data-camera="sony α5100">
+      <img class="gallery-image" src="/gallery/pnw.webp" alt="Gallery image 22" width="1728" height="2304" style="aspect-ratio: 1728 / 2304;">
+    </div>
+    
+    <div class="gallery-item" data-index="23" data-source="apple" data-location="lands end" data-camera="iphone 12 pro">
+      <img class="gallery-image" src="/gallery/sf-sunset.webp" alt="Gallery image 23" width="1998" height="1498" style="aspect-ratio: 1998 / 1498;">
+    </div>
+    
+    <div class="gallery-item" data-index="24" data-source="apple" data-location="singapore" data-camera="iphone 12 pro">
+      <img class="gallery-image" src="/gallery/singapore.webp" alt="Gallery image 24" width="1052" height="1052" style="aspect-ratio: 1052 / 1052;">
+    </div>
+    
+    <div class="gallery-item" data-index="25" data-source="dji" data-location="taipei" data-camera="dji osmo pocket 3">
+      <img class="gallery-image" src="/gallery/taipei-101.webp" alt="Gallery image 25" width="803" height="803" style="aspect-ratio: 803 / 803;">
+    </div>
+    
+    <div class="gallery-item" data-index="26" data-source="dji" data-location="tokyo" data-camera="dji osmo pocket 3">
+      <img class="gallery-image" src="/gallery/tokyo.webp" alt="Gallery image 26" width="864" height="864" style="aspect-ratio: 864 / 864;">
+    </div>
+    
+    <div class="gallery-item" data-index="27" data-source="sony" data-location="abbotsford" data-camera="sony α5100">
+      <img class="gallery-image" src="/gallery/tulip-field.webp" alt="Gallery image 27" width="2449" height="1633" style="aspect-ratio: 2449 / 1633;">
+    </div>
+    
+    <div class="gallery-item" data-index="28" data-source="olympus" data-location="banff" data-camera="olympus stylus zoom 70">
+      <img class="gallery-image" src="/gallery/bridge.webp" alt="Gallery image 28" width="519" height="519" style="aspect-ratio: 519 / 519;">
+    </div>
+    
+    <div class="gallery-item" data-index="29" data-source="olympus" data-location="roger pass" data-camera="olympus stylus zoom 70">
+      <img class="gallery-image" src="/gallery/banff.webp" alt="Gallery image 29" width="1038" height="1038" style="aspect-ratio: 1038 / 1038;">
+    </div>
+    
+    <div class="gallery-item" data-index="30" data-source="dji" data-location="bryce canyon" data-camera="dji mavic mini">
+      <img class="gallery-image" src="/gallery/dome.webp" alt="Gallery image 30" width="2000" height="1125" style="aspect-ratio: 2000 / 1125;">
+    </div>
+    
+    <div class="gallery-item" data-index="31" data-source="apple" data-location="bryce canyon" data-camera="iphone 12 pro">
+      <img class="gallery-image" src="/gallery/bryce-canyon.webp" alt="Gallery image 31" width="1512" height="2016" style="aspect-ratio: 1512 / 2016;">
+    </div>
+    
+    <div class="gallery-item" data-index="32" data-source="ricoh" data-location="st mark&#39;s campanile" data-camera="ricoh gr iiix">
+      <img class="gallery-image" src="/gallery/venice-elevation.webp" alt="Gallery image 32" width="1237" height="1856" style="aspect-ratio: 1237 / 1856;">
+    </div>
+    
+    <div class="gallery-item" data-index="33" data-source="ricoh" data-location="murano" data-camera="ricoh gr iiix">
+      <img class="gallery-image" src="/gallery/venice-canal.webp" alt="Gallery image 33" width="1280" height="1920" style="aspect-ratio: 1280 / 1920;">
+    </div>
+    
+    <div class="gallery-item" data-index="34" data-source="ricoh" data-location="venice" data-camera="ricoh gr iiix">
+      <img class="gallery-image" src="/gallery/venice-gondola.webp" alt="Gallery image 34" width="1248" height="1874" style="aspect-ratio: 1248 / 1874;">
+    </div>
+    
+    <div class="gallery-item" data-index="35" data-source="ricoh" data-location="lake como" data-camera="ricoh gr iiix">
+      <img class="gallery-image" src="/gallery/bellagio.webp" alt="Gallery image 35" width="1280" height="1920" style="aspect-ratio: 1280 / 1920;">
+    </div>
+    
+    <div class="gallery-item" data-index="36" data-source="dji" data-location="tooth peaks" data-camera="dji mavic mini">
+      <img class="gallery-image" src="/gallery/nz-1.webp" alt="Gallery image 36" width="4000" height="2250" style="aspect-ratio: 4000 / 2250;">
+    </div>
+    
+    <div class="gallery-item" data-index="37" data-source="dji" data-location="lake pukaki" data-camera="dji mavic mini">
+      <img class="gallery-image" src="/gallery/nz-2.webp" alt="Gallery image 37" width="4000" height="2250" style="aspect-ratio: 4000 / 2250;">
+    </div>
+    
+    <div class="gallery-item" data-index="38" data-source="apple" data-location="marshall beach" data-camera="iphone 12 pro">
+      <img class="gallery-image" src="/gallery/marshall-beach.webp" alt="Gallery image 38" width="3024" height="4032" style="aspect-ratio: 3024 / 4032;">
+    </div>
+    
+    <div class="gallery-item" data-index="39" data-source="ricoh" data-location="villa carlotta" data-camera="ricoh gr iiix">
+      <img class="gallery-image" src="/gallery/villa-carlotta.webp" alt="Gallery image 39" width="1280" height="1920" style="aspect-ratio: 1280 / 1920;">
+    </div>
+    
+    <div class="gallery-item" data-index="40" data-source="ricoh" data-location="yosemite" data-camera="ricoh gr iiix">
+      <img class="gallery-image" src="/gallery/yosemite.webp" alt="Gallery image 40" width="1920" height="1280" style="aspect-ratio: 1920 / 1280;">
+    </div>
+    
+    <div class="gallery-item" data-index="41" data-source="ricoh" data-location="yellowstone" data-camera="ricoh gr iiix">
+      <img class="gallery-image" src="/gallery/yellowstone.webp" alt="Gallery image 41" width="1920" height="1280" style="aspect-ratio: 1920 / 1280;">
+    </div>
+    
+    <div class="gallery-item" data-index="42" data-source="ricoh" data-location="zhangjiajie" data-camera="ricoh gr iiix">
+      <img class="gallery-image" src="/gallery/zhangjiajie-hotel.webp" alt="Gallery image 42" width="1280" height="1920" style="aspect-ratio: 1280 / 1920;">
+    </div>
+    
+    <div class="gallery-item" data-index="43" data-source="ricoh" data-location="72 qilou" data-camera="ricoh gr iiix">
+      <img class="gallery-image" src="/gallery/72qilou.webp" alt="Gallery image 43" width="1280" height="1920" style="aspect-ratio: 1280 / 1920;">
+    </div>
+    
+    <div class="gallery-item" data-index="44" data-source="ricoh" data-location="temple of heaven" data-camera="ricoh gr iiix">
+      <img class="gallery-image" src="/gallery/temple-of-heaven.webp" alt="Gallery image 44" width="1280" height="1920" style="aspect-ratio: 1280 / 1920;">
+    </div>
+    
+    <div class="gallery-item" data-index="45" data-source="ricoh" data-location="summer palace" data-camera="ricoh gr iiix">
+      <img class="gallery-image" src="/gallery/yiheyuan.webp" alt="Gallery image 45" width="1280" height="1920" style="aspect-ratio: 1280 / 1920;">
+    </div>
+    
+    <div class="gallery-item" data-index="46" data-source="ricoh" data-location="venice" data-camera="ricoh gr iiix">
+      <img class="gallery-image" src="/gallery/venice-boat.webp" alt="Gallery image 46" width="1248" height="1874" style="aspect-ratio: 1248 / 1874;">
+    </div>
+    
+  </section>
+
+  
+  <div class="polaroid-overlay" id="polaroid-overlay">
+    <div class="polaroid" id="polaroid">
+      <div class="polaroid-image-container">
+        <img class="polaroid-image" id="polaroid-image" src="" alt="">
+      </div>
+      <div class="polaroid-info" id="polaroid-info"></div>
+      <img class="polaroid-logo" id="polaroid-logo" src="" alt="">
+    </div>
+  </div>
 </div>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+
 <script>
-	$(window).on('load', function () {
-		$(".canvas").delay(500);
-		$('.loader').hide();
-		$(".canvas").fadeIn(500);
-	})
+  gsap.registerPlugin(Flip);
+
+  
+  
+  
+  const ENABLE_SHUFFLE = true; 
+
+  
+  function shuffleGalleryItems() {
+    if (!ENABLE_SHUFFLE) return;
+    
+    const grid = document.getElementById('gallery-grid');
+    const items = Array.from(grid.querySelectorAll('.gallery-item'));
+    
+    
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+    
+    
+    items.forEach(item => grid.appendChild(item));
+  }
+  shuffleGalleryItems();
+
+  
+  function setupImageFadeIn() {
+    const images = document.querySelectorAll('.gallery-image');
+    let loadedCount = 0;
+    const staggerDelay = 30; 
+    
+    images.forEach((img, index) => {
+      function fadeIn() {
+        
+        setTimeout(() => {
+          img.classList.add('loaded');
+        }, index * staggerDelay);
+      }
+      
+      if (img.complete) {
+        
+        fadeIn();
+      } else {
+        
+        img.addEventListener('load', fadeIn);
+        img.addEventListener('error', fadeIn);
+      }
+    });
+  }
+  
+  
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const grid = document.getElementById('gallery-grid');
+      grid.classList.remove('gallery-hidden');
+      setupImageFadeIn();
+    });
+  });
+
+  
+  const galleryGrid = document.getElementById('gallery-grid');
+  const allGalleryItems = document.querySelectorAll('.gallery-item');
+  const sizeButtons = document.querySelectorAll('.size-buttons button');
+
+  
+  let animated = false;
+  let currentGridSize = galleryGrid.dataset.sizeGrid || "100%";
+
+  
+  sizeButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      
+      if (animated) return;
+
+      
+      const targetSize = btn.dataset.size;
+
+      
+      if (targetSize === currentGridSize) return;
+
+      
+      animated = true;
+
+      
+      const state = Flip.getState(allGalleryItems);
+
+      
+      galleryGrid.dataset.sizeGrid = targetSize;
+      currentGridSize = targetSize;
+
+      
+      sizeButtons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const flipDuration = 1;
+      const staggerAmount = 0.3;
+      const totalFlipDuration = flipDuration + staggerAmount;
+
+      
+      const scrollY = window.scrollY;
+      const containerHeight = galleryGrid.offsetHeight;
+      galleryGrid.style.minHeight = containerHeight + 'px';
+
+      
+      Flip.from(state, {
+        absolute: true,
+        duration: flipDuration,
+        ease: "expo.inOut",
+        onComplete: () => {
+          
+          galleryGrid.style.minHeight = '';
+          animated = false;
+        },
+        stagger: {
+          amount: staggerAmount,
+          from: "random",
+        },
+      }).fromTo(
+        galleryGrid,
+        {
+          filter: "blur(0px)",
+        },
+        {
+          duration: totalFlipDuration,
+          keyframes: [
+            {
+              filter: "blur(10px)",
+              duration: totalFlipDuration * 0.5,
+              ease: "power2.in",
+            },
+            {
+              filter: "blur(0px)",
+              duration: totalFlipDuration * 0.5,
+              ease: "power2",
+              delay: 0.5,
+            },
+          ],
+        },
+        0
+      );
+    });
+  });
+
+  
+  
+  
+  
+  const polaroidOverlay = document.getElementById('polaroid-overlay');
+  const polaroid = document.getElementById('polaroid');
+  const polaroidImage = document.getElementById('polaroid-image');
+  const polaroidLogo = document.getElementById('polaroid-logo');
+  const polaroidInfo = document.getElementById('polaroid-info');
+  
+  
+  const logoSources = {
+    'dji': '/img/dji-logo.png',
+    'apple': '/img/apple-logo.png',
+    'sony': '/img/sony-logo.png',
+    'ricoh': '/img/ricoh-logo.png',
+    'olympus': '/img/olympus-logo.png'
+  };
+  
+  let isPolaroidOpen = false;
+  let currentImageRect = null;
+  let scrollStart = 0;
+
+  
+  allGalleryItems.forEach((item) => {
+    item.addEventListener('click', (e) => {
+      if (animated || isPolaroidOpen) return;
+      
+      const img = item.querySelector('.gallery-image');
+      const index = item.dataset.index;
+      const source = item.dataset.source;
+      const location = item.dataset.location;
+      const camera = item.dataset.camera;
+      
+      
+      currentImageRect = img.getBoundingClientRect();
+      scrollStart = window.scrollY;
+      
+      
+      polaroidImage.src = img.src;
+      polaroidImage.alt = img.alt;
+      polaroidImage.style.opacity = '1';
+      
+      
+      const infoParts = [];
+      if (location) infoParts.push(location);
+      if (camera) infoParts.push(camera);
+      if (infoParts.length > 0) {
+        polaroidInfo.textContent = infoParts.join(' • ');
+        polaroidInfo.style.display = 'block';
+      } else {
+        polaroidInfo.style.display = 'none';
+      }
+      
+      
+      if (source && logoSources[source]) {
+        polaroidLogo.src = logoSources[source];
+        polaroidLogo.alt = source + ' logo';
+        polaroidLogo.style.display = 'block';
+        
+        polaroidLogo.className = 'polaroid-logo' + (source === 'apple' ? ' logo-apple' : '');
+      } else {
+        polaroidLogo.style.display = 'none';
+      }
+      
+      
+      openPolaroid();
+    });
+  });
+
+  function openPolaroid() {
+    isPolaroidOpen = true;
+    
+    
+    gsap.killTweensOf(polaroid);
+    gsap.killTweensOf(polaroidOverlay);
+    
+    
+    polaroid.style.opacity = '';
+    
+    
+    gsap.set(polaroidOverlay, { opacity: 0 });
+    gsap.set(polaroid, { scale: 0.85 });
+    
+    
+    polaroidOverlay.classList.add('active');
+    
+    
+    gsap.to(polaroidOverlay, { 
+      opacity: 1, 
+      duration: 0.3, 
+      ease: "power2.out" 
+    });
+    
+    
+    gsap.to(polaroid, {
+      scale: 1,
+      duration: 0.45,
+      ease: "power2.out",
+    });
+    
+    
+    document.addEventListener('mousemove', handleMouseMove);
+    
+    
+    window.addEventListener('scroll', handleScroll);
+  }
+
+  function closePolaroid() {
+    if (!isPolaroidOpen) return;
+    
+    isPolaroidOpen = false;
+    
+    
+    document.removeEventListener('mousemove', handleMouseMove);
+    window.removeEventListener('scroll', handleScroll);
+    
+    
+    gsap.to(polaroid, {
+      scale: 0.85,
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.3,
+      ease: "power3.in",
+    });
+    
+    
+    gsap.to(polaroidOverlay, {
+      opacity: 0,
+      duration: 0.3,
+      ease: "power3.in",
+      onComplete: () => {
+        polaroidOverlay.classList.remove('active');
+        
+        gsap.set(polaroidOverlay, { opacity: '' });
+        gsap.set(polaroid, { rotateX: 0, rotateY: 0, scale: 1 });
+        polaroid.style.opacity = '';
+      }
+    });
+  }
+
+  const tiltStrength = 15;
+
+  
+  let shine = null;
+  function getShine() {
+    if (!shine) {
+      shine = polaroid.querySelector('.polaroid-shine');
+      if (!shine) {
+        shine = document.createElement('div');
+        shine.className = 'polaroid-shine';
+        polaroid.appendChild(shine);
+      }
+    }
+    return shine;
+  }
+
+  
+  function applyPolaroidTilt(clientX, clientY) {
+    
+    gsap.killTweensOf(polaroid);
+    gsap.killTweensOf(getShine());
+    
+    const rect = polaroid.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const percentX = (clientX - centerX) / (rect.width / 2);
+    const percentY = (clientY - centerY) / (rect.height / 2);
+
+    const tiltX = -percentY * tiltStrength;
+    const tiltY = percentX * tiltStrength;
+
+    
+    polaroid.style.transform = `
+      perspective(1000px)
+      rotateX(${tiltX}deg)
+      rotateY(${tiltY}deg)
+      scale(1.02)
+    `;
+
+    
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+    const xPercent = (x / rect.width) * 100;
+    const yPercent = (y / rect.height) * 100;
+    
+    const shineEl = getShine();
+    shineEl.style.background = `radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.15) 40%, transparent 80%)`;
+    shineEl.style.opacity = '1';
+  }
+
+  function resetPolaroidTilt() {
+    gsap.to(polaroid, {
+      rotateX: 0,
+      rotateY: 0,
+      scale: 1,
+      duration: 0.5,
+      ease: "power2.out",
+      onComplete: () => {
+        polaroid.style.transform = '';
+      }
+    });
+    const shineEl = getShine();
+    gsap.to(shineEl, {
+      opacity: 0,
+      duration: 0.4,
+      ease: "power2.out"
+    });
+  }
+
+  
+  function handleMouseMove(e) {
+    if (!isPolaroidOpen) return;
+    
+    const rect = polaroid.getBoundingClientRect();
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+    
+    
+    const isOverPolaroid = (
+      mouseX >= rect.left &&
+      mouseX <= rect.right &&
+      mouseY >= rect.top &&
+      mouseY <= rect.bottom
+    );
+    
+    if (isOverPolaroid) {
+      applyPolaroidTilt(mouseX, mouseY);
+    } else {
+      resetPolaroidTilt();
+    }
+  }
+
+  
+  function handleScroll() {
+    const scrollDiff = Math.abs(window.scrollY - scrollStart);
+    if (scrollDiff > 50) {
+      closePolaroid();
+    }
+  }
+
+  
+  polaroidOverlay.addEventListener('click', (e) => {
+    if (e.target === polaroidOverlay) {
+      closePolaroid();
+    }
+  });
+
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isPolaroidOpen) {
+      closePolaroid();
+    }
+  });
 </script>
 
         </div>
-        
-        
-        
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.0.2/pixi.min.js"></script>
-            <script src="/js/webgl_gallery.js"></script><script src="https://kfrankc.com/js/webgl_gallery.js"></script>
         
     </body>
 </html>
