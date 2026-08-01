@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="/css/main.css?v=1.3.2" />
-	<link rel="stylesheet" type="text/css" href="/css/component.css?v=0.0.9" />
+	<link rel="stylesheet" type="text/css" href="/css/component.css?v=0.1.0" />
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -341,7 +341,7 @@
   
   <div class="polaroid-overlay" id="polaroid-overlay">
     <div class="polaroid" id="polaroid">
-      <div class="polaroid-image-container">
+      <div class="polaroid-image-container" id="polaroid-image-container">
         <img class="polaroid-image" id="polaroid-image" src="" alt="">
       </div>
       <div class="polaroid-info" id="polaroid-info"></div>
@@ -477,11 +477,56 @@
   
   const polaroidOverlay = document.getElementById('polaroid-overlay');
   const polaroid = document.getElementById('polaroid');
+  const polaroidImageContainer = document.getElementById('polaroid-image-container');
   const polaroidImage = document.getElementById('polaroid-image');
   const polaroidInfo = document.getElementById('polaroid-info');
   
   let currentImageRect = null;
   let scrollStart = 0;
+  let polaroidLoadToken = 0;
+
+  function getPolaroidMaxSize() {
+    const mobile = window.matchMedia('(max-width: 767px)').matches;
+    return {
+      maxW: mobile ? window.innerWidth * 0.85 : Math.min(window.innerWidth * 0.7, 800),
+      maxH: mobile ? window.innerHeight * 0.6 : window.innerHeight * 0.65,
+    };
+  }
+
+  function sizePolaroidFrame(w, h) {
+    const width = Math.max(1, Number(w) || 1);
+    const height = Math.max(1, Number(h) || 1);
+    const { maxW, maxH } = getPolaroidMaxSize();
+    const scale = Math.min(maxW / width, maxH / height, 1);
+    polaroidImageContainer.style.width = Math.round(width * scale) + 'px';
+    polaroidImageContainer.style.height = Math.round(height * scale) + 'px';
+  }
+
+  function loadPolaroidImage(fullSrc, alt, w, h) {
+    const token = ++polaroidLoadToken;
+    polaroidImage.classList.remove('is-visible');
+    polaroidImageContainer.classList.add('is-loading');
+    polaroidImageContainer.classList.remove('is-loaded');
+    polaroidImage.removeAttribute('src');
+    polaroidImage.alt = alt || '';
+    sizePolaroidFrame(w, h);
+
+    const finish = () => {
+      if (token !== polaroidLoadToken) return;
+      polaroidImageContainer.classList.remove('is-loading');
+      polaroidImageContainer.classList.add('is-loaded');
+      requestAnimationFrame(() => {
+        polaroidImage.classList.add('is-visible');
+      });
+    };
+
+    polaroidImage.onload = finish;
+    polaroidImage.onerror = finish;
+    polaroidImage.src = fullSrc;
+    if (polaroidImage.complete && polaroidImage.naturalWidth) {
+      finish();
+    }
+  }
 
   
   allDrawingsItems.forEach((item) => {
@@ -498,9 +543,12 @@
       scrollStart = window.scrollY;
       
       
-      polaroidImage.src = img.dataset.full || img.src;
-      polaroidImage.alt = img.alt;
-      polaroidImage.style.opacity = '1';
+      loadPolaroidImage(
+        img.dataset.full || img.src,
+        img.alt,
+        img.getAttribute('width') || img.naturalWidth,
+        img.getAttribute('height') || img.naturalHeight
+      );
       
       
       const infoParts = [title, mediums, date].filter(Boolean);
@@ -558,6 +606,7 @@
     if (!isPolaroidOpen) return;
     
     isPolaroidOpen = false;
+    polaroidLoadToken += 1;
     
     
     document.removeEventListener('mousemove', handleMouseMove);
@@ -583,6 +632,11 @@
         gsap.set(polaroidOverlay, { opacity: '' });
         gsap.set(polaroid, { rotateX: 0, rotateY: 0, scale: 1 });
         polaroid.style.opacity = '';
+        polaroidImage.classList.remove('is-visible');
+        polaroidImage.removeAttribute('src');
+        polaroidImageContainer.classList.remove('is-loading', 'is-loaded');
+        polaroidImageContainer.style.width = '';
+        polaroidImageContainer.style.height = '';
       }
     });
   }
