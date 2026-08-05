@@ -15,10 +15,17 @@
     display: inline-block;
     width: 78.125%; /* 400px / 512px = maintains proportion */
     max-width: 400px;
-    aspect-ratio: 1 / 1; /* Maintains square aspect ratio */
-    overflow: hidden; /* Constrains child elements to wrapper boundaries */
-    /* Crop 5% from all edges with rounded corners */
-    clip-path: inset(5% round 5%);
+    aspect-ratio: 1 / 1; /* Keep original square framing — no shrink/warp */
+    overflow: hidden;
+    /* Hexagon is only a mask; image sizing/position unchanged */
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='white' d='M97.74 41.58A16.83 16.83 0 0 1 97.74 58.42L81.16 87.14A16.83 16.83 0 0 1 66.58 95.56L33.42 95.56A16.83 16.83 0 0 1 18.84 87.14L2.26 58.42A16.83 16.83 0 0 1 2.26 41.58L18.84 12.86A16.83 16.83 0 0 1 33.42 4.44L66.58 4.44A16.83 16.83 0 0 1 81.16 12.86Z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='white' d='M97.74 41.58A16.83 16.83 0 0 1 97.74 58.42L81.16 87.14A16.83 16.83 0 0 1 66.58 95.56L33.42 95.56A16.83 16.83 0 0 1 18.84 87.14L2.26 58.42A16.83 16.83 0 0 1 2.26 41.58L18.84 12.86A16.83 16.83 0 0 1 33.42 4.44L66.58 4.44A16.83 16.83 0 0 1 81.16 12.86Z'/%3E%3C/svg%3E");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
 }
 
 /* Base image in profile wrapper - make it fill the wrapper */
