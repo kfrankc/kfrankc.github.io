@@ -295,6 +295,7 @@
 	visibility: hidden;
 	pointer-events: none;
 	touch-action: pinch-zoom;
+	-webkit-tap-highlight-color: transparent;
 }
 
 .home-focus-overlay.is-open {
@@ -305,20 +306,29 @@
 .home-focus-backdrop {
 	position: absolute;
 	inset: 0;
-	background: rgba(0, 0, 0, 0.3);
+	background: transparent;
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
-	opacity: 0;
+	opacity: 1;
 }
 
-.home-focus-backdrop.is-in {
-	opacity: 1;
+.home-focus-backdrop::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.3);
+	opacity: 0;
 	transition: opacity 0.45s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.home-focus-backdrop.is-out {
+.home-focus-overlay.is-open .home-focus-backdrop::after {
+	opacity: 1;
+}
+
+.home-focus-overlay.is-closing .home-focus-backdrop::after {
 	opacity: 0;
-	transition: opacity 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+	transition-duration: 0.9s;
+	transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .home-focus-card {
@@ -327,10 +337,12 @@
 	overflow: hidden;
 	transform-origin: center center;
 	transform-style: preserve-3d;
+	-webkit-tap-highlight-color: transparent;
 }
 
 .home-focus-card.is-preparing {
 	visibility: hidden;
+	opacity: 0;
 }
 
 .home-focus-shine {

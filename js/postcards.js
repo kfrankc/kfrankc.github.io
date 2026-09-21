@@ -1,6 +1,8 @@
 (function () {
   var LERP = 0.1;
+  var TOUCH_DRAG_LERP = 1;
   var GAP_PX = 48;
+  var coarsePointer = window.matchMedia('(hover: none), (pointer: coarse)');
 
   function isPinchZoom(e) {
     return !!(e && e.ctrlKey);
@@ -187,7 +189,8 @@
 
   Carousel.prototype.tick = function () {
     var prev = this.scrollX;
-    this.scrollX += (this.targetScrollX - this.scrollX) * LERP;
+    var lerp = this.drag && coarsePointer.matches ? TOUCH_DRAG_LERP : LERP;
+    this.scrollX += (this.targetScrollX - this.scrollX) * lerp;
     this.velocity = this.scrollX - prev;
     this.applyTransforms();
   };

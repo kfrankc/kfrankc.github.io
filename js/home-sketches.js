@@ -59,10 +59,10 @@
   }
 
   function commitBehind() {
+    if (Math.abs(progress - Math.round(progress)) > 0.002) return;
     var to = clamp(Math.round(progress), 0, n - 1);
     if (to === fromIndex) return;
     behindIndex = fromIndex;
-    fromIndex = to;
   }
 
   function updateDirection(next) {
@@ -72,19 +72,21 @@
 
   function updateIsFirst(next) {
     for (var i = 0; i < n; i++) {
-      var d = next - i;
-      var prev = progress - i;
-      if (d * prev <= 0) isFirst[i] = true;
-      if (Math.abs(d) >= 1) isFirst[i] = false;
+      isFirst[i] = i === fromIndex && Math.abs(next - i) < 1;
     }
+  }
+
+  function behindCard() {
+    var front = clamp(Math.round(progress), 0, n - 1);
+    var behind = fromIndex !== front ? fromIndex : behindIndex;
+    if (behind < 0 || behind === front) return -1;
+    return behind;
   }
 
   function cardZIndex(index, first) {
     if (first) return 100;
-    var front = clamp(Math.round(progress), 0, n - 1);
-    var behind = fromIndex !== front ? fromIndex : behindIndex;
-    if (behind < 0 || behind === front) return 20 - Math.abs(progress - index);
-    if (index === behind) return 80;
+    if (index === clamp(Math.round(progress), 0, n - 1)) return 90;
+    if (index === behindCard()) return 80;
     return 20 - Math.abs(progress - index);
   }
 
@@ -96,13 +98,17 @@
       ? transform(d, [-1, -0.5, 0, 0.5, 1], [12, 77, 0, -77, -12], true)
       : transform(d, [-1, 0, 1], [12, 0, -12], true);
     var rotateY = transform(ad % 1, [0, 0.5, 1], [0, first ? -6 : -8, 0]) * direction;
-    var scale = first ? transform(Math.min(ad, 1), [0, 0.5, 1], [1, 0.97, 1]) : 1;
+    var rotateZ = first
+      ? transform(d, [-1, -0.5, 0, 0.5, 1], [1.1, 8, 0, -8, -1.1], true)
+      : -1.1 * d;
+    var scale = first ? transform(Math.min(ad, 1), [0, 0.5, 1], [1, 0.93, 1]) : 1;
     var zIndex = cardZIndex(index, first);
-    var z = transform(d, [-2, -1, 0, 1, 2], [-180, -90, 0, -90, -180], true) + (zIndex - 50) * 0.35;
+    var z = transform(d, [-2, -1, 0, 1, 2], [-180, -90, 0, -90, -180], true);
+    if (index === behindCard()) z += 24;
     return {
       x: x,
       rotateY: rotateY,
-      rotateZ: -1.1 * d,
+      rotateZ: rotateZ,
       scale: scale,
       z: z,
       zIndex: zIndex
@@ -226,16 +232,15 @@
     document.body.classList.add('is-sketch-focus');
     showFocusImage(currentCard());
     focusCard.classList.add('is-preparing');
+    focusCard.style.transition = 'none';
+    overlay.classList.remove('is-closing');
     overlay.classList.add('is-open');
-    backdrop.classList.remove('is-out');
     requestAnimationFrame(function () {
       var fly = flyFromSource();
-      focusCard.style.transition = 'none';
       setFocusFly(fly);
       currentCard().classList.add('is-open');
-      focusCard.classList.remove('is-preparing');
       requestAnimationFrame(function () {
-        backdrop.classList.add('is-in');
+        focusCard.classList.remove('is-preparing');
         focusCard.style.transition = 'transform 0.9s ' + EASE_MORPH;
         focusCard.style.transform = '';
         setTimeout(function () {
@@ -254,13 +259,11 @@
     resetFocusTilt(true);
     var source = currentCard();
     var fly = flyFromSource();
-    backdrop.classList.remove('is-in');
-    backdrop.classList.add('is-out');
+    overlay.classList.add('is-closing');
     focusCard.style.transition = 'transform 0.9s ' + EASE_MORPH;
     setFocusFly(fly);
     setTimeout(function () {
-      overlay.classList.remove('is-open');
-      backdrop.classList.remove('is-out');
+      overlay.classList.remove('is-open', 'is-closing');
       focusCard.style.transition = 'none';
       focusCard.style.transform = '';
       focusImage.removeAttribute('src');
@@ -306,7 +309,10 @@
       }
       settleRaf = 0;
       scroller.scrollLeft = to;
-      setDragging(false);
+      requestAnimationFrame(function () {
+        scroller.scrollLeft = to;
+        setDragging(false);
+      });
     }
     settleRaf = requestAnimationFrame(tick);
   }
@@ -314,7 +320,7 @@
   scroller.addEventListener('scroll', function () {
     if (focusOpen) return;
     setProgress(progressFromScroll());
-    if (Math.abs(progress - Math.round(progress)) < 0.02) commitBehind();
+    commitBehind();
   }, { passive: true });
 
   scroller.addEventListener('touchstart', beginGesture, { passive: true });
