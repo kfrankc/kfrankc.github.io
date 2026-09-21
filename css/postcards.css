@@ -1,0 +1,141 @@
+.page-postcards {
+	overflow: hidden;
+	height: 100%;
+}
+
+.page-postcards #content {
+	overflow: hidden;
+}
+
+.postcards-page {
+	position: relative;
+	width: 100%;
+	height: calc(100svh - 7.25rem);
+	min-height: 280px;
+}
+
+.page-main {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	touch-action: pinch-zoom;
+}
+
+.carousel {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.page-main .slot {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: calc(var(--fig-w) + 2 * var(--pad));
+	display: block;
+	border: 0;
+	outline: none;
+	opacity: 0;
+	cursor: pointer;
+	pointer-events: auto;
+	will-change: transform;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.page-main .slot:focus,
+.page-main .slot:focus-visible {
+	outline: none;
+}
+
+.page-main .slot.is-in {
+	animation: postcard-fade-in 0.42s ease-out forwards;
+}
+
+.page-main .slot.is-settled {
+	opacity: 1;
+	animation: none;
+}
+
+.page-main .slot.is-open {
+	opacity: 0;
+	pointer-events: none;
+	animation: none;
+}
+
+@keyframes postcard-fade-in {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.page-main .slot.is-in {
+		animation: none;
+		opacity: 1;
+	}
+}
+
+@media (max-width: 640px) {
+	.postcards-page {
+		height: calc(100svh - 6.5rem);
+	}
+}
+
+.page-postcards .polaroid-overlay {
+	background: transparent;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	touch-action: pinch-zoom;
+}
+
+.page-postcards .polaroid-overlay.is-arming {
+	pointer-events: none;
+}
+
+.page-postcards .polaroid-backdrop {
+	position: absolute;
+	inset: 0;
+	background: transparent;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	opacity: 1;
+}
+
+.page-postcards .polaroid-backdrop::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.3);
+	opacity: 0;
+	transition: opacity 0.45s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.page-postcards .polaroid-overlay.active .polaroid-backdrop::after {
+	opacity: 1;
+}
+
+.page-postcards .polaroid-overlay.is-closing .polaroid-backdrop::after {
+	opacity: 0;
+	transition-duration: 0.9s;
+	transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.page-postcards .polaroid {
+	--fig-w: 400px;
+	--pad: calc(var(--fig-w) * 0.016);
+	padding: var(--pad);
+	border-radius: 6px;
+	box-shadow: none;
+}
+
+.page-postcards .polaroid.is-flying {
+	transition: none !important;
+	opacity: 1 !important;
+}
+
+.page-postcards .polaroid.is-preparing {
+	visibility: hidden !important;
+	opacity: 0 !important;
+}

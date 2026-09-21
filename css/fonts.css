@@ -1,0 +1,33 @@
+/* Sunghyun Sans — Latin (self-hosted from https://github.com/anaclumos/sunghyun-sans) */
+
+@font-face {
+    font-family: 'Sunghyun Sans';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('/fonts/sunghyun-sans/SunghyunSans-Light.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Sunghyun Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/sunghyun-sans/SunghyunSans-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Sunghyun Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/sunghyun-sans/SunghyunSans-Medium.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Sunghyun Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/sunghyun-sans/SunghyunSans-Bold.woff2') format('woff2');
+}

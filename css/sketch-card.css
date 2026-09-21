@@ -1,0 +1,60 @@
+.sketch-card {
+	--img-w: 1;
+	--img-h: 1;
+	--max-side: min(36vw, 42vh, 420px);
+	--fig-w: calc(var(--max-side) * var(--img-w) / max(var(--img-w), var(--img-h)));
+	--fig-h: calc(var(--max-side) * var(--img-h) / max(var(--img-w), var(--img-h)));
+	--pad: calc(var(--fig-w) * 0.016);
+	background: #fff;
+	padding: var(--pad);
+	border-radius: 6px;
+}
+
+.sketch-card figure {
+	width: var(--fig-w);
+	height: var(--fig-h);
+	aspect-ratio: var(--img-w) / var(--img-h);
+	display: block;
+	margin: 0;
+	overflow: hidden;
+	border-radius: 3px;
+}
+
+.sketch-card img {
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	object-fit: contain;
+	display: block;
+	pointer-events: none;
+}
+
+@media (orientation: portrait) {
+	.page-main .sketch-card {
+		--max-side: min(88vw, 68vh, 560px);
+	}
+}
+
+@media (orientation: portrait) and (min-width: 700px) {
+	.page-main .sketch-card {
+		--max-side: min(76vw, 66vh, 640px);
+	}
+}
+
+.home-sketch.sketch-card {
+	--max-side: var(--stack-side, 14rem);
+}
+
+.home-focus-card.sketch-card {
+	--max-w: min(70vw, 800px);
+	--max-h: 65vh;
+	--fig-w: min(var(--max-w), calc(var(--max-h) * var(--img-w) / var(--img-h)));
+	--fig-h: calc(var(--fig-w) * var(--img-h) / var(--img-w));
+}
+
+@media (max-width: 767px) {
+	.home-focus-card.sketch-card {
+		--max-w: 85vw;
+		--max-h: 60vh;
+	}
+}

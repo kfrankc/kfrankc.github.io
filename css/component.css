@@ -217,11 +217,7 @@
 .gallery-options {
 	display: flex;
 	justify-content: center;
-	padding: 1rem 0;
-	position: sticky;
-	top: 0;
-	background: white;
-	z-index: 100;
+	padding: 0.35rem 0 0.4rem;
 }
 
 .size-buttons {
@@ -234,7 +230,7 @@
 
 .size-buttons button {
 	padding: 0.35rem 1.25rem;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Sunghyun Sans', 'Sunghyun Sans KR Hanja', sans-serif;
 	font-size: 0.8rem;
 	font-weight: 400;
 	background: transparent;
@@ -517,7 +513,7 @@
 	position: absolute;
 	bottom: 20px;
 	left: 20px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Sunghyun Sans', 'Sunghyun Sans KR Hanja', sans-serif;
 	font-size: 0.875rem;
 	color: #666;
 	font-weight: 400;
