@@ -1,8 +1,8 @@
 (function (root) {
   var REST_BETA = 90;
   var REST_GAMMA = 0;
-  var RANGE = 22;
-  var SMOOTH = 0.22;
+  var RANGE = 8;
+  var SMOOTH = 0.38;
   var listening = false;
   var allowed = false;
   var asked = false;
