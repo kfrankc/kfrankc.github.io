@@ -1,7 +1,6 @@
 (function (root) {
-  var REST_BETA = 90;
-  var REST_GAMMA = 0;
   var RANGE = 8;
+  var CALIBRATE_N = 10;
   var FOLLOW = 26;
   var listening = false;
   var allowed = false;
@@ -16,6 +15,26 @@
   var snapNext = false;
   var raf = 0;
   var lastT = 0;
+  var restGamma = 0;
+  var restBeta = 70;
+  var restGammaSum = 0;
+  var restBetaSum = 0;
+  var restN = 0;
+  var calibrated = false;
+
+  function resetRest() {
+    restGamma = 0;
+    restBeta = 70;
+    restGammaSum = 0;
+    restBetaSum = 0;
+    restN = 0;
+    calibrated = false;
+    hasSample = false;
+    targetX = 0;
+    targetY = 0;
+    currentX = 0;
+    currentY = 0;
+  }
 
   function clamp(v, a, b) {
     return Math.max(a, Math.min(b, v));
@@ -27,8 +46,21 @@
 
   function setTarget(gamma, beta) {
     if (gamma == null || beta == null) return;
-    targetX = clamp((gamma - REST_GAMMA) / RANGE, -1, 1);
-    targetY = clamp((beta - REST_BETA) / RANGE, -1, 1);
+    if (!calibrated) {
+      restGammaSum += gamma;
+      restBetaSum += beta;
+      restN += 1;
+      targetX = 0;
+      targetY = 0;
+      hasSample = true;
+      if (restN < CALIBRATE_N) return;
+      restGamma = restGammaSum / restN;
+      restBeta = restBetaSum / restN;
+      calibrated = true;
+      snapNext = true;
+    }
+    targetX = clamp((gamma - restGamma) / RANGE, -1, 1);
+    targetY = clamp((restBeta - beta) / RANGE, -1, 1);
     hasSample = true;
   }
 
@@ -115,15 +147,15 @@
     start: function (handler) {
       if (!isMobile()) return;
       onTilt = handler;
-      snapNext = hasSample;
+      resetRest();
+      snapNext = true;
       lastT = 0;
       request();
     },
     stop: function () {
       onTilt = null;
       snapNext = false;
-      currentX = 0;
-      currentY = 0;
+      resetRest();
       stopListening();
     }
   };
