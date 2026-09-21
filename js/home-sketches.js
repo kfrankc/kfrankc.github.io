@@ -8,6 +8,7 @@
   var shine = document.getElementById('homeFocusShine');
   var dotsRoot = document.getElementById('homeSketchesDots');
   if (!stack || !scroller || !overlay || !focusCard || !focusImage) return;
+  focusCard.classList.add('is-preparing');
 
   var cards = Array.from(stack.querySelectorAll('.home-sketch'));
   var dots = dotsRoot ? Array.from(dotsRoot.querySelectorAll('.home-sketches-dot')) : [];
@@ -22,6 +23,7 @@
   var drag = null;
   var focusOpen = false;
   var flying = false;
+  var stackReady = false;
   var CLOSE_WHEEL = 8;
   var DUR_MORPH = 900;
   var EASE_MORPH = 'cubic-bezier(0.645, 0.045, 0.355, 1)';
@@ -153,14 +155,46 @@
     return cards[clamp(Math.round(progress), 0, n - 1)];
   }
 
-  function showFocusImage(card) {
+  function whenDecoded(img) {
+    if (!img || !img.src) return Promise.resolve();
+    if (img.decode) return img.decode().catch(function () {});
+    if (img.complete && img.naturalWidth) return Promise.resolve();
+    return new Promise(function (resolve) {
+      img.addEventListener('load', resolve, { once: true });
+      img.addEventListener('error', resolve, { once: true });
+    });
+  }
+
+  function paintFrame() {
+    return new Promise(function (resolve) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(resolve);
+      });
+    });
+  }
+
+  function showFocusImage(card, useThumb) {
     var img = card.querySelector('img');
     var w = Number(card.getAttribute('data-width')) || (img && img.naturalWidth) || 1;
     var h = Number(card.getAttribute('data-height')) || (img && img.naturalHeight) || 1;
+    var src = useThumb && img
+      ? (img.currentSrc || img.src)
+      : (card.getAttribute('data-full') || (img && img.src) || '');
     focusCard.style.setProperty('--img-w', String(w));
     focusCard.style.setProperty('--img-h', String(h));
     focusImage.alt = card.getAttribute('data-title') || '';
-    focusImage.src = card.getAttribute('data-full') || (img && img.src) || '';
+    if (src && focusImage.src !== new URL(src, location.href).href) {
+      focusImage.src = src;
+    }
+    return whenDecoded(focusImage);
+  }
+
+  function promoteFullImage(card) {
+    var src = card && card.getAttribute('data-full');
+    if (!src || focusImage.src === new URL(src, location.href).href) return;
+    var hi = new Image();
+    hi.onload = function () { focusImage.src = src; };
+    hi.src = src;
   }
 
   function sourceRect() {
@@ -226,28 +260,35 @@
   }
 
   function openFocus() {
-    if (focusOpen || flying) return;
+    if (!stackReady || focusOpen || flying) return;
+    var card = currentCard();
     flying = true;
-    focusOpen = true;
-    document.body.classList.add('is-sketch-focus');
-    showFocusImage(currentCard());
     focusCard.classList.add('is-preparing');
     focusCard.style.transition = 'none';
-    overlay.classList.remove('is-closing');
-    overlay.classList.add('is-open');
-    requestAnimationFrame(function () {
-      var fly = flyFromSource();
-      setFocusFly(fly);
-      currentCard().classList.add('is-open');
+    showFocusImage(card, true).then(function () {
+      if (!flying) return;
       requestAnimationFrame(function () {
-        focusCard.classList.remove('is-preparing');
-        focusCard.style.transition = 'transform 0.9s ' + EASE_MORPH;
-        focusCard.style.transform = '';
-        setTimeout(function () {
-          flying = false;
-          focusCard.style.transition = 'transform 0.15s ease-out';
-          addEventListener('mousemove', handleFocusMove);
-        }, DUR_MORPH);
+        var fly = flyFromSource();
+        setFocusFly(fly);
+        focusCard.getBoundingClientRect();
+        requestAnimationFrame(function () {
+          focusCard.classList.remove('is-preparing');
+          requestAnimationFrame(function () {
+            card.classList.add('is-open');
+            overlay.classList.remove('is-closing');
+            overlay.classList.add('is-open', 'is-dimmed');
+            document.body.classList.add('is-sketch-focus');
+            focusOpen = true;
+            focusCard.style.transition = 'transform 0.9s ' + EASE_MORPH;
+            focusCard.style.transform = '';
+            setTimeout(function () {
+              flying = false;
+              promoteFullImage(card);
+              focusCard.style.transition = 'transform 0.15s ease-out';
+              addEventListener('mousemove', handleFocusMove);
+            }, DUR_MORPH);
+          });
+        });
       });
     });
   }
@@ -258,16 +299,19 @@
     removeEventListener('mousemove', handleFocusMove);
     resetFocusTilt(true);
     var source = currentCard();
+    showFocusImage(source, true);
     var fly = flyFromSource();
     overlay.classList.add('is-closing');
+    overlay.classList.remove('is-dimmed');
     focusCard.style.transition = 'transform 0.9s ' + EASE_MORPH;
     setFocusFly(fly);
     setTimeout(function () {
-      overlay.classList.remove('is-open', 'is-closing');
+      if (source) source.classList.remove('is-open');
+      overlay.classList.remove('is-open', 'is-closing', 'is-dimmed');
       focusCard.style.transition = 'none';
       focusCard.style.transform = '';
+      focusCard.classList.add('is-preparing');
       focusImage.removeAttribute('src');
-      if (source) source.classList.remove('is-open');
       document.body.classList.remove('is-sketch-focus');
       focusOpen = false;
       flying = false;
@@ -285,20 +329,30 @@
     settleRaf = 0;
   }
 
+  function finishLand(index) {
+    var x = clamp(index, 0, n - 1) * slideWidth();
+    scroller.scrollLeft = x;
+    setProgress(index);
+    commitBehind();
+    requestAnimationFrame(function () {
+      scroller.scrollLeft = x;
+      setDragging(false);
+    });
+  }
+
   function settleTo(index) {
     if (drag) fromIndex = drag.start;
     var from = scroller.scrollLeft;
     var to = clamp(index, 0, n - 1) * slideWidth();
     var dist = Math.abs(to - from);
     cancelSettle();
+    setDragging(true);
     if (dist < 0.5) {
-      scroller.scrollLeft = to;
-      setDragging(false);
+      finishLand(index);
       return;
     }
     var dur = clamp(360 + dist * 0.4, 400, 580);
     var t0 = performance.now();
-    setDragging(true);
     function tick(now) {
       var t = Math.min(1, (now - t0) / dur);
       var eased = 1 - Math.pow(1 - t, 4);
@@ -308,11 +362,7 @@
         return;
       }
       settleRaf = 0;
-      scroller.scrollLeft = to;
-      requestAnimationFrame(function () {
-        scroller.scrollLeft = to;
-        setDragging(false);
-      });
+      finishLand(index);
     }
     settleRaf = requestAnimationFrame(tick);
   }
@@ -324,7 +374,15 @@
   }, { passive: true });
 
   scroller.addEventListener('touchstart', beginGesture, { passive: true });
-  scroller.addEventListener('scrollend', commitBehind);
+  scroller.addEventListener('scrollend', function () {
+    if (drag || settleRaf) return;
+    var landed = clamp(Math.round(progressFromScroll()), 0, n - 1);
+    if (Math.abs(progressFromScroll() - landed) > 0.002) {
+      scroller.scrollLeft = landed * slideWidth();
+      setProgress(landed);
+    }
+    commitBehind();
+  });
 
   if (useDrag) {
     scroller.addEventListener('pointerdown', function (e) {
@@ -348,7 +406,7 @@
       if (!drag) return;
       var now = performance.now();
       var dt = now - drag.lastT;
-      if (dt > 0) drag.vx = (e.clientX - drag.lastX) / dt;
+      if (dt > 0 && dt < 64) drag.vx = drag.vx * 0.6 + ((e.clientX - drag.lastX) / dt) * 0.4;
       drag.lastX = e.clientX;
       drag.lastT = now;
       var w = slideWidth();
@@ -416,4 +474,22 @@
   });
 
   layout();
+
+  function warmupStack() {
+    var root = document.getElementById('homeSketches');
+    Promise.all(cards.map(function (card) {
+      var thumb = card.querySelector('img');
+      var full = new Image();
+      full.src = card.getAttribute('data-full') || (thumb && thumb.src) || '';
+      return Promise.all([whenDecoded(thumb), whenDecoded(full)]);
+    })).then(function () {
+      if (root) root.classList.add('is-ready');
+      stackReady = true;
+    }).catch(function () {
+      if (root) root.classList.add('is-ready');
+      stackReady = true;
+    });
+  }
+
+  warmupStack();
 })();

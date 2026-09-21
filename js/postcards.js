@@ -32,6 +32,8 @@
     this.anchor = 0;
     this.periodX = 0;
     this.velocity = 0;
+    this.flick = 0;
+    this.lastTick = 0;
     this.drag = null;
     this.moved = 0;
     this.pressSlot = null;
@@ -109,13 +111,21 @@
       return;
     }
     if (this.locked || e.button !== 0) return;
+    if (e.cancelable) e.preventDefault();
+    this.flick = 0;
+    var pos = this.vertical ? e.clientY : e.clientX;
     this.drag = {
-      pos: this.vertical ? e.clientY : e.clientX,
-      origin: this.targetScrollX
+      pos: pos,
+      origin: this.targetScrollX,
+      lastPos: pos,
+      lastT: performance.now(),
+      vx: 0
     };
     this.moved = 0;
     this.pressSlot = e.target && e.target.closest ? e.target.closest('.slot') : null;
+    if (this.pressSlot && this.pressSlot.blur) this.pressSlot.blur();
     this.stage.setPointerCapture(e.pointerId);
+    if (this.pressSlot && typeof this.onPress === 'function') this.onPress(this.pressSlot);
   };
 
   Carousel.prototype.onPointerMove = function (e) {
@@ -125,7 +135,17 @@
       return;
     }
     if (!this.drag) return;
-    var delta = (this.vertical ? e.clientY : e.clientX) - this.drag.pos;
+    var pos = this.vertical ? e.clientY : e.clientX;
+    var now = performance.now();
+    var dt = now - this.drag.lastT;
+    if (dt > 0 && dt < 64) {
+      this.drag.vx = this.drag.vx * 0.55 + ((pos - this.drag.lastPos) / dt) * 0.45;
+    } else if (dt >= 64) {
+      this.drag.vx = 0;
+    }
+    this.drag.lastPos = pos;
+    this.drag.lastT = now;
+    var delta = pos - this.drag.pos;
     this.moved = Math.max(this.moved, Math.abs(delta));
     this.targetScrollX = this.drag.origin - delta;
   };
@@ -135,6 +155,10 @@
     var slot = this.pressSlot;
     var shouldOpen = !this.didDrag() && !this.pinch && slot && pointerCount(this.pointers) === 0;
     if (pointerCount(this.pointers) === 0) {
+      if (this.drag && this.didDrag() && coarsePointer.matches) {
+        this.flick = -this.drag.vx;
+        if (Math.abs(this.flick) < 0.15) this.flick = 0;
+      }
       this.drag = null;
       this.pressSlot = null;
       this.pinch = false;
@@ -188,6 +212,14 @@
   };
 
   Carousel.prototype.tick = function () {
+    var now = performance.now();
+    var dt = this.lastTick ? Math.min(32, now - this.lastTick) : 16;
+    this.lastTick = now;
+    if (!this.drag && this.flick) {
+      this.targetScrollX += this.flick * dt;
+      this.flick *= Math.pow(0.94, dt / 16);
+      if (Math.abs(this.flick) < 0.02) this.flick = 0;
+    }
     var prev = this.scrollX;
     var lerp = this.drag && coarsePointer.matches ? TOUCH_DRAG_LERP : LERP;
     this.scrollX += (this.targetScrollX - this.scrollX) * lerp;
@@ -253,6 +285,7 @@
 
   var isPolaroidOpen = false;
   var polaroidLoadToken = 0;
+  var pendingFullSrc = null;
   var shine = null;
   var originSlot = null;
   var flyReady = false;
@@ -263,7 +296,7 @@
   var dismissPinch = false;
   var ignoreDismissUntil = 0;
   var DUR_MORPH = 0.9;
-  var EASE_MORPH = 'power3.inOut';
+  var EASE_MORPH = 'power2.inOut';
   var CLOSE_WHEEL = 8;
   var CLOSE_DRAG = 16;
 
@@ -293,22 +326,44 @@
     applyPolaroidChrome();
   }
 
+  function whenDecoded(img) {
+    if (!img || !img.src) return Promise.resolve();
+    if (img.decode) return img.decode().catch(function () {});
+    if (img.complete && img.naturalWidth) return Promise.resolve();
+    return new Promise(function (resolve) {
+      img.addEventListener('load', resolve, { once: true });
+      img.addEventListener('error', resolve, { once: true });
+    });
+  }
+
   function loadPolaroidImage(thumbSrc, fullSrc, alt, w, h) {
     var token = ++polaroidLoadToken;
+    pendingFullSrc = fullSrc && fullSrc !== thumbSrc ? fullSrc : null;
     polaroidImage.alt = alt || '';
     sizePolaroidFrame(w, h);
     polaroidImage.classList.add('is-visible');
     polaroidImageContainer.classList.add('is-loaded');
     polaroidImageContainer.classList.remove('is-loading');
-    polaroidImage.src = thumbSrc || fullSrc;
+    var src = thumbSrc || fullSrc;
+    if (src && polaroidImage.src !== new URL(src, location.href).href) {
+      polaroidImage.src = src;
+    }
+    return whenDecoded(polaroidImage).then(function () {
+      return token === polaroidLoadToken;
+    });
+  }
 
-    if (!fullSrc || fullSrc === thumbSrc) return;
+  function promoteFullImage() {
+    if (!pendingFullSrc) return;
+    var src = pendingFullSrc;
+    var token = polaroidLoadToken;
+    pendingFullSrc = null;
     var hi = new Image();
     hi.onload = function () {
       if (token !== polaroidLoadToken) return;
-      polaroidImage.src = fullSrc;
+      polaroidImage.src = src;
     };
-    hi.src = fullSrc;
+    hi.src = src;
   }
 
   function sourceRect() {
@@ -316,11 +371,12 @@
   }
 
   function destRect() {
-    var r = polaroid.getBoundingClientRect();
-    if (r.width && r.height) return r;
-    var w = polaroid.offsetWidth || polaroidImageContainer.offsetWidth || parseFloat(polaroidImageContainer.style.width) || 0;
-    var h = polaroid.offsetHeight || polaroidImageContainer.offsetHeight || parseFloat(polaroidImageContainer.style.height) || 0;
-    if (!w || !h) return r;
+    var imgW = parseFloat(polaroidImageContainer.style.width) || polaroidImageContainer.offsetWidth || 0;
+    var imgH = parseFloat(polaroidImageContainer.style.height) || polaroidImageContainer.offsetHeight || 0;
+    var pad = imgW * 0.016;
+    var w = imgW ? imgW + pad * 2 : polaroid.offsetWidth;
+    var h = imgH ? imgH + pad * 2 : polaroid.offsetHeight;
+    if (!w || !h) return { left: 0, top: 0, width: 0, height: 0 };
     return {
       left: (window.innerWidth - w) / 2,
       top: (window.innerHeight - h) / 2,
@@ -412,6 +468,19 @@
     return Date.now() < ignoreDismissUntil;
   }
 
+  function coverSource() {
+    polaroid.classList.remove('is-preparing');
+  }
+
+  function startFocusChrome() {
+    polaroidOverlay.classList.add('active', 'is-dimmed');
+    armOverlay();
+  }
+
+  function hideSource() {
+    if (originSlot) originSlot.classList.add('is-open');
+  }
+
   function openPolaroid() {
     isPolaroidOpen = true;
     flyReady = false;
@@ -420,13 +489,12 @@
     polaroidOverlay.style.opacity = '';
     polaroidBackdrop.style.opacity = '';
     polaroid.classList.add('is-flying', 'is-preparing');
-    polaroidOverlay.classList.remove('is-closing');
-    polaroidOverlay.classList.add('active');
-    armOverlay();
+    polaroidOverlay.classList.remove('is-closing', 'active', 'is-dimmed');
 
     if (!hasGsap) {
-      polaroid.classList.remove('is-preparing');
-      if (originSlot) originSlot.classList.add('is-open');
+      coverSource();
+      startFocusChrome();
+      hideSource();
       flyReady = true;
       morphing = false;
       document.addEventListener('mousemove', handleMouseMove);
@@ -440,10 +508,13 @@
       applyPolaroidChrome();
       var fly = flyFromSource();
       if (!fly) {
-        polaroid.classList.remove('is-preparing', 'is-flying');
-        if (originSlot) originSlot.classList.add('is-open');
+        polaroid.classList.remove('is-flying');
+        coverSource();
+        startFocusChrome();
+        hideSource();
         flyReady = true;
         morphing = false;
+        promoteFullImage();
         document.addEventListener('mousemove', handleMouseMove);
         return;
       }
@@ -453,20 +524,31 @@
         scale: fly.scale,
         transformOrigin: fly.origin
       });
-      polaroid.classList.remove('is-preparing');
-      if (originSlot) originSlot.classList.add('is-open');
-      gsap.to(polaroid, {
-        x: 0,
-        y: 0,
-        scale: 1,
-        duration: DUR_MORPH,
-        ease: EASE_MORPH,
-        onComplete: function () {
-          polaroid.classList.remove('is-flying');
-          flyReady = true;
-          morphing = false;
-          document.addEventListener('mousemove', handleMouseMove);
-        }
+      polaroid.getBoundingClientRect();
+      requestAnimationFrame(function () {
+        coverSource();
+        requestAnimationFrame(function () {
+          startFocusChrome();
+          gsap.fromTo(polaroid, {
+            x: fly.x,
+            y: fly.y,
+            scale: fly.scale
+          }, {
+            x: 0,
+            y: 0,
+            scale: 1,
+            duration: DUR_MORPH,
+            ease: EASE_MORPH,
+            onStart: hideSource,
+            onComplete: function () {
+              polaroid.classList.remove('is-flying');
+              flyReady = true;
+              morphing = false;
+              promoteFullImage();
+              document.addEventListener('mousemove', handleMouseMove);
+            }
+          });
+        });
       });
     });
   }
@@ -476,7 +558,7 @@
     if (slot) slot.classList.remove('is-open');
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
-        polaroidOverlay.classList.remove('active', 'is-closing', 'is-arming');
+        polaroidOverlay.classList.remove('active', 'is-closing', 'is-arming', 'is-dimmed');
         polaroid.classList.remove('is-flying', 'is-preparing');
         originSlot = null;
         carousel.locked = false;
@@ -493,6 +575,7 @@
         }
         polaroid.style.opacity = '';
         polaroid.style.transform = '';
+        pendingFullSrc = null;
         polaroidImage.classList.remove('is-visible');
         polaroidImage.removeAttribute('src');
         polaroidImageContainer.classList.remove('is-loading', 'is-loaded');
@@ -518,6 +601,7 @@
     }
     getShine().style.opacity = '0';
     polaroidOverlay.classList.add('is-closing');
+    polaroidOverlay.classList.remove('is-dimmed');
 
     if (!hasGsap) {
       resetPolaroidDom();
@@ -551,24 +635,44 @@
     });
   }
 
-  function openFromSlot(slot) {
-    if (isPolaroidOpen || morphing || !slot) return;
+  function slotImageArgs(slot) {
     var img = slot.querySelector('img');
-    if (!img) return;
-    originSlot = slot;
-    loadPolaroidImage(
+    if (!img) return null;
+    return [
       img.src,
       img.dataset.full || img.src,
       img.alt,
       img.getAttribute('width') || img.naturalWidth,
       img.getAttribute('height') || img.naturalHeight
-    );
-    openPolaroid();
+    ];
   }
 
+  function warmSlot(slot) {
+    if (isPolaroidOpen || morphing || !slot) return;
+    var args = slotImageArgs(slot);
+    if (args) loadPolaroidImage.apply(null, args);
+  }
+
+  function openFromSlot(slot) {
+    if (isPolaroidOpen || morphing || !slot) return;
+    var args = slotImageArgs(slot);
+    if (!args) return;
+    originSlot = slot;
+    morphing = true;
+    loadPolaroidImage.apply(null, args).then(function (ready) {
+      if (!ready || originSlot !== slot) {
+        morphing = false;
+        return;
+      }
+      openPolaroid();
+    });
+  }
+
+  carousel.onPress = warmSlot;
   carousel.onActivate = openFromSlot;
 
   carousel.slots.forEach(function (slot) {
+    slot.addEventListener('mousedown', function (e) { e.preventDefault(); });
     slot.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();

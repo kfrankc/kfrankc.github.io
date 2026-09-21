@@ -241,6 +241,11 @@
 	scrollbar-width: none;
 	cursor: pointer;
 	-webkit-tap-highlight-color: transparent;
+	pointer-events: none;
+}
+
+.home-sketches.is-ready .home-sketches-scroller {
+	pointer-events: auto;
 }
 
 .home-sketches-scroller::-webkit-scrollbar {
@@ -292,14 +297,13 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	visibility: hidden;
+	visibility: visible;
 	pointer-events: none;
 	touch-action: pinch-zoom;
 	-webkit-tap-highlight-color: transparent;
 }
 
 .home-focus-overlay.is-open {
-	visibility: visible;
 	pointer-events: auto;
 }
 
@@ -307,9 +311,17 @@
 	position: absolute;
 	inset: 0;
 	background: transparent;
+	backdrop-filter: blur(0);
+	-webkit-backdrop-filter: blur(0);
+	opacity: 1;
+	transition:
+		backdrop-filter 0.9s cubic-bezier(0.645, 0.045, 0.355, 1),
+		-webkit-backdrop-filter 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.home-focus-overlay.is-dimmed .home-focus-backdrop {
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
-	opacity: 1;
 }
 
 .home-focus-backdrop::after {
@@ -318,17 +330,11 @@
 	inset: 0;
 	background: rgba(0, 0, 0, 0.3);
 	opacity: 0;
-	transition: opacity 0.45s cubic-bezier(0.215, 0.61, 0.355, 1);
+	transition: opacity 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.home-focus-overlay.is-open .home-focus-backdrop::after {
+.home-focus-overlay.is-dimmed .home-focus-backdrop::after {
 	opacity: 1;
-}
-
-.home-focus-overlay.is-closing .home-focus-backdrop::after {
-	opacity: 0;
-	transition-duration: 0.9s;
-	transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .home-focus-card {
