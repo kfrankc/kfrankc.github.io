@@ -232,18 +232,41 @@
       : '';
   }
 
-  function applyFocusTilt(clientX, clientY) {
-    var rect = focusCard.getBoundingClientRect();
-    var percentX = (clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
-    var percentY = (clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+  function applyFocusTiltFromPercent(percentX, percentY) {
+    percentX = Math.max(-1, Math.min(1, percentX));
+    percentY = Math.max(-1, Math.min(1, percentY));
     focusCard.style.transform =
       'perspective(1000px) rotateX(' + (-percentY * 15) + 'deg) rotateY(' + (percentX * 15) + 'deg) scale(1.02)';
     if (!shine) return;
-    var xPercent = ((clientX - rect.left) / rect.width) * 100;
-    var yPercent = ((clientY - rect.top) / rect.height) * 100;
     shine.style.background =
-      'radial-gradient(circle at ' + xPercent + '% ' + yPercent + '%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.15) 40%, transparent 80%)';
+      'radial-gradient(circle at ' + (50 + percentX * 50) + '% ' + (50 + percentY * 50) +
+      '%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.15) 40%, transparent 80%)';
     shine.style.opacity = '1';
+  }
+
+  function applyFocusTilt(clientX, clientY) {
+    var rect = focusCard.getBoundingClientRect();
+    applyFocusTiltFromPercent(
+      (clientX - (rect.left + rect.width / 2)) / (rect.width / 2),
+      (clientY - (rect.top + rect.height / 2)) / (rect.height / 2)
+    );
+  }
+
+  function startFocusTilt() {
+    if (window.FocusGyro && FocusGyro.isMobile()) {
+      FocusGyro.start(function (px, py) {
+        if (!focusOpen || flying) return;
+        focusCard.style.transition = 'transform 0.15s ease-out';
+        applyFocusTiltFromPercent(px, py);
+      });
+      return;
+    }
+    addEventListener('mousemove', handleFocusMove);
+  }
+
+  function stopFocusTilt() {
+    if (window.FocusGyro) FocusGyro.stop();
+    removeEventListener('mousemove', handleFocusMove);
   }
 
   function resetFocusTilt(immediate) {
@@ -275,6 +298,7 @@
 
   function openFocus() {
     if (!stackReady || focusOpen || flying) return;
+    if (window.FocusGyro) FocusGyro.request();
     var card = currentCard();
     flying = true;
     focusCard.classList.add('is-preparing');
@@ -299,7 +323,7 @@
               flying = false;
               promoteFullImage(card);
               focusCard.style.transition = 'transform 0.15s ease-out';
-              addEventListener('mousemove', handleFocusMove);
+              startFocusTilt();
             }, DUR_MORPH);
           });
         });
@@ -310,7 +334,7 @@
   function closeFocus() {
     if (!focusOpen || flying) return;
     flying = true;
-    removeEventListener('mousemove', handleFocusMove);
+    stopFocusTilt();
     resetFocusTilt(true);
     var source = currentCard();
     showFocusImage(source, true);

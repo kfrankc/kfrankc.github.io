@@ -275,6 +275,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+<script src="/js/focus-gyro.js?v=1.0.0"></script>
 
 <script>
   gsap.registerPlugin(Flip);
@@ -492,6 +493,7 @@
   allGalleryItems.forEach((item) => {
     item.addEventListener('click', (e) => {
       if (animated || isPolaroidOpen) return;
+      if (window.FocusGyro) FocusGyro.request();
       
       const img = item.querySelector('.gallery-image');
       const index = item.dataset.index;
@@ -569,8 +571,7 @@
       ease: "power2.out",
     });
     
-    
-    document.addEventListener('mousemove', handleMouseMove);
+    startPolaroidTilt();
     
     
     window.addEventListener('scroll', handleScroll);
@@ -582,8 +583,7 @@
     isPolaroidOpen = false;
     polaroidLoadToken += 1;
     
-    
-    document.removeEventListener('mousemove', handleMouseMove);
+    stopPolaroidTilt();
     window.removeEventListener('scroll', handleScroll);
     
     
@@ -631,23 +631,15 @@
     return shine;
   }
 
-  
-  function applyPolaroidTilt(clientX, clientY) {
-    
+  function applyPolaroidTiltFromPercent(percentX, percentY) {
     gsap.killTweensOf(polaroid);
     gsap.killTweensOf(getShine());
-    
-    const rect = polaroid.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
 
-    const percentX = (clientX - centerX) / (rect.width / 2);
-    const percentY = (clientY - centerY) / (rect.height / 2);
-
+    percentX = Math.max(-1, Math.min(1, percentX));
+    percentY = Math.max(-1, Math.min(1, percentY));
     const tiltX = -percentY * tiltStrength;
     const tiltY = percentX * tiltStrength;
 
-    
     polaroid.style.transform = `
       perspective(1000px)
       rotateX(${tiltX}deg)
@@ -655,15 +647,33 @@
       scale(1.02)
     `;
 
-    
-    const x = clientX - rect.left;
-    const y = clientY - rect.top;
-    const xPercent = (x / rect.width) * 100;
-    const yPercent = (y / rect.height) * 100;
-    
     const shineEl = getShine();
-    shineEl.style.background = `radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.15) 40%, transparent 80%)`;
+    shineEl.style.background = `radial-gradient(circle at ${50 + percentX * 50}% ${50 + percentY * 50}%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.15) 40%, transparent 80%)`;
     shineEl.style.opacity = '1';
+  }
+
+  function applyPolaroidTilt(clientX, clientY) {
+    const rect = polaroid.getBoundingClientRect();
+    applyPolaroidTiltFromPercent(
+      (clientX - (rect.left + rect.width / 2)) / (rect.width / 2),
+      (clientY - (rect.top + rect.height / 2)) / (rect.height / 2)
+    );
+  }
+
+  function startPolaroidTilt() {
+    if (window.FocusGyro && FocusGyro.isMobile()) {
+      FocusGyro.start(function (px, py) {
+        if (!isPolaroidOpen) return;
+        applyPolaroidTiltFromPercent(px, py);
+      });
+      return;
+    }
+    document.addEventListener('mousemove', handleMouseMove);
+  }
+
+  function stopPolaroidTilt() {
+    if (window.FocusGyro) FocusGyro.stop();
+    document.removeEventListener('mousemove', handleMouseMove);
   }
 
   function resetPolaroidTilt() {

@@ -412,22 +412,44 @@
     return shine;
   }
 
-  function applyPolaroidTilt(clientX, clientY) {
+  function applyPolaroidTiltFromPercent(percentX, percentY) {
     if (hasGsap) {
       gsap.killTweensOf(polaroid);
       gsap.killTweensOf(getShine());
     }
-    var rect = polaroid.getBoundingClientRect();
-    var percentX = (clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
-    var percentY = (clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+    percentX = Math.max(-1, Math.min(1, percentX));
+    percentY = Math.max(-1, Math.min(1, percentY));
     polaroid.style.transform =
       'perspective(1000px) rotateX(' + (-percentY * 15) + 'deg) rotateY(' + (percentX * 15) + 'deg) scale(1.02)';
     var shineEl = getShine();
-    var xPercent = ((clientX - rect.left) / rect.width) * 100;
-    var yPercent = ((clientY - rect.top) / rect.height) * 100;
     shineEl.style.background =
-      'radial-gradient(circle at ' + xPercent + '% ' + yPercent + '%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.15) 40%, transparent 80%)';
+      'radial-gradient(circle at ' + (50 + percentX * 50) + '% ' + (50 + percentY * 50) +
+      '%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.15) 40%, transparent 80%)';
     shineEl.style.opacity = '1';
+  }
+
+  function applyPolaroidTilt(clientX, clientY) {
+    var rect = polaroid.getBoundingClientRect();
+    applyPolaroidTiltFromPercent(
+      (clientX - (rect.left + rect.width / 2)) / (rect.width / 2),
+      (clientY - (rect.top + rect.height / 2)) / (rect.height / 2)
+    );
+  }
+
+  function startPolaroidTilt() {
+    if (window.FocusGyro && FocusGyro.isMobile()) {
+      FocusGyro.start(function (px, py) {
+        if (!isPolaroidOpen || !flyReady) return;
+        applyPolaroidTiltFromPercent(px, py);
+      });
+      return;
+    }
+    document.addEventListener('mousemove', handleMouseMove);
+  }
+
+  function stopPolaroidTilt() {
+    if (window.FocusGyro) FocusGyro.stop();
+    document.removeEventListener('mousemove', handleMouseMove);
   }
 
   function resetPolaroidTilt() {
@@ -500,7 +522,7 @@
       hideSource();
       flyReady = true;
       morphing = false;
-      document.addEventListener('mousemove', handleMouseMove);
+      startPolaroidTilt();
       return;
     }
 
@@ -518,7 +540,7 @@
         flyReady = true;
         morphing = false;
         promoteFullImage();
-        document.addEventListener('mousemove', handleMouseMove);
+        startPolaroidTilt();
         return;
       }
       gsap.set(polaroid, {
@@ -548,7 +570,7 @@
               flyReady = true;
               morphing = false;
               promoteFullImage();
-              document.addEventListener('mousemove', handleMouseMove);
+              startPolaroidTilt();
             }
           });
         });
@@ -597,7 +619,7 @@
     flyReady = false;
     morphing = true;
     polaroidLoadToken += 1;
-    document.removeEventListener('mousemove', handleMouseMove);
+    stopPolaroidTilt();
     if (hasGsap) {
       gsap.killTweensOf(polaroid);
       gsap.killTweensOf(getShine());
@@ -658,6 +680,7 @@
 
   function openFromSlot(slot) {
     if (isPolaroidOpen || morphing || !slot) return;
+    if (window.FocusGyro) FocusGyro.request();
     var args = slotImageArgs(slot);
     if (!args) return;
     originSlot = slot;
