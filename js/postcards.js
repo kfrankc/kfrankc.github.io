@@ -39,6 +39,7 @@
     this.pressSlot = null;
     this.pointers = Object.create(null);
     this.pinch = false;
+    this.stoppingFlick = false;
     this.locked = false;
     this.onWheel = this.onWheel.bind(this);
     this.onPointerDown = this.onPointerDown.bind(this);
@@ -112,7 +113,9 @@
     }
     if (this.locked || e.button !== 0) return;
     if (e.cancelable) e.preventDefault();
+    this.stoppingFlick = Math.abs(this.flick) > 0.05 || Math.abs(this.targetScrollX - this.scrollX) > 8;
     this.flick = 0;
+    if (this.stoppingFlick) this.targetScrollX = this.scrollX;
     var pos = this.vertical ? e.clientY : e.clientX;
     this.drag = {
       pos: pos,
@@ -153,7 +156,7 @@
   Carousel.prototype.onPointerUp = function (e) {
     if (e && e.pointerId != null) delete this.pointers[e.pointerId];
     var slot = this.pressSlot;
-    var shouldOpen = !this.didDrag() && !this.pinch && slot && pointerCount(this.pointers) === 0;
+    var shouldOpen = !this.didDrag() && !this.pinch && !this.stoppingFlick && slot && pointerCount(this.pointers) === 0;
     if (pointerCount(this.pointers) === 0) {
       if (this.drag && this.didDrag() && coarsePointer.matches) {
         this.flick = -this.drag.vx;

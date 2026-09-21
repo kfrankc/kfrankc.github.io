@@ -151,6 +151,10 @@
     return clamp(Math.round(progressFromScroll()), 0, n - 1);
   }
 
+  function boundedProgress(p) {
+    return clamp(p, Math.max(0, fromIndex - 1), Math.min(n - 1, fromIndex + 1));
+  }
+
   function currentCard() {
     return cards[clamp(Math.round(progress), 0, n - 1)];
   }
@@ -331,6 +335,7 @@
 
   function finishLand(index) {
     var x = clamp(index, 0, n - 1) * slideWidth();
+    setDragging(true);
     scroller.scrollLeft = x;
     setProgress(index);
     commitBehind();
@@ -351,7 +356,8 @@
       finishLand(index);
       return;
     }
-    var dur = clamp(360 + dist * 0.4, 400, 580);
+    var remain = dist / Math.max(slideWidth(), 1);
+    var dur = clamp(200 + remain * 380, 200, 580);
     var t0 = performance.now();
     function tick(now) {
       var t = Math.min(1, (now - t0) / dur);
@@ -369,17 +375,17 @@
 
   scroller.addEventListener('scroll', function () {
     if (focusOpen) return;
-    setProgress(progressFromScroll());
+    setProgress(boundedProgress(progressFromScroll()));
     commitBehind();
   }, { passive: true });
 
   scroller.addEventListener('touchstart', beginGesture, { passive: true });
   scroller.addEventListener('scrollend', function () {
     if (drag || settleRaf) return;
-    var landed = clamp(Math.round(progressFromScroll()), 0, n - 1);
-    if (Math.abs(progressFromScroll() - landed) > 0.002) {
-      scroller.scrollLeft = landed * slideWidth();
-      setProgress(landed);
+    var landed = clamp(Math.round(boundedProgress(progressFromScroll())), 0, n - 1);
+    if (Math.abs(progressFromScroll() - landed) > 0.002 || Math.abs(progress - landed) > 0.002) {
+      finishLand(landed);
+      return;
     }
     commitBehind();
   });
