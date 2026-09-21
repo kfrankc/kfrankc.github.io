@@ -57,7 +57,20 @@
   }
 
   function beginGesture() {
-    fromIndex = snapIndex();
+    cancelSettle();
+    cancelLand();
+    setDragging(false);
+    fromIndex = clamp(Math.round(progressFromScroll()), 0, n - 1);
+  }
+
+  function syncFromIndex(next) {
+    if (next >= fromIndex + 1) {
+      behindIndex = fromIndex;
+      fromIndex = Math.min(n - 1, Math.floor(next));
+    } else if (next <= fromIndex - 1) {
+      behindIndex = fromIndex;
+      fromIndex = Math.max(0, Math.ceil(next));
+    }
   }
 
   function commitBehind() {
@@ -133,6 +146,7 @@
   }
 
   function setProgress(next) {
+    syncFromIndex(next);
     updateDirection(next);
     updateIsFirst(next);
     progress = next;
@@ -149,10 +163,6 @@
 
   function snapIndex() {
     return clamp(Math.round(progressFromScroll()), 0, n - 1);
-  }
-
-  function boundedProgress(p) {
-    return clamp(p, Math.max(0, fromIndex - 1), Math.min(n - 1, fromIndex + 1));
   }
 
   function currentCard() {
@@ -327,19 +337,29 @@
   }
 
   var settleRaf = 0;
+  var landRaf = 0;
+  var gesturing = false;
 
   function cancelSettle() {
     if (settleRaf) cancelAnimationFrame(settleRaf);
     settleRaf = 0;
   }
 
+  function cancelLand() {
+    if (landRaf) cancelAnimationFrame(landRaf);
+    landRaf = 0;
+  }
+
   function finishLand(index) {
+    if (gesturing || drag) return;
     var x = clamp(index, 0, n - 1) * slideWidth();
-    setDragging(true);
     scroller.scrollLeft = x;
     setProgress(index);
     commitBehind();
-    requestAnimationFrame(function () {
+    cancelLand();
+    landRaf = requestAnimationFrame(function () {
+      landRaf = 0;
+      if (gesturing) return;
       scroller.scrollLeft = x;
       setDragging(false);
     });
@@ -375,17 +395,22 @@
 
   scroller.addEventListener('scroll', function () {
     if (focusOpen) return;
-    setProgress(boundedProgress(progressFromScroll()));
+    setProgress(progressFromScroll());
     commitBehind();
   }, { passive: true });
 
-  scroller.addEventListener('touchstart', beginGesture, { passive: true });
+  scroller.addEventListener('touchstart', function () {
+    gesturing = true;
+    beginGesture();
+  }, { passive: true });
+  scroller.addEventListener('touchend', function () { gesturing = false; }, { passive: true });
+  scroller.addEventListener('touchcancel', function () { gesturing = false; }, { passive: true });
   scroller.addEventListener('scrollend', function () {
-    if (drag || settleRaf) return;
-    var landed = clamp(Math.round(boundedProgress(progressFromScroll())), 0, n - 1);
-    if (Math.abs(progressFromScroll() - landed) > 0.002 || Math.abs(progress - landed) > 0.002) {
-      finishLand(landed);
-      return;
+    if (drag || settleRaf || gesturing) return;
+    var landed = clamp(Math.round(progressFromScroll()), 0, n - 1);
+    if (Math.abs(progressFromScroll() - landed) > 0.002) {
+      scroller.scrollLeft = landed * slideWidth();
+      setProgress(landed);
     }
     commitBehind();
   });
