@@ -275,7 +275,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
-<script src="/js/focus-gyro.js?v=1.0.1"></script>
+<script src="/js/focus-gyro.js?v=1.0.2"></script>
 
 <script>
   gsap.registerPlugin(Flip);
@@ -631,9 +631,11 @@
     return shine;
   }
 
-  function applyPolaroidTiltFromPercent(percentX, percentY) {
-    gsap.killTweensOf(polaroid);
-    gsap.killTweensOf(getShine());
+  function applyPolaroidTiltFromPercent(percentX, percentY, fromGyro) {
+    if (!fromGyro) {
+      gsap.killTweensOf(polaroid);
+      gsap.killTweensOf(getShine());
+    }
 
     percentX = Math.max(-1, Math.min(1, percentX));
     percentY = Math.max(-1, Math.min(1, percentY));
@@ -664,7 +666,8 @@
     if (window.FocusGyro && FocusGyro.isMobile()) {
       FocusGyro.start(function (px, py) {
         if (!isPolaroidOpen) return;
-        applyPolaroidTiltFromPercent(px, py);
+        polaroid.style.transition = 'none';
+        applyPolaroidTiltFromPercent(px, py, true);
       });
       return;
     }

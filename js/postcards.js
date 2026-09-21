@@ -412,8 +412,8 @@
     return shine;
   }
 
-  function applyPolaroidTiltFromPercent(percentX, percentY) {
-    if (hasGsap) {
+  function applyPolaroidTiltFromPercent(percentX, percentY, fromGyro) {
+    if (!fromGyro && hasGsap) {
       gsap.killTweensOf(polaroid);
       gsap.killTweensOf(getShine());
     }
@@ -440,7 +440,8 @@
     if (window.FocusGyro && FocusGyro.isMobile()) {
       FocusGyro.start(function (px, py) {
         if (!isPolaroidOpen || !flyReady) return;
-        applyPolaroidTiltFromPercent(px, py);
+        polaroid.style.transition = 'none';
+        applyPolaroidTiltFromPercent(px, py, true);
       });
       return;
     }

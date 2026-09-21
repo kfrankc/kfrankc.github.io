@@ -256,7 +256,7 @@
     if (window.FocusGyro && FocusGyro.isMobile()) {
       FocusGyro.start(function (px, py) {
         if (!focusOpen || flying) return;
-        focusCard.style.transition = 'transform 0.15s ease-out';
+        focusCard.style.transition = 'none';
         applyFocusTiltFromPercent(px, py);
       });
       return;
