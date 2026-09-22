@@ -52,6 +52,12 @@
 	border-radius: 50%;
 }
 
+@media (hover: none), (pointer: coarse) {
+	.profile-wrapper {
+		touch-action: none;
+	}
+}
+
 .profile-wrapper::after {
 	content: "";
 	position: absolute;

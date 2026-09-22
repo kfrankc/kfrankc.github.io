@@ -31,8 +31,12 @@
     let isReturning = false;
     const RETURN_DURATION_MS = 250; // duration of smooth return
 
-    const isTouchDevice = () =>
-        window.matchMedia?.('(hover: none) and (pointer: coarse)').matches;
+    function isTouchDevice() {
+        var noHover = window.matchMedia('(hover: none)').matches;
+        var coarse = window.matchMedia('(pointer: coarse)').matches;
+        var emulator = navigator.maxTouchPoints > 0 && window.matchMedia('(max-width: 991px)').matches;
+        return noHover || coarse || emulator;
+    }
 
     /**
      * Round a number to the nearest step value
@@ -364,35 +368,68 @@
             }
         }
         
-        document.addEventListener('mousemove', throttledHandleMovement, { passive: true });
-        
-        // Add event listeners for touch (mobile support)
-        // document.addEventListener('touchmove', handleTouch, { passive: false });
-        
-        if (isTouchDevice()) {
-            let isTouchingFace = false;
+        if (!isTouchDevice()) {
+            document.addEventListener('mousemove', throttledHandleMovement, { passive: true });
+        } else {
+            var trackingTouch = false;
 
-            profileWrapper.addEventListener('touchstart', (e) => {
-                isTouchingFace = true;
-                handleMovement(e);                  // initial update
-            }, { passive: true});                   // don't block scroll on start
+            function gazeFromTouch(e) {
+                if (!e.touches || !e.touches[0]) return;
+                cancelReturnAnimation();
+                handleMovement(e);
+            }
 
-            profileWrapper.addEventListener('touchmove', (e) => {
-                if (!isTouchingFace) return;
-                e.preventDefault();                 // stop page scroll only when dragging on the face
-                handleMovement(e);                  
-            }, { passive: false});                  // must be false to allow preventDefault
-
-            profileWrapper.addEventListener('touchend', () => {
-                isTouchingFace = false;
+            function endGazeTrack() {
+                if (!trackingTouch) return;
+                trackingTouch = false;
                 startReturnAnimation();
-            }, { passive: true});
+            }
+
+            document.addEventListener('touchstart', function (e) {
+                if (!e.touches || !e.touches[0]) return;
+                trackingTouch = true;
+                gazeFromTouch(e);
+            }, { passive: true });
+
+            document.addEventListener('touchmove', function (e) {
+                if (!trackingTouch) return;
+                gazeFromTouch(e);
+            }, { passive: true });
+
+            document.addEventListener('touchend', function (e) {
+                if (e.touches && e.touches.length) return;
+                endGazeTrack();
+            }, { passive: true });
+
+            document.addEventListener('touchcancel', function (e) {
+                if (e.touches && e.touches.length) return;
+                endGazeTrack();
+            }, { passive: true });
+
+            document.addEventListener('pointerdown', function (e) {
+                if (e.pointerType === 'touch') return;
+                if (e.button) return;
+                trackingTouch = true;
+                cancelReturnAnimation();
+                handleMovement(e);
+            }, { passive: true });
+
+            document.addEventListener('pointermove', function (e) {
+                if (e.pointerType === 'touch') return;
+                if (!trackingTouch) return;
+                throttledHandleMovement(e);
+            }, { passive: true });
+
+            document.addEventListener('pointerup', function (e) {
+                if (e.pointerType === 'touch') return;
+                endGazeTrack();
+            }, { passive: true });
         }
 
-        // Smoothly return to center when mouse leaves the window
-        document.addEventListener('mouseleave', startReturnAnimation);
-        // Cancel return on re-entry
-        document.addEventListener('mouseenter', cancelReturnAnimation);
+        if (!isTouchDevice()) {
+            document.addEventListener('mouseleave', startReturnAnimation);
+            document.addEventListener('mouseenter', cancelReturnAnimation);
+        }
         // Also handle when page visibility changes (e.g., tab switch)
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
