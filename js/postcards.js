@@ -45,6 +45,7 @@
     this.span = null;
     this.nativeBase = 0;
     this.wrapping = false;
+    this.wrapTimer = 0;
     this.nativePress = null;
     this.nativeMoved = false;
     this.onWheel = this.onWheel.bind(this);
@@ -52,6 +53,7 @@
     this.onPointerMove = this.onPointerMove.bind(this);
     this.onPointerUp = this.onPointerUp.bind(this);
     this.onNativeScroll = this.onNativeScroll.bind(this);
+    this.recenterNative = this.recenterNative.bind(this);
     this.onNativePointerDown = this.onNativePointerDown.bind(this);
     this.onNativePointerUp = this.onNativePointerUp.bind(this);
   }
@@ -134,6 +136,7 @@
       this.stage.appendChild(this.scroller);
       this.stage.classList.add('is-native-scroll');
       this.scroller.addEventListener('scroll', this.onNativeScroll, { passive: true });
+      this.scroller.addEventListener('scrollend', this.recenterNative);
       this.scroller.addEventListener('pointerdown', this.onNativePointerDown);
       this.scroller.addEventListener('pointerup', this.onNativePointerUp);
       this.scroller.addEventListener('pointercancel', this.onNativePointerUp);
@@ -143,7 +146,9 @@
 
   Carousel.prototype.teardownNative = function () {
     if (!this.scroller) return;
+    if (this.wrapTimer) clearTimeout(this.wrapTimer);
     this.scroller.removeEventListener('scroll', this.onNativeScroll);
+    this.scroller.removeEventListener('scrollend', this.recenterNative);
     this.scroller.removeEventListener('pointerdown', this.onNativePointerDown);
     this.scroller.removeEventListener('pointerup', this.onNativePointerUp);
     this.scroller.removeEventListener('pointercancel', this.onNativePointerUp);
@@ -162,20 +167,32 @@
     this.scrollX = local;
     this.targetScrollX = local;
     this.flick = 0;
+    if (this.wrapTimer) clearTimeout(this.wrapTimer);
+    this.wrapTimer = setTimeout(this.recenterNative, 180);
+  };
+
+  Carousel.prototype.recenterNative = function () {
+    if (!this.scroller || this.wrapping || this.locked || !this.periodX) return;
+    if (this.wrapTimer) {
+      clearTimeout(this.wrapTimer);
+      this.wrapTimer = 0;
+    }
+    var pos = this.nativePos();
     var next = pos;
-    while (next < this.periodX * 1.2) {
+    var base = this.nativeBase;
+    while (next < this.periodX * 1.5) {
       next += this.periodX;
-      this.nativeBase += this.periodX;
+      base += this.periodX;
     }
-    while (next > this.periodX * 3.8) {
+    while (next > this.periodX * 3.5) {
       next -= this.periodX;
-      this.nativeBase -= this.periodX;
+      base -= this.periodX;
     }
-    if (next !== pos) {
-      this.wrapping = true;
-      this.setNativePos(next);
-      this.wrapping = false;
-    }
+    if (next === pos) return;
+    this.wrapping = true;
+    this.nativeBase = base;
+    this.setNativePos(next);
+    this.wrapping = false;
   };
 
   Carousel.prototype.applyNativeDelta = function (delta) {
