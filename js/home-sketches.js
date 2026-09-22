@@ -99,7 +99,9 @@
   }
 
   function cardZIndex(index, first) {
-    if (first) return 100;
+    var next = fromIndex + (progress >= fromIndex ? 1 : -1);
+    if (Math.abs(progress - fromIndex) >= 0.5 && index === next) return 110;
+    if (first) return Math.abs(progress - fromIndex) >= 0.5 ? 80 : 100;
     if (index === clamp(Math.round(progress), 0, n - 1)) return 90;
     if (index === behindCard()) return 80;
     return 20 - Math.abs(progress - index);
@@ -119,7 +121,9 @@
     var scale = first ? transform(Math.min(ad, 1), [0, 0.5, 1], [1, 0.93, 1]) : 1;
     var zIndex = cardZIndex(index, first);
     var z = transform(d, [-2, -1, 0, 1, 2], [-180, -90, 0, -90, -180], true);
-    if (index === behindCard()) z += 24;
+    var tuck = clamp((Math.abs(progress - fromIndex) - 0.5) / 0.5, 0, 1);
+    if (index === fromIndex && tuck > 0) z += 24 * tuck;
+    else if (index === behindCard()) z += 24;
     return {
       x: x,
       rotateY: rotateY,
@@ -146,6 +150,7 @@
   }
 
   function setProgress(next) {
+    next = clamp(next, 0, n - 1);
     syncFromIndex(next);
     updateDirection(next);
     updateIsFirst(next);
@@ -469,7 +474,11 @@
       drag.moved = Math.max(drag.moved, Math.abs(dx));
       if (drag.moved < 4) return;
       if (e.cancelable) e.preventDefault();
-      scroller.scrollLeft = clamp(drag.origin - dx, (drag.start - 1) * w, (drag.start + 1) * w);
+      scroller.scrollLeft = clamp(
+        drag.origin - dx,
+        Math.max(0, (drag.start - 1) * w),
+        Math.min((n - 1) * w, (drag.start + 1) * w)
+      );
     });
 
     function endDrag() {
@@ -485,8 +494,8 @@
         return;
       }
       var next = start;
-      if (vx < -0.35 || p - start > 0.2) next = start + 1;
-      else if (vx > 0.35 || start - p > 0.2) next = start - 1;
+      if (vx < -0.35 || p - start > 0.2) next = Math.min(n - 1, start + 1);
+      else if (vx > 0.35 || start - p > 0.2) next = Math.max(0, start - 1);
       settleTo(next);
     }
 

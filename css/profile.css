@@ -243,6 +243,7 @@
 	overflow-y: hidden;
 	scroll-snap-type: x mandatory;
 	-webkit-overflow-scrolling: touch;
+	overscroll-behavior-x: none;
 	touch-action: pan-x;
 	scrollbar-width: none;
 	cursor: pointer;
