@@ -106,9 +106,9 @@
     else this.scroller.scrollLeft = pos;
   };
 
-  Carousel.prototype.syncNativeSpan = function () {
+  Carousel.prototype.sizeNativeSpan = function () {
     if (!this.scroller || !this.periodX) return;
-    var run = this.periodX * 5;
+    var run = this.periodX * 11;
     if (this.vertical) {
       this.span.style.width = '1px';
       this.span.style.height = run + 'px';
@@ -116,8 +116,13 @@
       this.span.style.height = '1px';
       this.span.style.width = run + 'px';
     }
+  };
+
+  Carousel.prototype.syncNativeSpan = function () {
+    this.sizeNativeSpan();
+    if (!this.scroller || !this.periodX) return;
     this.wrapping = true;
-    this.nativeBase = this.periodX * 2;
+    this.nativeBase = this.periodX * 5;
     this.setNativePos(this.nativeBase + this.scrollX);
     this.wrapping = false;
   };
@@ -136,19 +141,19 @@
       this.stage.appendChild(this.scroller);
       this.stage.classList.add('is-native-scroll');
       this.scroller.addEventListener('scroll', this.onNativeScroll, { passive: true });
-      this.scroller.addEventListener('scrollend', this.recenterNative);
       this.scroller.addEventListener('pointerdown', this.onNativePointerDown);
       this.scroller.addEventListener('pointerup', this.onNativePointerUp);
       this.scroller.addEventListener('pointercancel', this.onNativePointerUp);
+      this.syncNativeSpan();
+      return;
     }
-    this.syncNativeSpan();
+    this.sizeNativeSpan();
   };
 
   Carousel.prototype.teardownNative = function () {
     if (!this.scroller) return;
     if (this.wrapTimer) clearTimeout(this.wrapTimer);
     this.scroller.removeEventListener('scroll', this.onNativeScroll);
-    this.scroller.removeEventListener('scrollend', this.recenterNative);
     this.scroller.removeEventListener('pointerdown', this.onNativePointerDown);
     this.scroller.removeEventListener('pointerup', this.onNativePointerUp);
     this.scroller.removeEventListener('pointercancel', this.onNativePointerUp);
@@ -168,7 +173,7 @@
     this.targetScrollX = local;
     this.flick = 0;
     if (this.wrapTimer) clearTimeout(this.wrapTimer);
-    this.wrapTimer = setTimeout(this.recenterNative, 180);
+    this.wrapTimer = setTimeout(this.recenterNative, 220);
   };
 
   Carousel.prototype.recenterNative = function () {
@@ -178,13 +183,14 @@
       this.wrapTimer = 0;
     }
     var pos = this.nativePos();
+    if (pos >= this.periodX * 3 && pos <= this.periodX * 8) return;
     var next = pos;
     var base = this.nativeBase;
-    while (next < this.periodX * 1.5) {
+    while (next < this.periodX * 5) {
       next += this.periodX;
       base += this.periodX;
     }
-    while (next > this.periodX * 3.5) {
+    while (next > this.periodX * 6) {
       next -= this.periodX;
       base -= this.periodX;
     }
@@ -435,7 +441,8 @@
     carousel.measure();
     carousel.scrollX = t * carousel.periodX;
     carousel.targetScrollX = carousel.scrollX;
-    carousel.ensureNative();
+    if (carousel.scroller) carousel.sizeNativeSpan();
+    else carousel.ensureNative();
     carousel.applyTransforms();
   }
   addEventListener('resize', relayout);
