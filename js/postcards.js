@@ -41,10 +41,19 @@
     this.pinch = false;
     this.stoppingFlick = false;
     this.locked = false;
+    this.scroller = null;
+    this.span = null;
+    this.nativeBase = 0;
+    this.wrapping = false;
+    this.nativePress = null;
+    this.nativeMoved = false;
     this.onWheel = this.onWheel.bind(this);
     this.onPointerDown = this.onPointerDown.bind(this);
     this.onPointerMove = this.onPointerMove.bind(this);
     this.onPointerUp = this.onPointerUp.bind(this);
+    this.onNativeScroll = this.onNativeScroll.bind(this);
+    this.onNativePointerDown = this.onNativePointerDown.bind(this);
+    this.onNativePointerUp = this.onNativePointerUp.bind(this);
   }
 
   Carousel.prototype.prepare = function () {
@@ -55,6 +64,7 @@
 
   Carousel.prototype.start = function () {
     this.prepare();
+    this.ensureNative();
     this.stage.addEventListener('wheel', this.onWheel, { capture: true, passive: false });
     this.stage.addEventListener('pointerdown', this.onPointerDown);
     this.stage.addEventListener('pointermove', this.onPointerMove);
@@ -63,11 +73,137 @@
   };
 
   Carousel.prototype.stop = function () {
+    this.teardownNative();
     this.stage.removeEventListener('wheel', this.onWheel, { capture: true });
     this.stage.removeEventListener('pointerdown', this.onPointerDown);
     this.stage.removeEventListener('pointermove', this.onPointerMove);
     this.stage.removeEventListener('pointerup', this.onPointerUp);
     this.stage.removeEventListener('pointercancel', this.onPointerUp);
+  };
+
+  Carousel.prototype.usesNativeScroll = function () {
+    return coarsePointer.matches;
+  };
+
+  Carousel.prototype.slotFromPoint = function (clientX, clientY) {
+    for (var i = 0; i < this.slots.length; i++) {
+      var r = this.slots[i].getBoundingClientRect();
+      if (clientX >= r.left && clientX <= r.right && clientY >= r.top && clientY <= r.bottom) {
+        return this.slots[i];
+      }
+    }
+    return null;
+  };
+
+  Carousel.prototype.nativePos = function () {
+    return this.vertical ? this.scroller.scrollTop : this.scroller.scrollLeft;
+  };
+
+  Carousel.prototype.setNativePos = function (pos) {
+    if (this.vertical) this.scroller.scrollTop = pos;
+    else this.scroller.scrollLeft = pos;
+  };
+
+  Carousel.prototype.syncNativeSpan = function () {
+    if (!this.scroller || !this.periodX) return;
+    var run = this.periodX * 5;
+    if (this.vertical) {
+      this.span.style.width = '1px';
+      this.span.style.height = run + 'px';
+    } else {
+      this.span.style.height = '1px';
+      this.span.style.width = run + 'px';
+    }
+    this.wrapping = true;
+    this.nativeBase = this.periodX * 2;
+    this.setNativePos(this.nativeBase + this.scrollX);
+    this.wrapping = false;
+  };
+
+  Carousel.prototype.ensureNative = function () {
+    if (!this.usesNativeScroll()) {
+      this.teardownNative();
+      return;
+    }
+    if (!this.scroller) {
+      this.scroller = document.createElement('div');
+      this.scroller.className = 'postcard-native-scroll';
+      this.span = document.createElement('div');
+      this.span.className = 'postcard-native-span';
+      this.scroller.appendChild(this.span);
+      this.stage.appendChild(this.scroller);
+      this.stage.classList.add('is-native-scroll');
+      this.scroller.addEventListener('scroll', this.onNativeScroll, { passive: true });
+      this.scroller.addEventListener('pointerdown', this.onNativePointerDown);
+      this.scroller.addEventListener('pointerup', this.onNativePointerUp);
+      this.scroller.addEventListener('pointercancel', this.onNativePointerUp);
+    }
+    this.syncNativeSpan();
+  };
+
+  Carousel.prototype.teardownNative = function () {
+    if (!this.scroller) return;
+    this.scroller.removeEventListener('scroll', this.onNativeScroll);
+    this.scroller.removeEventListener('pointerdown', this.onNativePointerDown);
+    this.scroller.removeEventListener('pointerup', this.onNativePointerUp);
+    this.scroller.removeEventListener('pointercancel', this.onNativePointerUp);
+    this.scroller.remove();
+    this.scroller = null;
+    this.span = null;
+    this.nativePress = null;
+    this.stage.classList.remove('is-native-scroll');
+  };
+
+  Carousel.prototype.onNativeScroll = function () {
+    if (!this.scroller || this.wrapping || this.locked || !this.periodX) return;
+    if (this.nativePress) this.nativeMoved = true;
+    var pos = this.nativePos();
+    var local = pos - this.nativeBase;
+    this.scrollX = local;
+    this.targetScrollX = local;
+    this.flick = 0;
+    var next = pos;
+    while (next < this.periodX * 1.2) {
+      next += this.periodX;
+      this.nativeBase += this.periodX;
+    }
+    while (next > this.periodX * 3.8) {
+      next -= this.periodX;
+      this.nativeBase -= this.periodX;
+    }
+    if (next !== pos) {
+      this.wrapping = true;
+      this.setNativePos(next);
+      this.wrapping = false;
+    }
+  };
+
+  Carousel.prototype.applyNativeDelta = function (delta) {
+    if (!this.scroller) {
+      this.targetScrollX += delta;
+      return;
+    }
+    this.wrapping = true;
+    this.setNativePos(this.nativePos() + delta);
+    this.wrapping = false;
+    this.onNativeScroll();
+  };
+
+  Carousel.prototype.onNativePointerDown = function (e) {
+    if (this.locked || e.button) return;
+    var slot = this.slotFromPoint(e.clientX, e.clientY);
+    this.nativeMoved = false;
+    this.nativePress = { x: e.clientX, y: e.clientY, slot: slot };
+    if (slot && typeof this.onPress === 'function') this.onPress(slot);
+  };
+
+  Carousel.prototype.onNativePointerUp = function (e) {
+    var press = this.nativePress;
+    this.nativePress = null;
+    if (!press || this.locked || this.pinch || this.nativeMoved) return;
+    if (Math.hypot(e.clientX - press.x, e.clientY - press.y) > 8) return;
+    var slot = this.slotFromPoint(e.clientX, e.clientY) || press.slot;
+    if (slot && typeof this.onActivate === 'function') this.onActivate(slot);
   };
 
   Carousel.prototype.syncAxis = function () {
@@ -96,6 +232,7 @@
   };
 
   Carousel.prototype.onWheel = function (e) {
+    if (this.scroller) return;
     if (isPinchZoom(e)) return;
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -105,6 +242,7 @@
   };
 
   Carousel.prototype.onPointerDown = function (e) {
+    if (this.scroller) return;
     this.pointers[e.pointerId] = true;
     if (pointerCount(this.pointers) > 1) {
       this.drag = null;
@@ -112,10 +250,11 @@
       return;
     }
     if (this.locked || e.button !== 0) return;
-    if (e.cancelable) e.preventDefault();
     this.stoppingFlick = Math.abs(this.flick) > 0.05 || Math.abs(this.targetScrollX - this.scrollX) > 8;
     this.flick = 0;
     if (this.stoppingFlick) this.targetScrollX = this.scrollX;
+    this.pressSlot = e.target && e.target.closest ? e.target.closest('.slot') : null;
+    if (e.cancelable) e.preventDefault();
     var pos = this.vertical ? e.clientY : e.clientX;
     this.drag = {
       pos: pos,
@@ -125,7 +264,6 @@
       vx: 0
     };
     this.moved = 0;
-    this.pressSlot = e.target && e.target.closest ? e.target.closest('.slot') : null;
     if (this.pressSlot && this.pressSlot.blur) this.pressSlot.blur();
     this.stage.setPointerCapture(e.pointerId);
     if (this.pressSlot && typeof this.onPress === 'function') this.onPress(this.pressSlot);
@@ -141,10 +279,8 @@
     var pos = this.vertical ? e.clientY : e.clientX;
     var now = performance.now();
     var dt = now - this.drag.lastT;
-    if (dt > 0 && dt < 64) {
-      this.drag.vx = this.drag.vx * 0.55 + ((pos - this.drag.lastPos) / dt) * 0.45;
-    } else if (dt >= 64) {
-      this.drag.vx = 0;
+    if (dt > 0 && dt < 80) {
+      this.drag.vx = this.drag.vx * 0.35 + ((pos - this.drag.lastPos) / dt) * 0.65;
     }
     this.drag.lastPos = pos;
     this.drag.lastT = now;
@@ -159,8 +295,8 @@
     var shouldOpen = !this.didDrag() && !this.pinch && !this.stoppingFlick && slot && pointerCount(this.pointers) === 0;
     if (pointerCount(this.pointers) === 0) {
       if (this.drag && this.didDrag() && coarsePointer.matches) {
-        this.flick = -this.drag.vx;
-        if (Math.abs(this.flick) < 0.15) this.flick = 0;
+        this.flick = -this.drag.vx * 1.15;
+        if (Math.abs(this.flick) < 0.04) this.flick = 0;
       }
       this.drag = null;
       this.pressSlot = null;
@@ -215,16 +351,25 @@
   };
 
   Carousel.prototype.tick = function () {
+    if (this.scroller) {
+      if (this._nativeLocked !== this.locked) {
+        this._nativeLocked = this.locked;
+        this.scroller.style.overflowX = this.locked || this.vertical ? 'hidden' : 'auto';
+        this.scroller.style.overflowY = this.locked || !this.vertical ? 'hidden' : 'auto';
+      }
+      this.applyTransforms();
+      return;
+    }
     var now = performance.now();
     var dt = this.lastTick ? Math.min(32, now - this.lastTick) : 16;
     this.lastTick = now;
     if (!this.drag && this.flick) {
       this.targetScrollX += this.flick * dt;
-      this.flick *= Math.pow(0.94, dt / 16);
-      if (Math.abs(this.flick) < 0.02) this.flick = 0;
+      this.flick *= Math.pow(0.9976, dt);
+      if (Math.abs(this.flick) < 0.012) this.flick = 0;
     }
     var prev = this.scrollX;
-    var lerp = this.drag && coarsePointer.matches ? TOUCH_DRAG_LERP : LERP;
+    var lerp = coarsePointer.matches && (this.drag || this.flick) ? TOUCH_DRAG_LERP : LERP;
     this.scrollX += (this.targetScrollX - this.scrollX) * lerp;
     this.velocity = this.scrollX - prev;
     this.applyTransforms();
@@ -273,10 +418,12 @@
     carousel.measure();
     carousel.scrollX = t * carousel.periodX;
     carousel.targetScrollX = carousel.scrollX;
+    carousel.ensureNative();
     carousel.applyTransforms();
   }
   addEventListener('resize', relayout);
   addEventListener('orientationchange', relayout);
+  if (coarsePointer.addEventListener) coarsePointer.addEventListener('change', relayout);
 
   var polaroidOverlay = document.getElementById('polaroid-overlay');
   var polaroidBackdrop = document.getElementById('polaroid-backdrop');
@@ -591,7 +738,7 @@
         flyReady = false;
         morphing = false;
         if (pendingScroll) {
-          carousel.targetScrollX += pendingScroll;
+          carousel.applyNativeDelta(pendingScroll);
           pendingScroll = 0;
         }
         polaroidOverlay.style.opacity = '';

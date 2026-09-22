@@ -1,10 +1,11 @@
 .page-postcards {
-	overflow: hidden;
-	height: 100%;
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 .page-postcards #content {
-	overflow: hidden;
+	flex: 1 0 auto;
 }
 
 .postcards-page {
@@ -14,18 +15,79 @@
 	min-height: 280px;
 }
 
+@media (max-width: 640px) {
+	.postcards-page {
+		height: calc(100svh - 6.5rem);
+	}
+}
+
+@media (hover: none) and (pointer: coarse) {
+	.page-postcards {
+		overflow: hidden;
+		height: 100%;
+	}
+
+	.page-postcards #content {
+		overflow: hidden;
+		flex: 1 1 auto;
+		min-height: 0;
+	}
+
+	.postcards-page {
+		height: 100%;
+	}
+
+	.page-main {
+		touch-action: pinch-zoom;
+	}
+
+	.page-postcards .footer {
+		display: none;
+	}
+}
+
 .page-main {
 	position: relative;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	touch-action: pinch-zoom;
+	touch-action: pan-y pinch-zoom;
 }
 
 .carousel {
 	position: relative;
 	width: 100%;
 	height: 100%;
+}
+
+.postcard-native-scroll {
+	position: absolute;
+	inset: 0;
+	z-index: 6;
+	-webkit-overflow-scrolling: touch;
+	overscroll-behavior: contain;
+	scrollbar-width: none;
+	touch-action: pan-y pinch-zoom;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.page-main:not(.is-tall) .postcard-native-scroll {
+	touch-action: pan-x pinch-zoom;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+.postcard-native-scroll::-webkit-scrollbar {
+	display: none;
+}
+
+.postcard-native-span {
+	pointer-events: none;
+}
+
+.page-main.is-native-scroll .slot {
+	pointer-events: none;
 }
 
 .page-main .slot {
@@ -74,12 +136,6 @@
 	.page-main .slot.is-in {
 		animation: none;
 		opacity: 1;
-	}
-}
-
-@media (max-width: 640px) {
-	.postcards-page {
-		height: calc(100svh - 6.5rem);
 	}
 }
 
